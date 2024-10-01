@@ -1,0 +1,22 @@
+<Application>
+	<Head>
+		<meta name="id" value="xwing"/>
+		<meta name="title" value="X-wing" version="1.0"/>
+		<meta name="author" value="Hakan Bilgin" namespace="ant"/>
+		<meta name="license" value="AGPL-3.0"/>
+		<meta name="repository" value="https://github.com/Defiant-System/xwing"/>
+		<meta name="width" value="480"/>
+		<meta name="height" value="720"/>
+		<meta name="top" value="175"/>
+		<meta name="left" value="105"/>
+		<meta name="minimize"/>
+		<meta name="maximize" value="disabled"/>
+		<meta name="resize" value="disabled"/>
+		<meta name="script" value="src/js/main.js"/>
+		<meta name="style" value="src/css/main.less"/>
+		<meta name="icons" value="src/svg/icons.svg"/>
+		<meta name="content" value="src/partials/content.htm"/>
+
+		@import "src/partials/menubar.xml"
+	</Head>
+</Application>

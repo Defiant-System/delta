@@ -1,0 +1,84 @@
+
+background: transparent;
+
+content {
+	background: #2f4e59;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: inherit;
+
+	&:before {
+		content: "";
+		background: linear-gradient(180deg, rgba(#000,.75), rgba(#000,0));
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+
+	&[data-show="start-view"] {
+		.start-view {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
+	&[data-show="game-view"] {
+		.game-view {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
+	> div {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		overflow: hidden;
+		opacity: 0;
+		visibility: hidden;
+		border-radius: inherit;
+	}
+
+	.start-view {
+		.logo {
+			position: relative;
+			width: 446px;
+			height: 102px;
+			margin: 73px auto;
+
+			svg {
+				position: absolute;
+				width: inherit;
+				height: inherit;
+				filter: drop-shadow(1px 1px 1px hsl(0, 100%, 100%))
+						// drop-shadow(0 1px 0 hsl(214, 5%, 80%))
+						drop-shadow(0 2px 0 hsl(214, 5%, 75%))
+						drop-shadow(0 3px 1px hsl(214, 5%, 67%))
+						drop-shadow(0 4px 0 hsl(214, 5%, 59%))
+						drop-shadow(0 5px 0 hsl(214, 5%, 51%))
+						// drop-shadow(0 6px 0 hsl(214, 5%, 43%))
+						drop-shadow(0 5px 11px rgba(#000,.5))
+						sepia(.35);
+			}
+		}
+	}
+
+	.game-view {
+		canvas.game {
+			// background: rgba(#f00,.25);
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			border-radius: inherit;
+		}
+	}
+}

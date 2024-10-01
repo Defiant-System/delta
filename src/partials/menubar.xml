@@ -1,0 +1,12 @@
+<MenuBar>
+	<Menu name="X-wing">
+		<Menu name="About X-wing" shell="win -a"/>
+		<Menu type="divider"/>
+		<Menu name="Quit X-wing" shell="win -c"/>
+	</Menu>
+	<Menu name="Help">
+		<Menu name="Help" click="open-help"/>
+		<Menu type="divider"/>
+		<Menu name="License" shell="win -al"/>
+	</Menu>
+</MenuBar>
