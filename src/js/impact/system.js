@@ -83,7 +83,7 @@ Impact.System = Impact.Class.extend({
 	
 	startRunLoop: function() {
 		this.stopRunLoop();
-		// this.animationId = Impact.setAnimation( this.run.bind(this) );
+		this.animationId = Impact.setAnimation( this.run.bind(this) );
 		this.running = true;
 	},
 	

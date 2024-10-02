@@ -10,6 +10,43 @@ if (!Array.prototype.erase) {
 	};
 }
 
+if (!Array.prototype.random) {
+	Array.prototype.random = function() {
+		return this[Math.floor(Math.random() * this.length)];
+	};
+}
+
+if (!Number.prototype.limit) {
+	Number.prototype.limit = function(min, max) {
+		return Math.min(max, Math.max(min, this));
+	};
+}
+
+if (!Number.prototype.round) {
+	Number.prototype.round = function(precision) {
+		precision = Math.pow(10, precision || 0);
+		return Math.round(this * precision) / precision;
+	};
+}
+
+if (!Number.prototype.floor) {
+	Number.prototype.floor = function() {
+		return Math.floor(this);
+	};
+}
+
+if (!Number.prototype.ceil) {
+	Number.prototype.ceil = function() {
+		return Math.ceil(this);
+	};
+}
+
+if (!Number.prototype.map) {
+	Number.prototype.map = function(istart, istop, ostart, ostop) {
+		return ostart + (ostop - ostart) * ((this - istart) / (istop - istart));
+	};
+}
+
 
 let Impact = {
 	game: null,

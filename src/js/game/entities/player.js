@@ -98,14 +98,14 @@ let EntityPlayer = Impact.Entity.extend({
 		if (isShooting && !this.wasShooting) {
 			this.wasShooting = true;
 			this.soundShoot.play();
-			if (!this.soundShoot.currentClip.iloop) {
-				this.soundShoot.currentClip.iloop = true;
-				this.soundShoot.currentClip.addEventListener("ended", (function() {
-					this.currentTime = 0;
-					this.play();
-				}
-				).bind(this.soundShoot.currentClip), false);
-			}
+			// if (!this.soundShoot.currentClip.iloop) {
+			// 	this.soundShoot.currentClip.iloop = true;
+			// 	this.soundShoot.currentClip.addEventListener("ended", (function() {
+			// 		this.currentTime = 0;
+			// 		this.play();
+			// 	}
+			// 	).bind(this.soundShoot.currentClip), false);
+			// }
 		} else if (this.wasShooting && !isShooting) {
 			this.soundShoot.stop();
 			this.wasShooting = false;

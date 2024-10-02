@@ -6,14 +6,21 @@ Impact.ImpactSplashLoader = Impact.Loader.extend({
 	logoWidth: 340,
 	logoHeight: 120,
 	init: function(gameClass, resources) {
-		// this.logo = new Image();
-		// this.logo.src = 'media/impact.png';
+		this.logo = new Image();
+		this.logo.src = '~/icons/made-with-impact.png';
+		// this.logo.src = '~/sprites/impact.png';
 		this.parent(gameClass, resources);
 	},
 	end: function() {
 		this.parent();
 		this.endTime = Date.now();
 		Impact.system.setDelegate(this);
+
+		setTimeout(() => {
+			// Impact.game.setGame();
+			Impact.system.stopRunLoop();
+			XType.paused = true;
+		}, 5e3)
 	},
 	run: function() {
 		var t = Date.now() - this.endTime;
@@ -28,8 +35,9 @@ Impact.ImpactSplashLoader = Impact.Loader.extend({
 			Impact.system.setDelegate(Impact.game);
 			return;
 		}
-		Impact.system.context.fillStyle = 'rgba(255,255,255,' + alpha + ')';
-		Impact.system.context.fillRect(0, 0, Impact.system.realWidth, Impact.system.realHeight);
+		// Impact.system.context.fillStyle = 'rgba(255,255,255,' + alpha + ')';
+		// Impact.system.context.fillRect(0, 0, Impact.system.realWidth, Impact.system.realHeight);
+		Impact.system.context.clearRect(0, 0, Impact.system.realWidth, Impact.system.realHeight);
 	},
 	draw: function() {
 		this._drawStatus += (this.status - this._drawStatus) / 5;
@@ -40,6 +48,7 @@ Impact.ImpactSplashLoader = Impact.Loader.extend({
 		var center = (w - this.logoWidth * scale) / 2;
 		ctx.fillStyle = 'rgba(0,0,0,0.8)';
 		ctx.fillRect(0, 0, w, h);
+		// ctx.clearRect(0, 0, w, h);
 		ctx.save();
 		ctx.translate(center, h / 2.5);
 		ctx.scale(scale, scale);
@@ -48,9 +57,9 @@ Impact.ImpactSplashLoader = Impact.Loader.extend({
 		ctx.strokeRect(25, this.logoHeight + 40, 300, 20);
 		ctx.fillStyle = 'rgb(255,255,255)';
 		ctx.fillRect(30, this.logoHeight + 45, 290 * this._drawStatus, 10);
-		// if (this.logo.width) {
-		// 	ctx.drawImage(this.logo, 0, 0);
-		// }
+		if (this.logo.width) {
+			ctx.drawImage(this.logo, 30, 30);
+		}
 		ctx.restore();
 	}
 });

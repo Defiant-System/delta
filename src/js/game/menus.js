@@ -71,20 +71,20 @@ let Menu = Impact.Class.extend({
 			Impact.system.context.fillStyle = this.clearColor;
 			Impact.system.context.fillRect(0, 0, Impact.system.width, Impact.system.height);
 		}
-		var xs = Impact.system.width / 2;
-		var ys = this.y;
-		if (this.name) {
-			this.fontTitle.draw(this.name, xs, ys - 160, Impact.Font.ALIGN.CENTER);
-		}
-		for (var i = 0; i < this.items.length; i++) {
-			var t = this.items[i].getText();
-			if (i == this.current) {
-				this.fontSelected.draw(t, xs, ys, Impact.Font.ALIGN.CENTER);
-			} else {
-				this.font.draw(t, xs, ys, Impact.Font.ALIGN.CENTER);
-			}
-			ys += this.font.height + 20;
-		}
+		// var xs = Impact.system.width / 2;
+		// var ys = this.y;
+		// if (this.name) {
+		// 	this.fontTitle.draw(this.name, xs, ys - 160, Impact.Font.ALIGN.CENTER);
+		// }
+		// for (var i = 0; i < this.items.length; i++) {
+		// 	var t = this.items[i].getText();
+		// 	if (i == this.current) {
+		// 		this.fontSelected.draw(t, xs, ys, Impact.Font.ALIGN.CENTER);
+		// 	} else {
+		// 		this.font.draw(t, xs, ys, Impact.Font.ALIGN.CENTER);
+		// 	}
+		// 	ys += this.font.height + 20;
+		// }
 	}
 });
 

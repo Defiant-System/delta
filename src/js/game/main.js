@@ -29,9 +29,9 @@ let XType = Impact.Game.extend({
 	stickLeft: null,
 	stickRight: null,
 	init: function() {
-		var bgmap = new Impact.BackgroundMap(620,[[1]],this.grid);
-		bgmap.repeat = true;
-		this.backgroundMaps.push(bgmap);
+		// var bgmap = new Impact.BackgroundMap(620,[[1]],this.grid);
+		// bgmap.repeat = true;
+		// this.backgroundMaps.push(bgmap);
 		if (!Impact.ua.mobile) {
 			Impact.input.bind(Impact.KEY.MOUSE1, 'shoot');
 			Impact.input.bind(Impact.KEY.UP_ARROW, 'up');
@@ -57,7 +57,8 @@ let XType = Impact.Game.extend({
 		}
 		
 		this.reset();
-		this.setTitle();
+		// this.setTitle();
+		this.setGame();
 		XType.initialized = true;
 	},
 	reset: function() {
@@ -194,7 +195,7 @@ let XType = Impact.Game.extend({
 			this.toggleMenu();
 		}
 		if (this.menu) {
-			this.backgroundMaps[0].scroll.y -= 100 * Impact.system.tick;
+			// this.backgroundMaps[0].scroll.y -= 100 * Impact.system.tick;
 			this.menu.update();
 			if (this.mode == XType.MODE.TITLE && Impact.input.pressed('shoot') && Impact.input.mouse.x > Impact.system.width - 154 && Impact.input.mouse.y > Impact.system.height - 56) {
 				// window.location = 'http://impactjs.com/';
@@ -204,7 +205,7 @@ let XType = Impact.Game.extend({
 			}
 		}
 		this.parent();
-		this.backgroundMaps[0].scroll.y -= 100 * Impact.system.tick;
+		// this.backgroundMaps[0].scroll.y -= 100 * Impact.system.tick;
 		if (this.mode == XType.MODE.GAME) {
 			this.checkBoss();
 		}
@@ -219,7 +220,7 @@ let XType = Impact.Game.extend({
 		}
 	},
 	draw: function() {
-		this.backdrop.draw(0, 0);
+		// this.backdrop.draw(0, 0);
 		var d = this.lastKillTimer.delta();
 		Impact.system.context.globalAlpha = d < 0 ? d * -3 + 0.3 : 0.3;
 		for (var i = 0; i < this.backgroundMaps.length; i++) {
@@ -243,7 +244,7 @@ let XType = Impact.Game.extend({
 		if (this.mode == XType.MODE.GAME) {
 			this.drawUI();
 		} else if (this.mode == XType.MODE.TITLE) {
-			this.drawTitle();
+			// this.drawTitle();
 		}
 		if (this.menu) {
 			this.menu.draw();
@@ -257,16 +258,16 @@ let XType = Impact.Game.extend({
 		}
 
 		// this.font.draw(this.score.zeroFill(6), Impact.system.width - 32, 32, Impact.Font.ALIGN.RIGHT);
-		this.font.draw(this.score.toString().padStart(6, "0"), Impact.system.width - 32, 32, Impact.Font.ALIGN.RIGHT);
+		// this.font.draw(this.score.toString().padStart(6, "0"), Impact.system.width - 32, 32, Impact.Font.ALIGN.RIGHT);
 		if (this.bossEndTimer) {
 			var d = -this.bossEndTimer.delta();
 			var a = d > 1.7 ? d.map(2, 1.7, 0, 1) : d < 1 ? d.map(1, 0, 1, 0) : 1;
 			var xs = Impact.system.width / 2;
 			var ys = Impact.system.height / 3 + (d < 1 ? Math.cos(1 - d).map(1, 0, 0, 250) : 0);
 			var b = this.level.level;
-			this.font.alpha = a;
-			this.font.draw('Stage ' + b + ' Clear', xs, ys, Impact.Font.ALIGN.CENTER);
-			this.font.alpha = 1;
+			// this.font.alpha = a;
+			// this.font.draw('Stage ' + b + ' Clear', xs, ys, Impact.Font.ALIGN.CENTER);
+			// this.font.alpha = 1;
 		}
 
 		if (this.livesRemainingTimer) {
@@ -274,13 +275,13 @@ let XType = Impact.Game.extend({
 			var a2 = d2 > 1.7 ? d2.map(2, 1.7, 0, 1) : (d2 < 1 ? d2 : 1);
 			var xs2 = Impact.system.width / 2;
 			var ys2 = Impact.system.height / 3 + (d2 < 1 ? Math.cos(1 - d2).map(1, 0, 0, 250) : 0);
-			this.font.alpha = Math.max(a2, 0);
-			if (this.lives > 1) {
-				this.font.draw(this.lives + ' Ships Remaining', xs2, ys2, Impact.Font.ALIGN.CENTER);
-			} else {
-				this.font.draw(this.lives + ' Ship Remaining', xs2, ys2, Impact.Font.ALIGN.CENTER);
-			}
-			this.font.alpha = 1;
+			// this.font.alpha = Math.max(a2, 0);
+			// if (this.lives > 1) {
+			// 	this.font.draw(this.lives + ' Ships Remaining', xs2, ys2, Impact.Font.ALIGN.CENTER);
+			// } else {
+			// 	this.font.draw(this.lives + ' Ship Remaining', xs2, ys2, Impact.Font.ALIGN.CENTER);
+			// }
+			// this.font.alpha = 1;
 			if (d2 < 0) {
 				this.livesRemainingTimer = null;
 			}
@@ -294,9 +295,9 @@ let XType = Impact.Game.extend({
 			}
 			Impact.system.context.globalAlpha = initTime.map(-0.5, 0, 1, 0).limit(0, 1);
 			if (Impact.ua.mobile) {
-				this.instructions.draw(100, Impact.system.height - 210);
+				// this.instructions.draw(100, Impact.system.height - 210);
 			} else {
-				this.instructions.draw(25, 260);
+				// this.instructions.draw(25, 260);
 			}
 			Impact.system.context.globalAlpha = 1;
 		}
@@ -464,7 +465,7 @@ XType.startGame = function() {
 	let cvs = window.find(".game-view canvas.game");
 	let width = window.innerWidth;
 	let height = window.innerHeight;
-	let fps = 1;
+	let fps = 60;
 
 	// if (Impact.ua.mobile) {
 	// 	Impact.Sound.enabled = false;
