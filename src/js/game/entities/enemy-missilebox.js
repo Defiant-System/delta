@@ -36,6 +36,10 @@ let EntityEnemyMissilebox = EntityEnemy.extend({
 				});
 				a += inc;
 			}
+
+			// play sound fx
+			window.audio.play("pulse");
+
 			this.shootTimer.set(this.reloadTime);
 		}
 	}

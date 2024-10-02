@@ -2,7 +2,7 @@
 let Bg = {
 	init() {
 		let worker = new Worker("~/js/bg-worker.js"),
-			cvs = window.find(".start-view canvas.bg"),
+			cvs = window.find("content canvas.bg"),
 			width = +cvs.prop("offsetWidth"),
 			height = +cvs.prop("offsetHeight");
 		// reset canvas

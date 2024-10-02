@@ -124,7 +124,7 @@ let EntityPlayer = Impact.Entity.extend({
 		// stop sound fx
 		window.audio.stop("plasma");
 		// play sound fx
-		window.audio.play("explosion");
+		window.audio.play("blow-up");
 
 		Impact.game.lastKillTimer.set(0.5);
 		Impact.game.spawnEntity(EntityExplosionParticleBlue, this.pos.x, this.pos.y, {

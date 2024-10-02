@@ -1,5 +1,7 @@
 let Anim = {
 	init(canvas) {
+		this.TAU = Math.PI * 2;
+
 		// setTimeout(() => { this.paused = true }, 300);
 	},
 	dispatch(event) {
@@ -12,6 +14,7 @@ let Anim = {
 				Self.ctx = Self.cvs.getContext("2d");
 				Self.dispatch({ type: "create-scene" });
 				Self.paused = false;
+				Self.active = "grid";
 				Self.draw();
 				break;
 			case "pause":
@@ -24,16 +27,31 @@ let Anim = {
 				}
 				break;
 			case "create-scene":
-				// lines
-				Self.perlin = new ClassicalNoise();
-				Self.variation = .0027;
-				Self.amp = 560;
-				Self.maxLines = 37;
-				Self.variators = [];
-				Self.startY = Self.cvs.height >> 1;
+				// grid
+				Self.grid = {
+					size: 30,
+					h: [],
+					v: [],
+				};
 
-				for (let i=0, u=0; i<Self.maxLines; i++, u+=.025) {
-					Self.variators[i] = u;
+				let i = 0,
+					il = (Self.cvs.height / Self.grid.size) | 1;
+				for (; i<il; i++) {
+					
+				}
+
+				// lines
+				Self.lines = {
+					perlin: new ClassicalNoise(),
+					variation: .0027,
+					amp: 560,
+					maxLines: 37,
+					variators: [],
+					startY: Self.cvs.height >> 1,
+				};
+
+				for (let i=0, u=0; i<Self.lines.maxLines; i++, u+=.025) {
+					Self.lines.variators[i] = u;
 				}
 
 				Self.ctx.fillStyle = "#aaddff55";
@@ -43,7 +61,14 @@ let Anim = {
 		}
 	},
 	update(Self) {
-		
+		let w = Self.cvs.width,
+			h = Self.cvs.height;
+
+		switch (Self.active) {
+			case "grid":
+				
+				break;
+		}
 	},
 	draw() {
 		let Self = Anim,
@@ -52,19 +77,26 @@ let Anim = {
 		// clear react
 		ctx.clearRect(0, 0, cvs.width, cvs.height);
 
-		// lines
-		for (let i=0; i<=Self.maxLines; i++) {
-			ctx.beginPath();
-			ctx.moveTo(-5, Self.startY);
+		switch (Self.active) {
+			case "grid":
+				
+				break;
+			case "lines":
+				// lines
+				for (let i=0; i<=Self.lines.maxLines; i++) {
+					ctx.beginPath();
+					ctx.moveTo(-5, Self.startY);
 
-			for (let x=0; x<cvs.width; x++) {
-				let y = Self.perlin.noise(x * Self.variation + Self.variators[i], x * Self.variation, 0);
-				ctx.lineTo(x, Self.startY + Self.amp * y);
-			}
-			ctx.stroke();
-			ctx.closePath();
-			// wavines
-			Self.variators[i] += .00075;
+					for (let x=0; x<cvs.width; x++) {
+						let y = Self.lines.perlin.noise(x * Self.lines.variation + Self.lines.variators[i], x * Self.lines.variation, 0);
+						ctx.lineTo(x, Self.lines.startY + Self.lines.amp * y);
+					}
+					ctx.stroke();
+					ctx.closePath();
+					// wavines
+					Self.lines.variators[i] += .00075;
+				}
+				break;
 		}
 
 		// next tick
@@ -96,6 +128,8 @@ let Utils = {
 		return Math.sqrt((xDistance ** 2) + (yDistance ** 2));
 	}
 };
+
+
 
 
 class ClassicalNoise {

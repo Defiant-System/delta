@@ -1,6 +1,6 @@
 <Application>
 	<Build>
-		<task action="skip" source="src/js/modules/bg-worker.js" destination="public/js/bg-worker.js"/>
+		<task action1="skip" source="src/js/modules/bg-worker.js" destination="public/js/bg-worker.js"/>
 	</Build>
 	<Head>
 		<meta name="id" value="xwing"/>
