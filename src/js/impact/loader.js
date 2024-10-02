@@ -26,7 +26,7 @@ Impact.Loader = Impact.Class.extend({
 	load: function() {
 		Impact.system.clear( '#000' );
 		
-		if( !this.resources.length ) {
+		if (!this.resources.length ) {
 			this.end();
 			return;
 		}
@@ -44,7 +44,7 @@ Impact.Loader = Impact.Class.extend({
 	
 	
 	end: function() {
-		if( this.done ) { return; }
+		if (this.done ) { return; }
 		
 		this.done = true;
 		clearInterval( this._intervalId );
@@ -75,7 +75,7 @@ Impact.Loader = Impact.Class.extend({
 	
 	
 	_loadCallback: function( path, status ) {
-		if( status ) {
+		if (status ) {
 			this._unloaded.erase( path );
 		}
 		else {
@@ -83,7 +83,7 @@ Impact.Loader = Impact.Class.extend({
 		}
 		
 		this.status = 1 - (this._unloaded.length / this.resources.length);
-		if( this._unloaded.length == 0 ) { // all done?
+		if (this._unloaded.length == 0 ) { // all done?
 			setTimeout( this.end.bind(this), 250 );
 		}
 	}

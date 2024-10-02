@@ -47,7 +47,7 @@ Impact.Game = Impact.Class.extend({
 		this.backgroundMaps = [];
 		for( var i = 0; i < data.layer.length; i++ ) {
 			var ld = data.layer[i];
-			if( ld.name == 'collision' ) {
+			if (ld.name == 'collision' ) {
 				this.collisionMap = new Impact.CollisionMap(ld.tilesize, ld.data );
 			}
 			else {
@@ -75,12 +75,12 @@ Impact.Game = Impact.Class.extend({
 	
 	
 	getMapByName: function( name ) {
-		if( name == 'collision' ) {
+		if (name == 'collision' ) {
 			return this.collisionMap;
 		}
 		
 		for( var i = 0; i < this.backgroundMaps.length; i++ ) {
-			if( this.backgroundMaps[i].name == name ) {
+			if (this.backgroundMaps[i].name == name ) {
 				return this.backgroundMaps[i];
 			}
 		}
@@ -102,7 +102,7 @@ Impact.Game = Impact.Class.extend({
 		var a = [];
 		for( var i = 0; i < this.entities.length; i++ ) {
 			var ent = this.entities[i];
-			if( ent instanceof entityClass && !ent._killed ) {
+			if (ent instanceof entityClass && !ent._killed ) {
 				a.push( ent );
 			}
 		}
@@ -115,12 +115,12 @@ Impact.Game = Impact.Class.extend({
 			? Impact.global[type]
 			: type;
 			
-		if( !entityClass ) {
+		if (!entityClass ) {
 			throw("Can't spawn entity of type " + type);
 		}
 		var ent = new (entityClass)( x, y, settings || {} );
 		this.entities.push( ent );
-		if( ent.name ) {
+		if (ent.name ) {
 			this.namedEntities[ent.name] = ent;
 		}
 		return ent;
@@ -139,7 +139,7 @@ Impact.Game = Impact.Class.extend({
 	
 	removeEntity: function( ent ) {
 		// Remove this entity from the named entities
-		if( ent.name ) {
+		if (ent.name ) {
 			delete this.namedEntities[ent.name];
 		}
 		
@@ -164,7 +164,7 @@ Impact.Game = Impact.Class.extend({
 	
 	update: function(){
 		// load new level?
-		if( this._levelToLoad ) {
+		if (this._levelToLoad ) {
 			this.loadLevel( this._levelToLoad );
 			this._levelToLoad = null;
 		}
@@ -181,7 +181,7 @@ Impact.Game = Impact.Class.extend({
 		this._deferredKill = [];
 		
 		// sort entities?
-		if( this._doSortEntities || this.autoSort ) {
+		if (this._doSortEntities || this.autoSort ) {
 			this.sortEntities();
 			this._doSortEntities = false;
 		}
@@ -199,7 +199,7 @@ Impact.Game = Impact.Class.extend({
 	updateEntities: function() {
 		for( var i = 0; i < this.entities.length; i++ ) {
 			var ent = this.entities[i];
-			if( !ent._killed ) {
+			if (!ent._killed ) {
 				ent.update();
 			}
 		}
@@ -207,7 +207,7 @@ Impact.Game = Impact.Class.extend({
 	
 	
 	draw: function(){
-		if( this.clearColor ) {
+		if (this.clearColor ) {
 			Impact.system.clear( this.clearColor );
 		}
 		
@@ -221,7 +221,7 @@ Impact.Game = Impact.Class.extend({
 		var mapIndex;
 		for( mapIndex = 0; mapIndex < this.backgroundMaps.length; mapIndex++ ) {
 			var map = this.backgroundMaps[mapIndex];
-			if( map.foreground ) {
+			if (map.foreground ) {
 				// All foreground layers are drawn after the entities
 				break;
 			}
@@ -280,11 +280,11 @@ Impact.Game = Impact.Class.extend({
 				for( var y = ymin; y < ymax; y++ ) {
 					
 					// Current cell is empty - create it and insert!
-					if( !hash[x] ) {
+					if (!hash[x] ) {
 						hash[x] = {};
 						hash[x][y] = [entity];
 					}
-					else if( !hash[x][y] ) {
+					else if (!hash[x][y] ) {
 						hash[x][y] = [entity];
 					}
 					
@@ -294,7 +294,7 @@ Impact.Game = Impact.Class.extend({
 						for( var c = 0; c < cell.length; c++ ) {
 							
 							// Intersects and wasn't already checkd?
-							if( entity.touches(cell[c]) && !checked[cell[c].id] ) {
+							if (entity.touches(cell[c]) && !checked[cell[c].id] ) {
 								checked[cell[c].id] = true;
 								Impact.Entity.checkPair( entity, cell[c] );
 							}

@@ -30,7 +30,7 @@ Impact.System = Impact.Class.extend({
 
 		// Automatically switch to crisp scaling when using a scale
 		// other than 1
-		if( this.scale != 1 ) {
+		if (this.scale != 1 ) {
 			Impact.System.scaleMode = Impact.System.SCALE.CRISP;
 		}
 		Impact.System.scaleMode( this.canvas, this.context );
@@ -50,7 +50,7 @@ Impact.System = Impact.Class.extend({
 	
 	
 	setGame: function( gameClass ) {
-		if( this.running ) {
+		if (this.running ) {
 			this.newGameClass = gameClass;
 		}
 		else {
@@ -66,7 +66,7 @@ Impact.System = Impact.Class.extend({
 	
 	
 	setDelegate: function( object ) {
-		if( typeof(object.run) == 'function' ) {
+		if (typeof(object.run) == 'function' ) {
 			this.delegate = object;
 			this.startRunLoop();
 		} else {
@@ -101,7 +101,7 @@ Impact.System = Impact.Class.extend({
 		this.delegate.run();
 		Impact.input.clearPressed();
 		
-		if( this.newGameClass ) {
+		if (this.newGameClass ) {
 			this.setGameNow( this.newGameClass );
 			this.newGameClass = null;
 		}
@@ -129,8 +129,8 @@ Impact.System.SCALE = {
 	},
 	SMOOTH: function( canvas, context ) {
 		Impact.setVendorAttribute( context, 'imageSmoothingEnabled', true );
-		canvas.style.imageRendering = '';
-		canvas.style.msInterpolationMode = '';
+		canvas.style.imageRendering = "";
+		canvas.style.msInterpolationMode = "";
 	}
 };
 Impact.System.scaleMode = Impact.System.SCALE.SMOOTH;

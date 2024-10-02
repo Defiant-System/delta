@@ -4,7 +4,7 @@ Impact.BackgroundMap = Impact.Map.extend({
 	scroll: {x: 0, y:0},
 	distance: 1,
 	repeat: false,
-	tilesetName: '',
+	tilesetName: "",
 	foreground: false,
 	enabled: true,
 	
@@ -92,9 +92,9 @@ Impact.BackgroundMap = Impact.Map.extend({
 		
 		for( var x = 0; x < tw; x++ ) {
 			for( var y = 0; y < th; y++ ) {
-				if( x + tx < this.width && y + ty < this.height ) {
+				if (x + tx < this.width && y + ty < this.height ) {
 					var tile = this.data[y+ty][x+tx];
-					if( tile ) {
+					if (tile ) {
 						this.tiles.drawTile(
 							x * this.tilesize - nx,	y * this.tilesize - ny,
 							tile - 1, this.tilesize
@@ -118,11 +118,11 @@ Impact.BackgroundMap = Impact.Map.extend({
 	
 	
 	draw: function() {
-		if( !this.tiles.loaded || !this.enabled ) {
+		if (!this.tiles.loaded || !this.enabled ) {
 			return;
 		}
 		
-		if( this.preRender ) {
+		if (this.preRender ) {
 			this.drawPreRendered();
 		}
 		else {
@@ -132,7 +132,7 @@ Impact.BackgroundMap = Impact.Map.extend({
 		
 	
 	drawPreRendered: function() {
-		if( !this.preRenderedChunks ) {
+		if (!this.preRenderedChunks ) {
 			this.preRenderMapToChunks();
 		}
 		
@@ -140,7 +140,7 @@ Impact.BackgroundMap = Impact.Map.extend({
 			dy = Impact.system.getDrawPos(this.scroll.y);
 			
 			
-		if( this.repeat ) {
+		if (this.repeat ) {
 			var w = this.width * this.tilesize * Impact.system.scale;
 			dx = (dx%w + w) % w;
 
@@ -156,7 +156,7 @@ Impact.BackgroundMap = Impact.Map.extend({
 			maxRealChunkY = this.preRenderedChunks.length;
 			
 		
-		if( !this.repeat ) {
+		if (!this.repeat ) {
 			maxChunkX = Math.min( maxChunkX, maxRealChunkX );
 			maxChunkY = Math.min( maxChunkY, maxRealChunkY );
 		}
@@ -174,7 +174,7 @@ Impact.BackgroundMap = Impact.Map.extend({
 				Impact.system.context.drawImage( chunk, x, y);
 				Impact.Image.drawCount++;
 				
-				if( this.debugChunks ) {
+				if (this.debugChunks ) {
 					Impact.system.context.strokeStyle = '#f0f';
 					Impact.system.context.strokeRect( x, y, this.chunkSize, this.chunkSize );
 				}
@@ -182,19 +182,19 @@ Impact.BackgroundMap = Impact.Map.extend({
 				// If we repeat in X and this chunk's width wasn't the full chunk size
 				// and the screen is not already filled, we need to draw another chunk
 				// AND nudge it to be flush with the last chunk
-				if( this.repeat && chunk.width < this.chunkSize && x + chunk.width < Impact.system.realWidth ) {
+				if (this.repeat && chunk.width < this.chunkSize && x + chunk.width < Impact.system.realWidth ) {
 					nudgeX += this.chunkSize - chunk.width;
 
 					// Only re-calculate maxChunkX during initial row to avoid
 					// unnecessary off-screen draws on subsequent rows.
-					if( cy == minChunkY ) {
+					if (cy == minChunkY ) {
 						maxChunkX++;
 					}
 				}
 			}
 			
 			// Same as above, but for Y
-			if( this.repeat && chunk.height < this.chunkSize && y + chunk.height < Impact.system.realHeight ) {
+			if (this.repeat && chunk.height < this.chunkSize && y + chunk.height < Impact.system.realHeight ) {
 				nudgeY += this.chunkSize - chunk.height;
 				maxChunkY++;
 			}
@@ -223,8 +223,8 @@ Impact.BackgroundMap = Impact.Map.extend({
 			var tileY = mapY + tileOffsetY;
 				
 			// Repeat Y?
-			if( tileY >= this.height || tileY < 0 ) {
-				if( !this.repeat ) { continue; }
+			if (tileY >= this.height || tileY < 0 ) {
+				if (!this.repeat ) { continue; }
 				tileY = (tileY%this.height + this.height) % this.height;
 			}
 			
@@ -232,14 +232,14 @@ Impact.BackgroundMap = Impact.Map.extend({
 				var tileX = mapX + tileOffsetX;
 				
 				// Repeat X?
-				if( tileX >= this.width || tileX < 0 ) {
-					if( !this.repeat ) { continue; }
+				if (tileX >= this.width || tileX < 0 ) {
+					if (!this.repeat ) { continue; }
 					tileX = (tileX%this.width + this.width) % this.width;
 				}
 				
 				// Draw!
-				if( (tile = this.data[tileY][tileX]) ) {
-					if( (anim = this.anims[tile-1]) ) { 
+				if ((tile = this.data[tileY][tileX]) ) {
+					if ((anim = this.anims[tile-1]) ) { 
 						anim.draw( pxX, pxY );
 					}
 					else {

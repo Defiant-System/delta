@@ -81,6 +81,7 @@ let EntityEnemy = Impact.Entity.extend({
 		var sx = this.image.width / 2
 		  , sy = this.image.height / 2;
 		Impact.system.context.save();
+		Impact.system.context.globalCompositeOperation = 'source-over';
 		Impact.system.context.translate(this.pos.x - Impact.game._rscreen.x - this.offset.x + sx, this.pos.y - Impact.game._rscreen.y - this.offset.y + sy);
 		Impact.system.context.rotate(this.angle - Math.PI / 2);
 		Impact.system.context.drawImage(this.image.data, -sx, -sy);

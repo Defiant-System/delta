@@ -110,7 +110,7 @@ Impact.Input = Impact.Class.extend({
 	
 	
 	initMouse: function() {
-		if( this.isUsingMouse ) { return; }
+		if (this.isUsingMouse ) { return; }
 		this.isUsingMouse = true;
 		Impact.system.canvas.addEventListener('wheel', this.mousewheel.bind(this), false );
 		
@@ -119,7 +119,7 @@ Impact.Input = Impact.Class.extend({
 		Impact.system.canvas.addEventListener('mouseup', this.keyup.bind(this), false );
 		Impact.system.canvas.addEventListener('mousemove', this.mousemove.bind(this), false );
 		
-		if( Impact.ua.touchDevice ) {
+		if (Impact.ua.touchDevice ) {
 			// Standard
 			Impact.system.canvas.addEventListener('touchstart', this.keydown.bind(this), false );
 			Impact.system.canvas.addEventListener('touchend', this.keyup.bind(this), false );
@@ -136,7 +136,7 @@ Impact.Input = Impact.Class.extend({
 
 	
 	initKeyboard: function() {
-		if( this.isUsingKeyboard ) { return; }
+		if (this.isUsingKeyboard ) { return; }
 		this.isUsingKeyboard = true;
 		window.addEventListener('keydown', this.keydown.bind(this), false );
 		window.addEventListener('keyup', this.keyup.bind(this), false );
@@ -144,7 +144,7 @@ Impact.Input = Impact.Class.extend({
 	
 	
 	initAccelerometer: function() {
-		if( this.isUsingAccelerometer ) { return; }
+		if (this.isUsingAccelerometer ) { return; }
 		this.isUsingAccelerometer = true;
 		window.addEventListener('devicemotion', this.devicemotion.bind(this), false );
 	},
@@ -153,7 +153,7 @@ Impact.Input = Impact.Class.extend({
 	mousewheel: function( event ) {
 		var code = event.deltaY < 0 ? Impact.KEY.MWHEEL_UP : Impact.KEY.MWHEEL_DOWN;
 		var action = this.bindings[code];
-		if( action ) {
+		if (action ) {
 			this.actions[action] = true;
 			this.presses[action] = true;
 			this.delayedKeyup[action] = true;
@@ -168,7 +168,7 @@ Impact.Input = Impact.Class.extend({
 		var scale = Impact.system.scale * (internalWidth / Impact.system.realWidth);
 		
 		var pos = {left: 0, top: 0};
-		if( Impact.system.canvas.getBoundingClientRect ) {
+		if (Impact.system.canvas.getBoundingClientRect ) {
 			pos = Impact.system.canvas.getBoundingClientRect();
 		}
 		
@@ -179,7 +179,7 @@ Impact.Input = Impact.Class.extend({
 	
 	
 	contextmenu: function( event ) {
-		if( this.bindings[Impact.KEY.MOUSE2] ) {
+		if (this.bindings[Impact.KEY.MOUSE2] ) {
 			event.stopPropagation();
 			event.preventDefault();
 		}
@@ -188,7 +188,7 @@ Impact.Input = Impact.Class.extend({
 	
 	keydown: function( event ) {
 		var tag = event.target.tagName;
-		if( tag == 'INPUT' || tag == 'TEXTAREA' ) { return; }
+		if (tag == 'INPUT' || tag == 'TEXTAREA' ) { return; }
 		
 		var code = event.type == 'keydown' 
 			? event.keyCode 
@@ -196,18 +196,18 @@ Impact.Input = Impact.Class.extend({
 		
 		// Focus window element for mouse clicks. Prevents issues when
 		// running the game in an iframe.
-		if( code < 0 && !Impact.ua.mobile ) {
+		if (code < 0 && !Impact.ua.mobile ) {
 			window.focus();
 		}
 		
-		if( event.type == 'touchstart' || event.type == 'mousedown' ) {
+		if (event.type == 'touchstart' || event.type == 'mousedown' ) {
 			this.mousemove( event );
 		}
 			
 		var action = this.bindings[code];
-		if( action ) {
+		if (action ) {
 			this.actions[action] = true;
-			if( !this.locks[action] ) {
+			if (!this.locks[action] ) {
 				this.presses[action] = true;
 				this.locks[action] = true;
 			}
@@ -218,14 +218,14 @@ Impact.Input = Impact.Class.extend({
 	
 	keyup: function( event ) {
 		var tag = event.target.tagName;
-		if( tag == 'INPUT' || tag == 'TEXTAREA' ) { return; }
+		if (tag == 'INPUT' || tag == 'TEXTAREA' ) { return; }
 		
 		var code = event.type == 'keyup' 
 			? event.keyCode 
 			: (event.button == 2 ? Impact.KEY.MOUSE2 : Impact.KEY.MOUSE1);
 		
 		var action = this.bindings[code];
-		if( action ) {
+		if (action ) {
 			this.delayedKeyup[action] = true;
 			event.preventDefault();
 		}
@@ -238,8 +238,8 @@ Impact.Input = Impact.Class.extend({
 	
 	
 	bind: function( key, action ) {
-		if( key < 0 ) { this.initMouse(); }
-		else if( key > 0 ) { this.initKeyboard(); }
+		if (key < 0 ) { this.initMouse(); }
+		else if (key > 0 ) { this.initKeyboard(); }
 		this.bindings[key] = action;
 	},
 	

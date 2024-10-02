@@ -64,12 +64,12 @@ Impact.Entity = Impact.Class.extend({
 	},
 	
 	addAnim: function( name, frameTime, sequence, stop ) {
-		if( !this.animSheet ) {
+		if (!this.animSheet ) {
 			throw( 'No animSheet to add the animation '+name+' to.' );
 		}
 		var a = new Impact.Animation( this.animSheet, frameTime, sequence, stop );
 		this.anims[name] = a;
-		if( !this.currentAnim ) {
+		if (!this.currentAnim ) {
 			this.currentAnim = a;
 		}
 		
@@ -92,23 +92,23 @@ Impact.Entity = Impact.Class.extend({
 		);
 		this.handleMovementTrace( res );
 		
-		if( this.currentAnim ) {
+		if (this.currentAnim ) {
 			this.currentAnim.update();
 		}
 	},
 	
 	
 	getNewVelocity: function( vel, accel, friction, max ) {
-		if( accel ) {
+		if (accel ) {
 			return ( vel + accel * Impact.system.tick ).limit( -max, max );
 		}
-		else if( friction ) {
+		else if (friction ) {
 			var delta = friction * Impact.system.tick;
 			
-			if( vel - delta > 0) {
+			if (vel - delta > 0) {
 				return vel - delta;
 			} 
-			else if( vel + delta < 0 ) {
+			else if (vel + delta < 0 ) {
 				return vel + delta;
 			}
 			else {
@@ -122,29 +122,29 @@ Impact.Entity = Impact.Class.extend({
 	handleMovementTrace: function( res ) {
 		this.standing = false;
 		
-		if( res.collision.y ) {
-			if( this.bounciness > 0 && Math.abs(this.vel.y) > this.minBounceVelocity ) {
+		if (res.collision.y ) {
+			if (this.bounciness > 0 && Math.abs(this.vel.y) > this.minBounceVelocity ) {
 				this.vel.y *= -this.bounciness;				
 			}
 			else {
-				if( this.vel.y > 0 ) {
+				if (this.vel.y > 0 ) {
 					this.standing = true;
 				}
 				this.vel.y = 0;
 			}
 		}
-		if( res.collision.x ) {
-			if( this.bounciness > 0 && Math.abs(this.vel.x) > this.minBounceVelocity ) {
+		if (res.collision.x ) {
+			if (this.bounciness > 0 && Math.abs(this.vel.x) > this.minBounceVelocity ) {
 				this.vel.x *= -this.bounciness;				
 			}
 			else {
 				this.vel.x = 0;
 			}
 		}
-		if( res.collision.slope ) {
+		if (res.collision.slope ) {
 			var s = res.collision.slope;
 			
-			if( this.bounciness > 0 ) {
+			if (this.bounciness > 0 ) {
 				var proj = this.vel.x * s.nx + this.vel.y * s.ny;
 				
 				this.vel.x = (this.vel.x - s.nx * proj * 2) * this.bounciness;
@@ -158,7 +158,7 @@ Impact.Entity = Impact.Class.extend({
 				this.vel.y = s.y * dot;
 				
 				var angle = Math.atan2( s.x, s.y );
-				if( angle > this.slopeStanding.min && angle < this.slopeStanding.max ) {
+				if (angle > this.slopeStanding.min && angle < this.slopeStanding.max ) {
 					this.standing = true;
 				}
 			}
@@ -169,7 +169,7 @@ Impact.Entity = Impact.Class.extend({
 	
 	
 	draw: function() {
-		if( this.currentAnim ) {
+		if (this.currentAnim ) {
 			this.currentAnim.draw(
 				this.pos.x - this.offset.x - Impact.game._rscreen.x,
 				this.pos.y - this.offset.y - Impact.game._rscreen.y
@@ -185,7 +185,7 @@ Impact.Entity = Impact.Class.extend({
 	
 	receiveDamage: function( amount, from ) {
 		this.health -= amount;
-		if( this.health <= 0 ) {
+		if (this.health <= 0 ) {
 			this.kill();
 		}
 	},
@@ -259,11 +259,11 @@ Impact.Entity.TYPE = {
 Impact.Entity.checkPair = function( a, b ) {
 	
 	// Do these entities want checks?
-	if( a.checkAgainst & b.type ) {
+	if (a.checkAgainst & b.type ) {
 		a.check( b );
 	}
 	
-	if( b.checkAgainst & a.type ) {
+	if (b.checkAgainst & a.type ) {
 		b.check( a );
 	}
 	
@@ -304,7 +304,7 @@ Impact.Entity.solveCollision = function( a, b ) {
 		a.last.x < b.last.x + b.size.x
 	) {
 		// Which one is on top?
-		if( a.last.y < b.last.y ) {
+		if (a.last.y < b.last.y ) {
 			Impact.Entity.seperateOnYAxis( a, b, weak );
 		}
 		else {
@@ -320,7 +320,7 @@ Impact.Entity.solveCollision = function( a, b ) {
 		a.last.y < b.last.y + b.size.y
 	){
 		// Which one is on the left?
-		if( a.last.x < b.last.x ) {
+		if (a.last.x < b.last.x ) {
 			Impact.Entity.seperateOnXAxis( a, b, weak );
 		}
 		else {
@@ -340,7 +340,7 @@ Impact.Entity.seperateOnXAxis = function( left, right, weak ) {
 	var nudge = (left.pos.x + left.size.x - right.pos.x);
 	
 	// We have a weak entity, so just move this one
-	if( weak ) {
+	if (weak ) {
 		var strong = left === weak ? right : left;
 		weak.vel.x = -weak.vel.x * weak.bounciness + strong.vel.x;
 		
@@ -373,13 +373,13 @@ Impact.Entity.seperateOnYAxis = function( top, bottom, weak ) {
 	var nudge = (top.pos.y + top.size.y - bottom.pos.y);
 	
 	// We have a weak entity, so just move this one
-	if( weak ) {
+	if (weak ) {
 		var strong = top === weak ? bottom : top;
 		weak.vel.y = -weak.vel.y * weak.bounciness + strong.vel.y;
 		
 		// Riding on a platform?
 		var nudgeX = 0;
-		if( weak == top && Math.abs(weak.vel.y - strong.vel.y) < weak.minBounceVelocity ) {
+		if (weak == top && Math.abs(weak.vel.y - strong.vel.y) < weak.minBounceVelocity ) {
 			weak.standing = true;
 			nudgeX = strong.vel.x * Impact.system.tick;
 		}
@@ -392,13 +392,13 @@ Impact.Entity.seperateOnYAxis = function( top, bottom, weak ) {
 	}
 	
 	// Bottom entity is standing - just bounce the top one
-	else if( Impact.game.gravity && (bottom.standing || top.vel.y > 0) ) {	
+	else if (Impact.game.gravity && (bottom.standing || top.vel.y > 0) ) {	
 		var resTop = Impact.game.collisionMap.trace( 
 			top.pos.x, top.pos.y, 0, -(top.pos.y + top.size.y - bottom.pos.y), top.size.x, top.size.y
 		);
 		top.pos.y = resTop.pos.y;
 		
-		if( top.bounciness > 0 && top.vel.y > top.minBounceVelocity ) {
+		if (top.bounciness > 0 && top.vel.y > top.minBounceVelocity ) {
 			top.vel.y *= -top.bounciness;		
 		}
 		else {

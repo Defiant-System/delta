@@ -6,7 +6,7 @@ Impact.Image = Impact.Class.extend({
 	loaded: false,
 	failed: false,
 	loadCallback: null,
-	path: '',
+	path: "",
 	
 	
 	staticInstantiate: function( path ) {
@@ -21,13 +21,13 @@ Impact.Image = Impact.Class.extend({
 	
 	
 	load: function( loadCallback ) {
-		if( this.loaded ) {
-			if( loadCallback ) {
+		if (this.loaded ) {
+			if (loadCallback ) {
 				loadCallback( this.path, true );
 			}
 			return;
 		}
-		else if( !this.loaded && Impact.ready ) {
+		else if (!this.loaded && Impact.ready ) {
 			this.loadCallback = loadCallback || null;
 			
 			this.data = new Image();
@@ -56,11 +56,11 @@ Impact.Image = Impact.Class.extend({
 		this.height = this.data.height;
 		this.loaded = true;
 		
-		if( Impact.system.scale != 1 ) {
+		if (Impact.system.scale != 1 ) {
 			this.resize( Impact.system.scale );
 		}
 		
-		if( this.loadCallback ) {
+		if (this.loadCallback ) {
 			this.loadCallback( this.path, true );
 		}
 	},
@@ -69,7 +69,7 @@ Impact.Image = Impact.Class.extend({
 	onerror: function( event ) {
 		this.failed = true;
 		
-		if( this.loadCallback ) {
+		if (this.loadCallback ) {
 			this.loadCallback( this.path, false );
 		}
 	},
@@ -109,7 +109,7 @@ Impact.Image = Impact.Class.extend({
 	
 	
 	draw: function( targetX, targetY, sourceX, sourceY, width, height ) {
-		if( !this.loaded ) { return; }
+		if (!this.loaded ) { return; }
 		
 		var scale = Impact.system.scale;
 		sourceX = sourceX ? sourceX * scale : 0;
@@ -131,7 +131,7 @@ Impact.Image = Impact.Class.extend({
 	drawTile: function( targetX, targetY, tile, tileWidth, tileHeight, flipX, flipY ) {
 		tileHeight = tileHeight ? tileHeight : tileWidth;
 		
-		if( !this.loaded || tileWidth > this.width || tileHeight > this.height ) { return; }
+		if (!this.loaded || tileWidth > this.width || tileHeight > this.height ) { return; }
 		
 		var scale = Impact.system.scale;
 		var tileWidthScaled = Math.floor(tileWidth * scale);
@@ -140,7 +140,7 @@ Impact.Image = Impact.Class.extend({
 		var scaleX = flipX ? -1 : 1;
 		var scaleY = flipY ? -1 : 1;
 		
-		if( flipX || flipY ) {
+		if (flipX || flipY ) {
 			Impact.system.context.save();
 			Impact.system.context.scale( scaleX, scaleY );
 		}
@@ -155,7 +155,7 @@ Impact.Image = Impact.Class.extend({
 			tileWidthScaled,
 			tileHeightScaled
 		);
-		if( flipX || flipY ) {
+		if (flipX || flipY ) {
 			Impact.system.context.restore();
 		}
 		

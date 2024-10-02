@@ -17,7 +17,7 @@ Impact.Font = Impact.Image.extend({
 
 	widthForString: function( text ) {
 		// Multiline?
-		if( text.indexOf('\n') !== -1 ) {
+		if (text.indexOf('\n') !== -1 ) {
 			var lines = text.split( '\n' );
 			var width = 0;
 			for( var i = 0; i < lines.length; i++ ) {
@@ -36,7 +36,7 @@ Impact.Font = Impact.Image.extend({
 		for( var i = 0; i < text.length; i++ ) {
 			width += this.widthMap[text.charCodeAt(i) - this.firstChar];
 		}
-		if( text.length > 0 ) {
+		if (text.length > 0 ) {
 			width += this.letterSpacing * (text.length - 1);
 		}
 		return width;
@@ -49,12 +49,12 @@ Impact.Font = Impact.Image.extend({
 	
 	
 	draw: function( text, x, y, align ) {
-		if( typeof(text) != 'string' ) {
+		if (typeof(text) != 'string' ) {
 			text = text.toString();
 		}
 		
 		// Multiline?
-		if( text.indexOf('\n') !== -1 ) {
+		if (text.indexOf('\n') !== -1 ) {
 			var lines = text.split( '\n' );
 			var lineHeight = this.height + this.lineSpacing;
 			for( var i = 0; i < lines.length; i++ ) {
@@ -63,13 +63,13 @@ Impact.Font = Impact.Image.extend({
 			return;
 		}
 		
-		if( align == Impact.Font.ALIGN.RIGHT || align == Impact.Font.ALIGN.CENTER ) {
+		if (align == Impact.Font.ALIGN.RIGHT || align == Impact.Font.ALIGN.CENTER ) {
 			var width = this._widthForLine( text );
 			x -= align == Impact.Font.ALIGN.CENTER ? width/2 : width;
 		}
 		
 
-		if( this.alpha !== 1 ) {
+		if (this.alpha !== 1 ) {
 			Impact.system.context.globalAlpha = this.alpha;
 		}
 
@@ -78,7 +78,7 @@ Impact.Font = Impact.Image.extend({
 			x += this._drawChar( c - this.firstChar, x, y );
 		}
 
-		if( this.alpha !== 1 ) {
+		if (this.alpha !== 1 ) {
 			Impact.system.context.globalAlpha = 1;
 		}
 		Impact.Image.drawCount += text.length;
@@ -86,7 +86,7 @@ Impact.Font = Impact.Image.extend({
 	
 	
 	_drawChar: function( c, targetX, targetY ) {
-		if( !this.loaded || c < 0 || c >= this.indices.length ) { return 0; }
+		if (!this.loaded || c < 0 || c >= this.indices.length ) { return 0; }
 		
 		var scale = Impact.system.scale;
 		
@@ -121,10 +121,10 @@ Impact.Font = Impact.Image.extend({
 		var currentWidth = 0;
 		for( var x = 0; x < image.width; x++ ) {
 			var index = x * 4 + 3; // alpha component of this pixel
-			if( px.data[index] > 127 ) {
+			if (px.data[index] > 127 ) {
 				currentWidth++;
 			}
-			else if( px.data[index] < 128 && currentWidth ) {
+			else if (px.data[index] < 128 && currentWidth ) {
 				this.widthMap.push( currentWidth );
 				this.indices.push( x-currentWidth );
 				currentWidth = 0;

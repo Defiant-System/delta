@@ -39,14 +39,14 @@ Impact.Timer = Impact.Class.extend({
 
 
 	pause: function() {
-		if( !this.pausedAt ) {
+		if (!this.pausedAt ) {
 			this.pausedAt = Impact.Timer.time;
 		}
 	},
 
 
 	unpause: function() {
-		if( this.pausedAt ) {
+		if (this.pausedAt ) {
 			this.base += Impact.Timer.time - this.pausedAt;
 			this.pausedAt = 0;
 		}

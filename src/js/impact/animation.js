@@ -33,7 +33,7 @@ Impact.Animation = Impact.Class.extend({
 	
 	init: function( sheet, frameTime, sequence, stop ) {
 		this.sheet = sheet;
-		this.pivot = {x: sheet.width/2, y: sheet.height/2 };
+		this.pivot = { x: sheet.width/2, y: sheet.height/2 };
 		this.timer = new Impact.Timer();
 
 		this.frameTime = frameTime;
@@ -68,7 +68,7 @@ Impact.Animation = Impact.Class.extend({
 	update: function() {
 		var frameTotal = Math.floor(this.timer.delta() / this.frameTime);
 		this.loopCount = Math.floor(frameTotal / this.sequence.length);
-		if( this.stop && this.loopCount > 0 ) {
+		if (this.stop && this.loopCount > 0 ) {
 			this.frame = this.sequence.length - 1;
 		}
 		else {
@@ -89,11 +89,11 @@ Impact.Animation = Impact.Class.extend({
 			return;
 		}
 		
-		if( this.alpha != 1) {
+		if (this.alpha != 1) {
 			Impact.system.context.globalAlpha = this.alpha;
 		}
 		
-		if( this.angle == 0 ) {		
+		if (this.angle == 0 ) {		
 			this.sheet.image.drawTile(
 				targetX, targetY,
 				this.tile, this.sheet.width, this.sheet.height,
@@ -115,7 +115,7 @@ Impact.Animation = Impact.Class.extend({
 			Impact.system.context.restore();
 		}
 		
-		if( this.alpha != 1) {
+		if (this.alpha != 1) {
 			Impact.system.context.globalAlpha = 1;
 		}
 	}

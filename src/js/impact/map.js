@@ -23,7 +23,7 @@ Impact.Map = Impact.Class.extend({
 	getTile: function( x, y ) {
 		var tx = Math.floor( x / this.tilesize );
 		var ty = Math.floor( y / this.tilesize );
-		if( 
+		if (
 			(tx >= 0 && tx <  this.width) &&
 			(ty >= 0 && ty < this.height)
 		) {
@@ -38,7 +38,7 @@ Impact.Map = Impact.Class.extend({
 	setTile: function( x, y, tile ) {
 		var tx = Math.floor( x / this.tilesize );
 		var ty = Math.floor( y / this.tilesize );
-		if( 
+		if (
 			(tx >= 0 && tx < this.width) &&
 			(ty >= 0 && ty < this.height)
 		) {

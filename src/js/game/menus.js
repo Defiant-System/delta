@@ -137,7 +137,7 @@ let MenuItemResume = MenuItem.extend({
 
 let MenuItemBlank = MenuItem.extend({
 	getText: function() {
-		return '';
+		return "";
 	}
 });
 
@@ -198,7 +198,7 @@ let TitleMenu = Menu.extend({
 });
 
 let MenuScores = Menu.extend({
-	loaded: '',
+	loaded: "",
 	mode: 'Desktop',
 	init: function() {
 		Impact.$('#scores').style.display = 'block';
@@ -220,10 +220,10 @@ let MenuScores = Menu.extend({
 	},
 	loadMode: function(mode) {
 		this.mode = mode;
-		Impact.$('#showScoresDesktop').className = '';
-		Impact.$('#showScoresMobile').className = '';
+		Impact.$('#showScoresDesktop').className = "";
+		Impact.$('#showScoresMobile').className = "";
 		Impact.$('#showScores' + mode).className = 'active';
-		Impact.$('#scoresTable').innerHTML = '';
+		Impact.$('#scoresTable').innerHTML = "";
 		Impact.$('#scoreNotice').innerHTML = 'Loading...';
 		Impact.game.xhr('scores/index.php', {
 			mode: mode
@@ -246,7 +246,7 @@ let MenuScores = Menu.extend({
 		}
 		html += '</table>';
 		Impact.$('#scoresTable').innerHTML = html;
-		Impact.$('#scoreNotice').innerHTML = '';
+		Impact.$('#scoreNotice').innerHTML = "";
 	},
 	escapeHTML: function(s) {
 		return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');

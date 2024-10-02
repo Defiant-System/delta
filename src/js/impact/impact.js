@@ -82,7 +82,7 @@ let Impact = {
 		) {
 			return object;
 		}
-		else if( object instanceof Array ) {
+		else if (object instanceof Array ) {
 			var c = [];
 			for( var i = 0, l = object.length; i < l; i++) {
 				c[i] = Impact.copy(object[i]);
@@ -110,7 +110,7 @@ let Impact = {
 				original[key] = ext;
 			}
 			else {
-				if( !original[key] || typeof(original[key]) != 'object' ) {
+				if (!original[key] || typeof(original[key]) != 'object' ) {
 					original[key] = (ext instanceof Array) ? [] : {};
 				}
 				Impact.merge( original[key], ext );
@@ -120,7 +120,7 @@ let Impact = {
 	},
 
 	ksort: function( obj ) {
-		if( !obj || typeof(obj) != 'object' ) {
+		if (!obj || typeof(obj) != 'object' ) {
 			return [];
 		}
 		
@@ -150,7 +150,7 @@ let Impact = {
 
 	normalizeVendorAttribute: function( el, attr ) {
 		var prefixedVal = ig.getVendorAttribute( el, attr );
-		if( !el[attr] && prefixedVal ) {
+		if (!el[attr] && prefixedVal ) {
 			el[attr] = prefixedVal;
 		}
 	},
@@ -184,10 +184,10 @@ let Impact = {
 	},
 
 	module: function( name ) {
-		if( Impact._current ) {
+		if (Impact._current ) {
 			throw( "Module '"+Impact._current.name+"' defines nothing" );
 		}
-		if( Impact.modules[name] && Impact.modules[name].body ) {
+		if (Impact.modules[name] && Impact.modules[name].body ) {
 			throw( "Module '"+name+"' is already defined" );
 		}
 		

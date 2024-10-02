@@ -1,14 +1,14 @@
 
 let EntityPlayer = Impact.Entity.extend({
-	animSheet: new Impact.AnimationSheet("~/icons/sprite-ship.png", 32, 32),
-	shieldAnimSheet: new Impact.AnimationSheet("~/icons/sprite-shield.png", 48, 48),
+	animSheet: new Impact.AnimationSheet("~/icons/sprite-ship.png", 48, 48),
+	shieldAnimSheet: new Impact.AnimationSheet("~/icons/sprite-shield.png", 64, 64),
 	size: {
-		x: 16,
-		y: 16
+		x: 24,
+		y: 24
 	},
 	offset: {
-		x: 16,
-		y: 16
+		x: 24,
+		y: 24
 	},
 	angle: -Math.PI / 2,
 	targetAngle: -Math.PI / 2,
@@ -28,7 +28,7 @@ let EntityPlayer = Impact.Entity.extend({
 		this.parent(x, y, settings);
 		this.addAnim("idle", 60, [0]);
 		this.addAnim("shoot", 0.05, [3, 2, 1, 0], true);
-		this.shield = new Impact.Animation(this.shieldAnimSheet,1,[0]);
+		this.shield = new Impact.Animation(this.shieldAnimSheet, 1, [0]);
 		this.shieldTimer = new Impact.Timer(2);
 		this.lastShootTimer = new Impact.Timer(0);
 		this.crosshair = Impact.game.crosshair;
@@ -39,11 +39,13 @@ let EntityPlayer = Impact.Entity.extend({
 		this.parent();
 		if (this.shieldTimer) {
 			this.shield.alpha = this.shieldTimer.delta().map(-0.5, 0, 0.5, 0).limit(0, 0.5);
-			this.shield.draw(this.pos.x - 24 - Impact.game._rscreen.x, this.pos.y - 24 - Impact.game._rscreen.y);
+			this.shield.draw(this.pos.x - 32 - Impact.game._rscreen.x, this.pos.y - 32 - Impact.game._rscreen.y);
 		}
 	},
 	update: function() {
 		if (this.shieldTimer) {
+			this.shield.angle += .25 * Impact.system.tick;
+
 			var d = this.shieldTimer.delta();
 			if (d > 0) {
 				this.shieldTimer = null;

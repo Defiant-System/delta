@@ -9,7 +9,7 @@ Impact.CollisionMap = Impact.Map.extend({
 		this.tiledef = tiledef || Impact.CollisionMap.defaultTileDef;
 		
 		for( var t in this.tiledef ) {
-			if( t|0 > this.lastSlope ) {
+			if (t|0 > this.lastSlope ) {
 				this.lastSlope = t|0;
 			}
 		}
@@ -29,7 +29,7 @@ Impact.CollisionMap = Impact.Map.extend({
 		// to force an additional trace step whenever vx or vy is a factor of tilesize. This
 		// prevents the trace step from skipping through the very first tile.
 		var steps = Math.ceil((Math.max(Math.abs(vx), Math.abs(vy))+0.1) / this.tilesize);
-		if( steps > 1 ) {
+		if (steps > 1 ) {
 			var sx = vx / steps;
 			var sy = vy / steps;
 			
@@ -38,9 +38,9 @@ Impact.CollisionMap = Impact.Map.extend({
 				
 				x = res.pos.x;
 				y = res.pos.y;
-				if( res.collision.x ) {	sx = 0; vx = 0; }
-				if( res.collision.y ) {	sy = 0;	vy = 0; }
-				if( res.collision.slope ) { break; }
+				if (res.collision.x ) {	sx = 0; vx = 0; }
+				if (res.collision.y ) {	sy = 0;	vy = 0; }
+				if (res.collision.slope ) { break; }
 			}
 		}
 		
@@ -61,7 +61,7 @@ Impact.CollisionMap = Impact.Map.extend({
 		var t = 0;
 		
 		// Horizontal collision (walls)
-		if( vx ) {
+		if (vx ) {
 			var pxOffsetX = (vx > 0 ? width : 0);
 			var tileOffsetX = (vx < 0 ? this.tilesize : 0);
 			
@@ -74,14 +74,14 @@ Impact.CollisionMap = Impact.Map.extend({
 			// We can skip this test if this is not the first step or the new tile position
 			// is the same as the current one.
 			var prevTileX = Math.floor( (x + pxOffsetX) / this.tilesize );
-			if( step > 0 || tileX == prevTileX || prevTileX < 0 || prevTileX >= this.width ) {
+			if (step > 0 || tileX == prevTileX || prevTileX < 0 || prevTileX >= this.width ) {
 				prevTileX = -1;
 			}
 			
 			// Still inside this collision map?
 			if(	tileX >= 0 && tileX < this.width ) {
 				for( var tileY = firstTileY; tileY < lastTileY; tileY++ ) {
-					if( prevTileX != -1 ) {
+					if (prevTileX != -1 ) {
 						t = this.data[tileY][prevTileX];
 						if(	
 							t > 1 && t <= this.lastSlope && 
@@ -96,7 +96,7 @@ Impact.CollisionMap = Impact.Map.extend({
 						t == 1 || t > this.lastSlope || // fully solid tile?
 						(t > 1 && this._checkTileDef(res, t, x, y, rvx, rvy, width, height, tileX, tileY)) // slope?
 					) {
-						if( t > 1 && t <= this.lastSlope && res.collision.slope ) {
+						if (t > 1 && t <= this.lastSlope && res.collision.slope ) {
 							break;
 						}
 						
@@ -112,7 +112,7 @@ Impact.CollisionMap = Impact.Map.extend({
 		}
 		
 		// Vertical collision (floor, ceiling)
-		if( vy ) {
+		if (vy ) {
 			var pxOffsetY = (vy > 0 ? height : 0);
 			var tileOffsetY = (vy < 0 ? this.tilesize : 0);
 			
@@ -121,16 +121,16 @@ Impact.CollisionMap = Impact.Map.extend({
 			var tileY = Math.floor( (res.pos.y + pxOffsetY) / this.tilesize );
 			
 			var prevTileY = Math.floor( (y + pxOffsetY) / this.tilesize );
-			if( step > 0 || tileY == prevTileY || prevTileY < 0 || prevTileY >= this.height ) {
+			if (step > 0 || tileY == prevTileY || prevTileY < 0 || prevTileY >= this.height ) {
 				prevTileY = -1;
 			}
 			
 			// Still inside this collision map?
-			if( tileY >= 0 && tileY < this.height ) {
+			if (tileY >= 0 && tileY < this.height ) {
 				for( var tileX = firstTileX; tileX < lastTileX; tileX++ ) {
-					if( prevTileY != -1 ) {
+					if (prevTileY != -1 ) {
 						t = this.data[prevTileY][tileX];
-						if( 
+						if (
 							t > 1 && t <= this.lastSlope &&
 							this._checkTileDef(res, t, x, y, rvx, rvy, width, height, tileX, prevTileY) ) {
 							break;
@@ -142,7 +142,7 @@ Impact.CollisionMap = Impact.Map.extend({
 						t == 1 || t > this.lastSlope || // fully solid tile?
 						(t > 1 && this._checkTileDef(res, t, x, y, rvx, rvy, width, height, tileX, tileY)) // slope?
 					) {
-						if( t > 1 && t <= this.lastSlope && res.collision.slope ) {
+						if (t > 1 && t <= this.lastSlope && res.collision.slope ) {
 							break;
 						}
 						
@@ -162,7 +162,7 @@ Impact.CollisionMap = Impact.Map.extend({
 	
 	_checkTileDef: function( res, t, x, y, vx, vy, width, height, tileX, tileY ) {
 		var def = this.tiledef[t];
-		if( !def ) { return false; }
+		if (!def ) { return false; }
 		
 		var lx = (tileX + def[0]) * this.tilesize,
 			ly = (tileY + def[1]) * this.tilesize,
@@ -175,11 +175,11 @@ Impact.CollisionMap = Impact.Map.extend({
 			ty = y + vy + (lvx > 0 ? height : 0) - ly;
 		
 		// Is the box corner behind the line?
-		if( lvx * ty - lvy * tx > 0 ) {
+		if (lvx * ty - lvy * tx > 0 ) {
 			
 			// Lines are only solid from one side - find the dot product of
 			// line normal and movement vector and dismiss if wrong side
-			if( vx * -lvy + vy * lvx < 0 ) {
+			if (vx * -lvy + vy * lvx < 0 ) {
 				return solid;
 			}
 			
@@ -196,7 +196,7 @@ Impact.CollisionMap = Impact.Map.extend({
 			// If we project further out than we moved in, then this is a full
 			// tile collision for solid tiles.
 			// For non-solid tiles, make sure we were in front of the line. 
-			if( px*px+py*py >= vx*vx+vy*vy ) {
+			if (px*px+py*py >= vx*vx+vy*vy ) {
 				return solid || (lvx * (ty-vy) - lvy * (tx-vx) < 0.5);
 			}
 			

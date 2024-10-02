@@ -6,7 +6,7 @@ Impact.SoundManager = Impact.Class.extend({
 	
 	init: function() {
 		// Quick sanity check if the Browser supports the Audio tag
-		if( !Impact.Sound.enabled || !window.Audio ) {
+		if (!Impact.Sound.enabled || !window.Audio ) {
 			Impact.Sound.enabled = false;
 			return;
 		}
@@ -15,19 +15,19 @@ Impact.SoundManager = Impact.Class.extend({
 		var probe = new Audio();
 		for( var i = 0; i < Impact.Sound.use.length; i++ ) {
 			var format = Impact.Sound.use[i];
-			if( probe.canPlayType(format.mime) ) {
+			if (probe.canPlayType(format.mime) ) {
 				this.format = format;
 				break;
 			}
 		}
 		
 		// No compatible format found? -> Disable sound
-		if( !this.format ) {
+		if (!this.format ) {
 			Impact.Sound.enabled = false;
 		}
 
 		// Create WebAudio Context
-		if( Impact.Sound.enabled && Impact.Sound.useWebAudio ) {
+		if (Impact.Sound.enabled && Impact.Sound.useWebAudio ) {
 			this.audioContext = new AudioContext();
 			this.boundWebAudioUnlock = this.unlockWebAudio.bind(this);
 			Impact.system.canvas.addEventListener('touchstart', this.boundWebAudioUnlock, false);
@@ -49,7 +49,7 @@ Impact.SoundManager = Impact.Class.extend({
 	},
 
 	load: function( path, multiChannel, loadCallback ) {
-		if( multiChannel && Impact.Sound.useWebAudio ) {
+		if (multiChannel && Impact.Sound.useWebAudio ) {
 			// Requested as Multichannel and we're using WebAudio?
 			return this.loadWebAudio( path, multiChannel, loadCallback );
 		}
@@ -63,7 +63,7 @@ Impact.SoundManager = Impact.Class.extend({
 		// Path to the soundfile with the right extension (.ogg or .mp3)
 		var realPath = Impact.prefix + path.replace(/[^\.]+$/, this.format.ext) + Impact.nocache;
 
-		if( this.clips[path] ) {
+		if (this.clips[path] ) {
 			return this.clips[path];
 		}
 
@@ -80,19 +80,19 @@ Impact.SoundManager = Impact.Class.extend({
 			that.audioContext.decodeAudioData(request.response, 
 				function(buffer) {
 					audioSource.buffer = buffer;
-					if( loadCallback ) {
+					if (loadCallback ) {
 						loadCallback( path, true, ev );
 					}
 				}, 
 				function(ev) {
-					if( loadCallback ) {
+					if (loadCallback ) {
 						loadCallback( path, false, ev );
 					}
 				}
 			);
 		};
 		request.onerror = function(ev) {
-			if( loadCallback ) {
+			if (loadCallback ) {
 				loadCallback( path, false, ev );
 			}
 		};
@@ -107,14 +107,14 @@ Impact.SoundManager = Impact.Class.extend({
 		var realPath = Impact.prefix + path.replace(/[^\.]+$/, this.format.ext) + Impact.nocache;
 		
 		// Sound file already loaded?
-		if( this.clips[path] ) {
+		if (this.clips[path] ) {
 			// Loaded as WebAudio, but now requested as HTML5 Audio? Probably Music?
-			if( this.clips[path] instanceof Impact.Sound.WebAudioSource ) {
+			if (this.clips[path] instanceof Impact.Sound.WebAudioSource ) {
 				return this.clips[path];
 			}
 			
 			// Only loaded as single channel and now requested as multichannel?
-			if( multiChannel && this.clips[path].length < Impact.Sound.channels ) {
+			if (multiChannel && this.clips[path].length < Impact.Sound.channels ) {
 				for( var i = this.clips[path].length; i < Impact.Sound.channels; i++ ) {
 					var a = new Audio( realPath );
 					a.load();
@@ -125,7 +125,7 @@ Impact.SoundManager = Impact.Class.extend({
 		}
 		
 		var clip = new Audio( realPath );
-		if( loadCallback ) {
+		if (loadCallback ) {
 			
 			// The canplaythrough event is dispatched when the browser determines
 			// that the sound can be played without interuption, provided the
@@ -133,7 +133,7 @@ Impact.SoundManager = Impact.Class.extend({
 			// Mobile browsers stubbornly refuse to preload HTML5, so we simply
 			// ignore the canplaythrough event and immediately "fake" a successful
 			// load callback
-			if( Impact.ua.mobile ) {
+			if (Impact.ua.mobile ) {
 				setTimeout(function(){
 					loadCallback( path, true, null );
 				}, 0);
@@ -154,7 +154,7 @@ Impact.SoundManager = Impact.Class.extend({
 		
 		
 		this.clips[path] = [clip];
-		if( multiChannel ) {
+		if (multiChannel ) {
 			for( var i = 1; i < Impact.Sound.channels; i++ ) {
 				var a = new Audio(realPath);
 				a.load();
@@ -171,15 +171,15 @@ Impact.SoundManager = Impact.Class.extend({
 		var channels = this.clips[path];
 
 		// Is this a WebAudio source? We only ever have one for each Sound
-		if( channels && channels instanceof Impact.Sound.WebAudioSource ) {
+		if (channels && channels instanceof Impact.Sound.WebAudioSource ) {
 			return channels;
 		}
 
 		// Oldschool HTML5 Audio - find a channel that's not currently 
 		// playing or, if all are playing, rewind one
 		for( var i = 0, clip; clip = channels[i++]; ) {
-			if( clip.paused || clip.ended ) {
-				if( clip.ended ) {
+			if (clip.paused || clip.ended ) {
+				if (clip.ended ) {
 					clip.currentTime = 0;
 				}
 				return clip;
@@ -225,7 +225,7 @@ Impact.Music = Impact.Class.extend({
 	
 	
 	add: function( music, name ) {
-		if( !Impact.Sound.enabled ) {
+		if (!Impact.Sound.enabled ) {
 			return;
 		}
 		
@@ -235,7 +235,7 @@ Impact.Music = Impact.Class.extend({
 
 		// Did we get a WebAudio Source? This is suboptimal; Music should be loaded
 		// as HTML5 Audio so it can be streamed
-		if( track instanceof Impact.Sound.WebAudioSource ) {
+		if (track instanceof Impact.Sound.WebAudioSource ) {
 			// Since this error will likely occur at game start, we stop the game
 			// to not produce any more errors.
 			Impact.system.stopRunLoop();
@@ -250,18 +250,18 @@ Impact.Music = Impact.Class.extend({
 		track.addEventListener( 'ended', this._endedCallbackBound, false );
 		this.tracks.push( track );
 		
-		if( name ) {
+		if (name ) {
 			this.namedTracks[name] = track;
 		}
 		
-		if( !this.currentTrack ) {
+		if (!this.currentTrack ) {
 			this.currentTrack = track;
 		}
 	},
 	
 	
 	next: function() {
-		if( !this.tracks.length ) { return; }
+		if (!this.tracks.length ) { return; }
 		
 		this.stop();
 		this.currentIndex = this.random
@@ -273,13 +273,13 @@ Impact.Music = Impact.Class.extend({
 	
 	
 	pause: function() {
-		if( !this.currentTrack ) { return; }
+		if (!this.currentTrack ) { return; }
 		this.currentTrack.pause();
 	},
 	
 	
 	stop: function() {
-		if( !this.currentTrack ) { return; }
+		if (!this.currentTrack ) { return; }
 		this.currentTrack.pause();
 		this.currentTrack.currentTime = 0;
 	},
@@ -288,14 +288,14 @@ Impact.Music = Impact.Class.extend({
 	play: function( name ) {
 		// If a name was provided, stop playing the current track (if any)
 		// and play the named track
-		if( name && this.namedTracks[name] ) {
+		if (name && this.namedTracks[name] ) {
 			var newTrack = this.namedTracks[name];
-			if( newTrack != this.currentTrack ) {
+			if (newTrack != this.currentTrack ) {
 				this.stop();
 				this.currentTrack = newTrack;
 			}
 		}
-		else if( !this.currentTrack ) { 
+		else if (!this.currentTrack ) { 
 			return; 
 		}
 		this.currentTrack.play();
@@ -329,7 +329,7 @@ Impact.Music = Impact.Class.extend({
 	
 	
 	fadeOut: function( time ) {
-		if( !this.currentTrack ) { return; }
+		if (!this.currentTrack ) { return; }
 		
 		clearInterval( this._fadeInterval );
 		this._fadeTimer = new Impact.Timer( time );
@@ -343,7 +343,7 @@ Impact.Music = Impact.Class.extend({
 			.limit( 0, 1 )
 			* this._volume;
 		
-		if( v <= 0.01 ) {
+		if (v <= 0.01 ) {
 			this.stop();
 			this.currentTrack.volume = this._volume;
 			clearInterval( this._fadeInterval );
@@ -354,7 +354,7 @@ Impact.Music = Impact.Class.extend({
 	},
 	
 	_endedCallback: function() {
-		if( this._loop ) {
+		if (this._loop ) {
 			this.play();
 		}
 		else {
@@ -366,7 +366,7 @@ Impact.Music = Impact.Class.extend({
 
 
 Impact.Sound = Impact.Class.extend({
-	path: '',
+	path: "",
 	volume: 1,
 	currentClip: null,
 	multiChannel: true,
@@ -392,20 +392,20 @@ Impact.Sound = Impact.Class.extend({
 	setLooping: function( loop ) {
 		this._loop = loop;
 
-		if( this.currentClip ) {
+		if (this.currentClip ) {
 			this.currentClip.loop = loop;
 		}
 	},	
 	
 	load: function( loadCallback ) {
-		if( !Impact.Sound.enabled ) {
-			if( loadCallback ) {
+		if (!Impact.Sound.enabled ) {
+			if (loadCallback ) {
 				loadCallback( this.path, true );
 			}
 			return;
 		}
 		
-		if( Impact.ready ) {
+		if (Impact.ready ) {
 			Impact.soundManager.load( this.path, this.multiChannel, loadCallback );
 		}
 		else {
@@ -415,7 +415,7 @@ Impact.Sound = Impact.Class.extend({
 	
 	
 	play: function() {
-		if( !Impact.Sound.enabled ) {
+		if (!Impact.Sound.enabled ) {
 			return;
 		}
 		
@@ -427,7 +427,7 @@ Impact.Sound = Impact.Class.extend({
 	
 	
 	stop: function() {
-		if( this.currentClip ) {
+		if (this.currentClip ) {
 			this.currentClip.pause();
 			this.currentClip.currentTime = 0;
 		}
@@ -457,7 +457,7 @@ Impact.Sound.WebAudioSource = Impact.Class.extend({
 	},
 
 	play: function() {
-		if( !this.buffer ) { return; }
+		if (!this.buffer ) { return; }
 		var source = Impact.soundManager.audioContext.createBufferSource();
 		source.buffer = this.buffer;
 		source.connect(this.gain); 
