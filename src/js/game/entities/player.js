@@ -3,8 +3,8 @@ let EntityPlayer = Impact.Entity.extend({
 	animSheet: new Impact.AnimationSheet("~/icons/sprite-ship.png", 32, 32),
 	shieldAnimSheet: new Impact.AnimationSheet("~/icons/sprite-shield.png", 48, 48),
 	size: {
-		x: 2,
-		y: 2
+		x: 16,
+		y: 16
 	},
 	offset: {
 		x: 16,
