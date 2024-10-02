@@ -87,7 +87,7 @@ let XType = Impact.Game.extend({
 			this.crosshair = this.spawnEntity(EntityCrosshair, 0, 0);
 		}
 		this.bossEndTimer = null;
-		this.player = this.spawnEntity(EntityPlayer, Impact.system.width / 2, Impact.system.height + 24);
+		this.player = this.spawnEntity(EntityPlayer, Impact.system.width / 2, Impact.system.height + 12);
 		this.mode = XType.MODE.GAME;
 	},
 	setTitle: function() {
@@ -213,7 +213,7 @@ let XType = Impact.Game.extend({
 	loseLive: function() {
 		this.lives--;
 		if (this.lives > 0) {
-			this.player = this.spawnEntity(EntityPlayer, Impact.system.width / 2, Impact.system.height + 24);
+			this.player = this.spawnEntity(EntityPlayer, Impact.system.width / 2, Impact.system.height + 12);
 			this.livesRemainingTimer = new Impact.Timer(2);
 		} else {
 			this.setGameOver();
