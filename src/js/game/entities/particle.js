@@ -52,5 +52,6 @@ let EntityParticles = Impact.Class.extend({
 			ctx.drawImage(img, p[i] + sx, p[i + 1] + sy);
 		}
 		Impact.system.context.globalAlpha = 1;
-	}
+	},
+	erase: function() {}
 });

@@ -221,6 +221,9 @@ let XType = Impact.Game.extend({
 	},
 	draw: function() {
 		// this.backdrop.draw(0, 0);
+		Impact.system.clear("#000");
+		// Impact.system.context.clearRect(0, 0, Impact.system.width, Impact.system.height);
+
 		var d = this.lastKillTimer.delta();
 		Impact.system.context.globalAlpha = d < 0 ? d * -3 + 0.3 : 0.3;
 		for (var i = 0; i < this.backgroundMaps.length; i++) {
@@ -251,11 +254,11 @@ let XType = Impact.Game.extend({
 		}
 	},
 	drawUI: function() {
-		if (Impact.ua.mobile) {
-			this.stickLeft.draw();
-			this.stickRight.draw();
-			this.pauseButton.draw(16, 10);
-		}
+		// if (Impact.ua.mobile) {
+		// 	this.stickLeft.draw();
+		// 	this.stickRight.draw();
+		// 	this.pauseButton.draw(16, 10);
+		// }
 
 		// this.font.draw(this.score.zeroFill(6), Impact.system.width - 32, 32, Impact.Font.ALIGN.RIGHT);
 		// this.font.draw(this.score.toString().padStart(6, "0"), Impact.system.width - 32, 32, Impact.Font.ALIGN.RIGHT);

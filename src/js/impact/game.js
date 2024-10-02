@@ -1,7 +1,7 @@
 
 Impact.Game = Impact.Class.extend({
 	
-	clearColor: '#ff0000',
+	clearColor: '#000000',
 	gravity: 0,
 	screen: {x: 0, y: 0},
 	_rscreen: {x: 0, y: 0},
