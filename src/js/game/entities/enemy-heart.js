@@ -8,7 +8,7 @@ let EntityEnemyHeart = EntityEnemy.extend({
 		x: 0,
 		y: 12
 	},
-	image: new Impact.Image('~/sprites/heart.png'),
+	image: new Impact.Image('~/icons/sprite-enemy-heart.png'),
 	health: 400,
 	bullets: 16,
 	killScore: 10000,

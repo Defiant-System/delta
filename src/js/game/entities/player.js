@@ -194,5 +194,5 @@ let EntityExplosionParticleBlue = EntityParticles.extend({
 		x: 360,
 		y: 360
 	},
-	image: new Impact.Image("~/sprites/exp-blue.png")
+	image: new Impact.Image("~/icons/sprite-blue-explosion.png")
 });

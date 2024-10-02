@@ -8,23 +8,15 @@ let EntityEnemyArm = EntityEnemy.extend({
 		x: 2,
 		y: 2
 	},
-	image: new Impact.Image('~/sprites/arm.png'),
+	image: new Impact.Image('~/icons/sprite-enemy-arm.png'),
 	health: 70,
 	killScore: 50,
 	explodeParticles: 5,
-	attachmentPoints: [{
-		x: -8,
-		y: 42,
-		angle: 20
-	}, {
-		x: 32,
-		y: 6,
-		angle: -70
-	}, {
-		x: -32,
-		y: 6,
-		angle: 70
-	}],
+	attachmentPoints: [
+		{ x: -8, y: 42, angle: 20 },
+		{ x: 38, y: 12, angle: -70 },
+		{ x: -38, y: 12, angle: 70 }
+	],
 	init: function(x, y, settings) {
 		this.parent(x, y - 18, settings);
 		this.moveTimer = new Impact.Timer();

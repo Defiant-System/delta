@@ -8,7 +8,7 @@ let EntityEnemyMissilebox = EntityEnemy.extend({
 		x: 2,
 		y: 2
 	},
-	image: new Impact.Image('~/sprites/missilebox.png'),
+	image: new Impact.Image('~/icons/sprite-enemy-missilebox.png'),
 	health: 120,
 	bullets: 8,
 	reloadTime: 3,
