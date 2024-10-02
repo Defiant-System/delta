@@ -1,6 +1,7 @@
 
 @import "./modules/utils.js"
 
+@import "./impact/impact.js"
 @import "./impact/image.js"
 @import "./impact/font.js"
 @import "./impact/sound.js"
@@ -8,7 +9,6 @@
 @import "./impact/timer.js"
 @import "./impact/system.js"
 @import "./impact/input.js"
-@import "./impact/impact.js"
 @import "./impact/animation.js"
 @import "./impact/entity.js"
 @import "./impact/map.js"
@@ -26,12 +26,13 @@
 @import "./game/entities/enemy-plasmabox.js"
 @import "./game/entities/enemy-arm.js"
 
-@import "./game/plugins/impact-splash-loader.js"
-@import "./game/plugins/analog-stick.js"
+@import "./plugins/impact-splash-loader.js"
+@import "./plugins/analog-stick.js"
 
 @import "./game/menus.js"
 @import "./game/main.js"
 
+@import "./modules/bg.js"
 @import "./modules/test.js"
 
 
@@ -40,11 +41,16 @@ const xwing = {
 		// fast references
 		this.content = window.find("content");
 
+		// init objects
+		Bg.init();
+
 		// DEV-ONLY-START
 		Test.init(this);
 		// DEV-ONLY-END
 	},
 	dispatch(event) {
+		let Self = xwing,
+			name;
 		switch (event.type) {
 			// system events
 			case "window.init":
@@ -52,6 +58,14 @@ const xwing = {
 			// custom events
 			case "open-help":
 				karaqu.shell("fs -u '~/help/index.md'");
+				break;
+			case "toggle-sound-fx": break;
+			case "toggle-music": break;
+			case "start-view":
+				Self.content.data({ show: "start-view" });
+				break;
+			case "new-game":
+				Self.content.data({ show: "game-view" });
 				break;
 		}
 	}

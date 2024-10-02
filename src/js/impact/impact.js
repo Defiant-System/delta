@@ -14,6 +14,61 @@ let Impact = {
 	lib: "lib/",
 	_current: null,
 	_loadQueue: [],
+	
+	$: function( selector ) {
+		return selector.charAt(0) == '#'
+			? document.getElementById( selector.substr(1) )
+			: document.getElementsByTagName( selector );
+	},
+	
+	$new: function( name ) {
+		return document.createElement( name );
+	},
+	
+	copy: function( object ) {
+		if(
+		   !object || typeof(object) != 'object' ||
+		   object instanceof HTMLElement ||
+		   object instanceof Impact.Class
+		) {
+			return object;
+		}
+		else if( object instanceof Array ) {
+			var c = [];
+			for( var i = 0, l = object.length; i < l; i++) {
+				c[i] = Impact.copy(object[i]);
+			}
+			return c;
+		}
+		else {
+			var c = {};
+			for( var i in object ) {
+				c[i] = Impact.copy(object[i]);
+			}
+			return c;
+		}
+	},
+	
+	merge: function( original, extended ) {
+		for( var key in extended ) {
+			var ext = extended[key];
+			if(
+				typeof(ext) != 'object' ||
+				ext instanceof HTMLElement ||
+				ext instanceof Impact.Class ||
+				ext === null
+			) {
+				original[key] = ext;
+			}
+			else {
+				if( !original[key] || typeof(original[key]) != 'object' ) {
+					original[key] = (ext instanceof Array) ? [] : {};
+				}
+				Impact.merge( original[key], ext );
+			}
+		}
+		return original;
+	},
 
 	ksort: function( obj ) {
 		if( !obj || typeof(obj) != 'object' ) {

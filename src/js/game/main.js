@@ -1,10 +1,10 @@
 
-Number.zeroes = '000000000000';
+// Number.zeroes = '000000000000';
 
-Number.prototype.zeroFill = function(d) {
-	var s = this.toString();
-	return Number.zeroes.substr(0, d - s.length) + s;
-};
+// Number.prototype.zeroFill = function(d) {
+// 	var s = this.toString();
+// 	return Number.zeroes.substr(0, d - s.length) + s;
+// };
 
 let XType = Impact.Game.extend({
 	menu: null,
@@ -77,7 +77,7 @@ let XType = Impact.Game.extend({
 	setGame: function() {
 		// window.scrollTo(0, 0);
 		Impact.music.play();
-		Impact.system.canvas.style.cursor = '';
+		Impact.system.canvas.style.cursor = "";
 		this.menu = null;
 		this.initTimer = new Impact.Timer(3);
 		this.lastKillTimer.reset();
@@ -95,18 +95,18 @@ let XType = Impact.Game.extend({
 		Impact.$('#scoreBox').style.display = 'none';
 	},
 	setGameOver: function() {
-		if (this.score > 0) {
-			var name = this.getCookie('scoreName');
-			if (name) {
-				Impact.$('#scoreName').value = name;
-			}
-			Impact.$('#scoreBox').style.display = 'block';
-			Impact.$('#scoreForm').style.display = 'block';
-			Impact.$('#scoreResponse').style.display = 'none';
-		}
-		if (Impact.ua.android) {
-			Impact.$('#scoreButton').focus();
-		}
+		// if (this.score > 0) {
+		// 	var name = this.getCookie('scoreName');
+		// 	if (name) {
+		// 		Impact.$('#scoreName').value = name;
+		// 	}
+		// 	Impact.$('#scoreBox').style.display = 'block';
+		// 	Impact.$('#scoreForm').style.display = 'block';
+		// 	Impact.$('#scoreResponse').style.display = 'none';
+		// }
+		// if (Impact.ua.android) {
+		// 	Impact.$('#scoreButton').focus();
+		// }
 		this.mode = XType.MODE.GAME_OVER;
 		this.menu = new GameOverMenu();
 	},
@@ -119,7 +119,7 @@ let XType = Impact.Game.extend({
 			}
 		} else {
 			if (this.menu) {
-				Impact.system.canvas.style.cursor = '';
+				Impact.system.canvas.style.cursor = "";
 				this.menu = null;
 			} else {
 				this.menu = new PauseMenu();
@@ -224,6 +224,7 @@ let XType = Impact.Game.extend({
 		for (var i = 0; i < this.backgroundMaps.length; i++) {
 			this.backgroundMaps[i].draw();
 		}
+
 		Impact.system.context.globalAlpha = 1;
 		if (d < 0.5) {
 			this._rscreen.x = Math.random() * 10 * (d - 0.5);
@@ -231,10 +232,12 @@ let XType = Impact.Game.extend({
 		} else {
 			this._rscreen.x = this._rscreen.y = 0;
 		}
+
 		Impact.system.context.globalCompositeOperation = 'lighter';
 		for (var i = 0; i < this.entities.length; i++) {
 			this.entities[i].draw();
 		}
+
 		Impact.system.context.globalCompositeOperation = 'source-over';
 		if (this.mode == XType.MODE.GAME) {
 			this.drawUI();
@@ -251,7 +254,9 @@ let XType = Impact.Game.extend({
 			this.stickRight.draw();
 			this.pauseButton.draw(16, 10);
 		}
-		this.font.draw(this.score.zeroFill(6), Impact.system.width - 32, 32, Impact.Font.ALIGN.RIGHT);
+
+		// this.font.draw(this.score.zeroFill(6), Impact.system.width - 32, 32, Impact.Font.ALIGN.RIGHT);
+		this.font.draw(this.score.toString().padStart(6, "0"), Impact.system.width - 32, 32, Impact.Font.ALIGN.RIGHT);
 		if (this.bossEndTimer) {
 			var d = -this.bossEndTimer.delta();
 			var a = d > 1.7 ? d.map(2, 1.7, 0, 1) : d < 1 ? d.map(1, 0, 1, 0) : 1;
@@ -262,6 +267,7 @@ let XType = Impact.Game.extend({
 			this.font.draw('Stage ' + b + ' Clear', xs, ys, Impact.Font.ALIGN.CENTER);
 			this.font.alpha = 1;
 		}
+
 		if (this.livesRemainingTimer) {
 			var d2 = -this.livesRemainingTimer.delta();
 			var a2 = d2 > 1.7 ? d2.map(2, 1.7, 0, 1) : (d2 < 1 ? d2 : 1);
@@ -278,6 +284,7 @@ let XType = Impact.Game.extend({
 				this.livesRemainingTimer = null;
 			}
 		}
+
 		if (this.initTimer) {
 			var initTime = this.initTimer.delta();
 			if (initTime > 0) {
@@ -355,13 +362,13 @@ let XType = Impact.Game.extend({
 		var seA = this.entitiesSortedByPosTypeB;
 		seA.sort(this.sortByYPosSize);
 		seB.sort(this.sortByYPos);
-		var c1 = 0
-		  , c2 = 0;
-		var k = 0
-		  , e1 = null
-		  , e2 = null
-		  , my = 0
-		  , noskip = true;
+		var c1 = 0,
+			c2 = 0,
+			k = 0,
+			e1 = null,
+			e2 = null,
+			my = 0,
+			noskip = true;
 		for (var i = 0; i < seA.length; i++) {
 			e1 = seA[i];
 			noskip = true;
@@ -379,65 +386,65 @@ let XType = Impact.Game.extend({
 		}
 	},
 	submitScore: function() {
-		var name = Impact.$('#scoreName').value;
-		if (!name)
-			return;
-		Impact.$('#scoreName').blur();
-		Impact.$('#scoreForm').style.display = 'none';
-		Impact.$('#scoreResponse').style.display = 'block';
-		Impact.$('#scoreResponse').innerHTML = 'Sending...';
-		this.setCookie('scoreName', name, 100);
-		var so = {
-			stage: this.level.level,
-			score: Math.floor(this.score),
-			name: name
-		};
-		so.sh = (so.score + so.stage) ^ 0x8d525a2f;
-		this.xhr('scores/index.php', so, this.scoreResponse.bind(this));
+		// var name = Impact.$('#scoreName').value;
+		// if (!name) return;
+
+		// Impact.$('#scoreName').blur();
+		// Impact.$('#scoreForm').style.display = 'none';
+		// Impact.$('#scoreResponse').style.display = 'block';
+		// Impact.$('#scoreResponse').innerHTML = 'Sending...';
+		// this.setCookie('scoreName', name, 100);
+		// var so = {
+		// 	stage: this.level.level,
+		// 	score: Math.floor(this.score),
+		// 	name: name
+		// };
+		// so.sh = (so.score + so.stage) ^ 0x8d525a2f;
+		// this.xhr('scores/index.php', so, this.scoreResponse.bind(this));
 	},
 	scoreResponse: function(data) {
-		if (data.success) {
-			Impact.$('#scoreResponse').innerHTML = 'Your Rank: #' + data.rank;
-		} else {
-			Impact.$('#scoreResponse').innerHTML = 'Failed. Sorry.';
-		}
+		// if (data.success) {
+		// 	Impact.$('#scoreResponse').innerHTML = 'Your Rank: #' + data.rank;
+		// } else {
+		// 	Impact.$('#scoreResponse').innerHTML = 'Failed. Sorry.';
+		// }
 	},
-	xhr: function(url, data, callback) {
-		var post = [];
-		if (data) {
-			for (var key in data) {
-				post.push(key + '=' + encodeURIComponent(data[key]));
-			}
-		}
-		var postString = post.join('&');
-		var xhr = new XMLHttpRequest();
-		if (callback) {
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState == 4) {
-					callback(JSON.parse(xhr.responseText));
-				}
-			}
-			;
-		}
-		xhr.open('POST', url);
-		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xhr.send(postString);
-	},
-	setCookie: function(name, value, days) {
-		days = days || 1;
-		var expire = new Date();
-		expire.setTime(Date.now() + 3600000 * 24 * days);
-		document.cookie = name + "=" + escape(value) + ";expires=" + expire.toGMTString();
-	},
-	getCookie: function(name) {
-		var re = new RegExp('[; ]' + name + '=([^\\s;]*)');
-		var match = (' ' + document.cookie).match(re);
-		if (name && match) {
-			return unescape(match[1]);
-		} else {
-			return null;
-		}
-	}
+	// xhr: function(url, data, callback) {
+	// 	var post = [];
+	// 	if (data) {
+	// 		for (var key in data) {
+	// 			post.push(key + '=' + encodeURIComponent(data[key]));
+	// 		}
+	// 	}
+	// 	var postString = post.join('&');
+	// 	var xhr = new XMLHttpRequest();
+	// 	if (callback) {
+	// 		xhr.onreadystatechange = function() {
+	// 			if (xhr.readyState == 4) {
+	// 				callback(JSON.parse(xhr.responseText));
+	// 			}
+	// 		}
+	// 		;
+	// 	}
+	// 	xhr.open('POST', url);
+	// 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	// 	xhr.send(postString);
+	// },
+	// setCookie: function(name, value, days) {
+	// 	days = days || 1;
+	// 	var expire = new Date();
+	// 	expire.setTime(Date.now() + 3600000 * 24 * days);
+	// 	document.cookie = name + "=" + escape(value) + ";expires=" + expire.toGMTString();
+	// },
+	// getCookie: function(name) {
+	// 	var re = new RegExp('[; ]' + name + '=([^\\s;]*)');
+	// 	var match = (' ' + document.cookie).match(re);
+	// 	if (name && match) {
+	// 		return unescape(match[1]);
+	// 	} else {
+	// 		return null;
+	// 	}
+	// }
 });
 
 XType.MODE = {
@@ -452,35 +459,39 @@ XType.paused = false;
 XType.startGame = function() {
 	Impact.Sound.channels = 2;
 	Impact.System.drawMode = Impact.System.DRAW.SUBPIXEL;
-	var width = 480;
-	var height = 720;
-	if (Impact.ua.mobile) {
-		Impact.Sound.enabled = false;
-		var wpw = window.innerWidth * Impact.ua.pixelRatio;
-		var wph = window.innerHeight * Impact.ua.pixelRatio;
-		var scale = width / wpw;
-		height = wph * scale;
-		Impact.internalScale = scale * Impact.ua.pixelRatio;
-		var canvas = Impact.$('#canvas');
-		canvas.style.width = Math.floor(window.innerWidth) + 'px';
-		canvas.style.height = Math.floor(window.innerHeight) + 'px';
-		Impact.$('#scoreBox').style.width = Math.floor(window.innerWidth) + 'px';
-		Impact.$('#scoreBox').style.top = (240 / Impact.internalScale) + 'px';
-		Impact.$('#scores').style.width = (410 / Impact.internalScale) + 'px';
-		Impact.$('#scores').style.height = Math.floor(window.innerHeight) + 'px';
-	} else {
-		Impact.$('#canvas').className = 'desktop';
-		Impact.$('#making-of').style.display = 'block';
-		Impact.$('#scoreBox').style.bottom = 0;
-		Impact.$('#scores').style.bottom = 0;
-	}
-	Impact.$('#scoreForm').onsubmit = function() {
-		if (Impact.game) {
-			Impact.game.submitScore();
-		}
-		return false;
-	}
-	Impact.main('#canvas', XType, 60, width, height, 1, Impact.ImpactSplashLoader);
+
+	var width = window.innerWidth;
+	var height = window.innerHeight;
+
+	// if (Impact.ua.mobile) {
+	// 	Impact.Sound.enabled = false;
+	// 	var wpw = window.innerWidth * Impact.ua.pixelRatio;
+	// 	var wph = window.innerHeight * Impact.ua.pixelRatio;
+	// 	var scale = width / wpw;
+	// 	height = wph * scale;
+	// 	Impact.internalScale = scale * Impact.ua.pixelRatio;
+	// 	var canvas = Impact.$('#canvas');
+	// 	canvas.style.width = Math.floor(window.innerWidth) + 'px';
+	// 	canvas.style.height = Math.floor(window.innerHeight) + 'px';
+	// 	Impact.$('#scoreBox').style.width = Math.floor(window.innerWidth) + 'px';
+	// 	Impact.$('#scoreBox').style.top = (240 / Impact.internalScale) + 'px';
+	// 	Impact.$('#scores').style.width = (410 / Impact.internalScale) + 'px';
+	// 	Impact.$('#scores').style.height = Math.floor(window.innerHeight) + 'px';
+	// } else {
+	// 	Impact.$('#canvas').className = 'desktop';
+	// 	Impact.$('#making-of').style.display = 'block';
+	// 	Impact.$('#scoreBox').style.bottom = 0;
+	// 	Impact.$('#scores').style.bottom = 0;
+	// }
+
+	// Impact.$('#scoreForm').onsubmit = function() {
+	// 	if (Impact.game) {
+	// 		Impact.game.submitScore();
+	// 	}
+	// 	return false;
+	// }
+
+	// Impact.main('#canvas', XType, 60, width, height, 1, Impact.ImpactSplashLoader);
 };
 
 XType.checkOrientation = function() {
@@ -489,10 +500,10 @@ XType.checkOrientation = function() {
 		return;
 	}
 	XType.wasPortrait = isPortrait;
-	Impact.$('#loading').style.display = 'none';
+	// Impact.$('#loading').style.display = 'none';
 	if (isPortrait) {
-		Impact.$('#canvas').style.display = 'block';
-		Impact.$('#rotate').style.display = 'none';
+		// Impact.$('#canvas').style.display = 'block';
+		// Impact.$('#rotate').style.display = 'none';
 		if (XType.initialized && XType.paused) {
 			Impact.system.startRunLoop();
 			XType.paused = false;
@@ -505,14 +516,14 @@ XType.checkOrientation = function() {
 			Impact.system.stopRunLoop();
 			XType.paused = true;
 		}
-		Impact.$('#canvas').style.display = 'none';
-		Impact.$('#rotate').style.display = 'block';
+		// Impact.$('#canvas').style.display = 'none';
+		// Impact.$('#rotate').style.display = 'block';
 	}
 };
 
-window.XType.wasPortrait = -1;
+XType.wasPortrait = -1;
 
-window.XType.isPortrait = function() {
+XType.isPortrait = function() {
 	return (!Impact.ua.mobile || window.innerHeight > window.innerWidth);
 };
 
@@ -520,4 +531,4 @@ window.XType.isPortrait = function() {
 
 // window.addEventListener('resize', XType.checkOrientation, false);
 
-window.XType.checkOrientation();
+XType.checkOrientation();

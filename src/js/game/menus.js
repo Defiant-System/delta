@@ -255,7 +255,7 @@ let MenuScores = Menu.extend({
 	update: function() {}
 });
 
-let MenuScores.initialized = false;
+MenuScores.initialized = false;
 
 let MenuItemBack = MenuItem.extend({
 	getText: function() {

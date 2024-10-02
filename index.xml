@@ -1,4 +1,7 @@
 <Application>
+	<Build>
+		<task action="skip" source="src/js/modules/bg-worker.js" destination="public/js/bg-worker.js"/>
+	</Build>
 	<Head>
 		<meta name="id" value="xwing"/>
 		<meta name="title" value="X-wing" version="1.0"/>
@@ -8,7 +11,7 @@
 		<meta name="width" value="480"/>
 		<meta name="height" value="720"/>
 		<meta name="top" value="175"/>
-		<meta name="left" value="105"/>
+		<meta name="left" value="305"/>
 		<meta name="minimize"/>
 		<meta name="maximize" value="disabled"/>
 		<meta name="resize" value="disabled"/>

@@ -4,6 +4,13 @@
 		<Menu type="divider"/>
 		<Menu name="Quit X-wing" shell="win -c"/>
 	</Menu>
+	<Menu name="Game" for="game-content">
+		<Menu name="Start View" click="start-view"/>
+		<Menu name="New Game" click="new-game"/>
+		<Menu type="divider"/>
+		<Menu name="Toggle Sound FX" click="toggle-sound-fx"/>
+		<Menu name="Toggle Music" click="toggle-music"/>
+	</Menu>
 	<Menu name="Help">
 		<Menu name="Help" click="open-help"/>
 		<Menu type="divider"/>
