@@ -101,7 +101,8 @@ let EntityEnemy = Impact.Entity.extend({
 		this.hitTimer.set(0.3);
 		Impact.game.score += this.hitScore;
 		if (this.health <= 0) {
-			this.soundExplode.play();
+			window.audio.play("explosion");
+			// this.soundExplode.play();
 			this.explode();
 			Impact.game.lastKillTimer.set(this.killTimerTime);
 			Impact.game.score += this.killScore;

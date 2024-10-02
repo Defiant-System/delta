@@ -21,5 +21,6 @@
 		<meta name="content" value="src/partials/content.htm"/>
 
 		@import "src/partials/menubar.xml"
+		@import "src/partials/sounds.xml"
 	</Head>
 </Application>
