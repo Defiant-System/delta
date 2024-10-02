@@ -6,6 +6,7 @@ let Anim = {
 	dispatch(event) {
 		let Self = Anim,
 			value;
+		// console.log(event.type);
 		switch (event.type) {
 			case "start":
 				Self.cvs = event.canvas;
@@ -28,7 +29,7 @@ let Anim = {
 				Self.perlin = new ClassicalNoise();
 				Self.variation = .0027;
 				Self.amp = 560;
-				Self.maxLines = 29;
+				Self.maxLines = 37;
 				Self.variators = [];
 				Self.startY = Self.cvs.height >> 1;
 

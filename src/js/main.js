@@ -51,9 +51,22 @@ const xwing = {
 	dispatch(event) {
 		let Self = xwing,
 			name;
+		// console.log(event.type);
 		switch (event.type) {
 			// system events
 			case "window.init":
+				break;
+			case "window.close":
+				// kill bg canvas worker
+				Bg.dispatch({ type: "dispose" });
+				break;
+			case "window.focus":
+				// resume background worker
+				Bg.dispatch({ type: "resume" });
+				break;
+			case "window.blur":
+				// pause background worker
+				Bg.dispatch({ type: "pause" });
 				break;
 			// custom events
 			case "open-help":
@@ -62,9 +75,15 @@ const xwing = {
 			case "toggle-sound-fx": break;
 			case "toggle-music": break;
 			case "start-view":
+				// resume background worker
+				Bg.dispatch({ type: "resume" });
+
 				Self.content.data({ show: "start-view" });
 				break;
 			case "new-game":
+				// pause background worker
+				Bg.dispatch({ type: "pause" });
+
 				Self.content.data({ show: "game-view" });
 				break;
 		}

@@ -55,6 +55,7 @@ let XType = Impact.Game.extend({
 			this.stickLeft = new Impact.AnalogStick(x1,y,radius,30);
 			this.stickRight = new Impact.AnalogStick(x2,y,radius,30);
 		}
+		
 		this.reset();
 		this.setTitle();
 		XType.initialized = true;
