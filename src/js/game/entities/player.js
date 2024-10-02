@@ -97,7 +97,10 @@ let EntityPlayer = Impact.Entity.extend({
 		}
 		if (isShooting && !this.wasShooting) {
 			this.wasShooting = true;
-			this.soundShoot.play();
+			
+			this._shooting = window.audio.play("plasma");
+
+			// this.soundShoot.play();
 			// if (!this.soundShoot.currentClip.iloop) {
 			// 	this.soundShoot.currentClip.iloop = true;
 			// 	this.soundShoot.currentClip.addEventListener("ended", (function() {
@@ -107,7 +110,8 @@ let EntityPlayer = Impact.Entity.extend({
 			// 	).bind(this.soundShoot.currentClip), false);
 			// }
 		} else if (this.wasShooting && !isShooting) {
-			this.soundShoot.stop();
+			this._shooting.stop();
+			// this.soundShoot.stop();
 			this.wasShooting = false;
 		}
 	},
@@ -125,8 +129,11 @@ let EntityPlayer = Impact.Entity.extend({
 		}
 	},
 	kill: function() {
-		this.soundShoot.stop();
-		this.soundExplode.play();
+		// this.soundShoot.stop();
+		// this.soundExplode.play();
+		this._shooting.stop();
+		window.audio.play("explosion");
+
 		Impact.game.lastKillTimer.set(0.5);
 		Impact.game.spawnEntity(EntityExplosionParticleBlue, this.pos.x, this.pos.y, {
 			count: 40
