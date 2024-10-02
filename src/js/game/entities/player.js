@@ -1,7 +1,7 @@
 
 let EntityPlayer = Impact.Entity.extend({
-	animSheet: new Impact.AnimationSheet('media/sprites/ship.png',24,24),
-	shieldAnimSheet: new Impact.AnimationSheet('media/sprites/shield.png',48,48),
+	animSheet: new Impact.AnimationSheet("~/sprites/ship.png",24,24),
+	shieldAnimSheet: new Impact.AnimationSheet("~/sprites/shield.png",48,48),
 	size: {
 		x: 2,
 		y: 2
@@ -21,13 +21,13 @@ let EntityPlayer = Impact.Entity.extend({
 		y: 300
 	},
 	speed: 110,
-	soundShoot: new Impact.Sound('media/sounds/plasma-burst.ogg'),
-	soundExplode: new Impact.Sound('media/sounds/explosion.ogg'),
+	soundShoot: new Impact.Sound("media/sounds/plasma-burst.ogg"),
+	soundExplode: new Impact.Sound("media/sounds/explosion.ogg"),
 	type: Impact.Entity.TYPE.A,
 	init: function(x, y, settings) {
 		this.parent(x, y, settings);
-		this.addAnim('idle', 60, [0]);
-		this.addAnim('shoot', 0.05, [3, 2, 1, 0], true);
+		this.addAnim("idle", 60, [0]);
+		this.addAnim("shoot", 0.05, [3, 2, 1, 0], true);
 		this.shield = new Impact.Animation(this.shieldAnimSheet,1,[0]);
 		this.shieldTimer = new Impact.Timer(2);
 		this.lastShootTimer = new Impact.Timer(0);
@@ -75,22 +75,22 @@ let EntityPlayer = Impact.Entity.extend({
 		}
 	},
 	handleDesktopInput: function() {
-		if (Impact.input.state('left')) {
+		if (Impact.input.state("left")) {
 			this.vel.x = -this.speed;
-		} else if (Impact.input.state('right')) {
+		} else if (Impact.input.state("right")) {
 			this.vel.x = this.speed;
 		} else {
 			this.vel.x = 0;
 		}
-		if (Impact.input.state('up')) {
+		if (Impact.input.state("up")) {
 			this.vel.y = -this.speed;
-		} else if (Impact.input.state('down')) {
+		} else if (Impact.input.state("down")) {
 			this.vel.y = this.speed;
 		} else {
 			this.vel.y = 0;
 		}
 		this.angle = this.angleTo(this.crosshair);
-		var isShooting = Impact.input.state('shoot');
+		var isShooting = Impact.input.state("shoot");
 		if (isShooting && this.lastShootTimer.delta() > 0) {
 			this.shoot();
 			this.lastShootTimer.set(0.05);
@@ -100,7 +100,7 @@ let EntityPlayer = Impact.Entity.extend({
 			this.soundShoot.play();
 			if (!this.soundShoot.currentClip.iloop) {
 				this.soundShoot.currentClip.iloop = true;
-				this.soundShoot.currentClip.addEventListener('ended', (function() {
+				this.soundShoot.currentClip.addEventListener("ended", (function() {
 					this.currentTime = 0;
 					this.play();
 				}
@@ -150,7 +150,7 @@ let EntityPlasma = Impact.Entity.extend({
 		x: 1000,
 		y: 1000
 	},
-	image: new Impact.Image('media/sprites/plasma.png'),
+	image: new Impact.Image("~/sprites/plasma.png"),
 	size: {
 		x: 4,
 		y: 4
@@ -194,5 +194,5 @@ let EntityExplosionParticleBlue = EntityParticles.extend({
 		x: 360,
 		y: 360
 	},
-	image: new Impact.Image('media/sprites/exp-blue.png')
+	image: new Impact.Image("~/sprites/exp-blue.png")
 });

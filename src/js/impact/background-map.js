@@ -25,7 +25,7 @@ Impact.BackgroundMap = Impact.Map.extend({
 	
 	setTileset: function( tileset ) {
 		this.tilesetName  = tileset instanceof Impact.Image ? tileset.path : tileset;
-		this.tiles = new Impact.Image( this.tilesetName );
+		// this.tiles = new Impact.Image( this.tilesetName );
 		this.preRenderedChunks = null;
 	},
 	

@@ -164,7 +164,7 @@ let EntityExplosionParticleLarge = EntityParticles.extend({
 		x: 150,
 		y: 150
 	},
-	image: new Impact.Image('media/sprites/enemy-explosion.png')
+	image: new Impact.Image('~/sprites/enemy-explosion.png')
 });
 
 let EntityExplosionParticleLargeSlow = EntityParticles.extend({
@@ -174,5 +174,5 @@ let EntityExplosionParticleLargeSlow = EntityParticles.extend({
 		x: 20,
 		y: 20
 	},
-	image: new Impact.Image('media/sprites/enemy-explosion.png')
+	image: new Impact.Image('~/sprites/enemy-explosion.png')
 });

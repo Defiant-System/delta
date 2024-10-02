@@ -8,7 +8,7 @@ let EntityEnemyArm = EntityEnemy.extend({
 		x: 2,
 		y: 2
 	},
-	image: new Impact.Image('media/sprites/arm.png'),
+	image: new Impact.Image('~/sprites/arm.png'),
 	health: 70,
 	killScore: 50,
 	explodeParticles: 5,

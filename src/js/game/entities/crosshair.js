@@ -1,6 +1,6 @@
 
 let EntityCrosshair = Impact.Entity.extend({
-	animSheet: new Impact.AnimationSheet('media/sprites/crosshair.png',18,18),
+	animSheet: new Impact.AnimationSheet('~/sprites/crosshair.png',18,18),
 	size: {
 		x: 2,
 		y: 2

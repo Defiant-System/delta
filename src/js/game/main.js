@@ -9,15 +9,15 @@
 let XType = Impact.Game.extend({
 	menu: null,
 	mode: 0,
-	font: new Impact.Font('media/fonts/tungsten-48.png'),
-	fontSmall: new Impact.Font('media/fonts/tungsten-18.png'),
-	backdrop: new Impact.Image('media/background/backdrop.png'),
-	grid: new Impact.Image('media/background/grid.png'),
-	music: new Impact.Sound('media/music/xtype.ogg',false),
-	title: new Impact.Image('media/xtype-title.png'),
-	pauseButton: new Impact.Image('media/pause-button.png'),
-	madeWithImpact: new Impact.Image('media/made-with-impact.png'),
-	instructions: new Impact.Image('media/instructions-' + (Impact.ua.mobile ? 'mobile' : 'desktop') + '.png'),
+	// font: new Impact.Font('media/fonts/tungsten-48.png'),
+	// fontSmall: new Impact.Font('media/fonts/tungsten-18.png'),
+	// backdrop: new Impact.Image('media/background/backdrop.png'),
+	// grid: new Impact.Image('media/background/grid.png'),
+	// music: new Impact.Sound('media/music/xtype.ogg',false),
+	// title: new Impact.Image('media/xtype-title.png'),
+	// pauseButton: new Impact.Image('media/pause-button.png'),
+	// madeWithImpact: new Impact.Image('media/made-with-impact.png'),
+	// instructions: new Impact.Image('media/instructions-' + (Impact.ua.mobile ? 'mobile' : 'desktop') + '.png'),
 	score: 0,
 	lives: 3,
 	level: {
@@ -44,8 +44,8 @@ let XType = Impact.Game.extend({
 			Impact.input.bind(Impact.KEY.D, 'right');
 			Impact.input.bind(Impact.KEY.ENTER, 'ok');
 			Impact.input.bind(Impact.KEY.ESC, 'menu');
-			Impact.music.volume = 0.6;
-			Impact.music.add(this.music);
+			// Impact.music.volume = 0.6;
+			// Impact.music.add(this.music);
 		} else {
 			var radius = 60;
 			var margin = 20;
@@ -93,7 +93,7 @@ let XType = Impact.Game.extend({
 		this.reset();
 		this.mode = XType.MODE.TITLE;
 		this.menu = new TitleMenu();
-		Impact.$('#scoreBox').style.display = 'none';
+		// Impact.$('#scoreBox').style.display = 'none';
 	},
 	setGameOver: function() {
 		// if (this.score > 0) {
@@ -461,8 +461,10 @@ XType.startGame = function() {
 	Impact.Sound.channels = 2;
 	Impact.System.drawMode = Impact.System.DRAW.SUBPIXEL;
 
-	var width = window.innerWidth;
-	var height = window.innerHeight;
+	let cvs = window.find(".game-view canvas.game");
+	let width = window.innerWidth;
+	let height = window.innerHeight;
+	let fps = 1;
 
 	// if (Impact.ua.mobile) {
 	// 	Impact.Sound.enabled = false;
@@ -492,7 +494,7 @@ XType.startGame = function() {
 	// 	return false;
 	// }
 
-	// Impact.main('#canvas', XType, 60, width, height, 1, Impact.ImpactSplashLoader);
+	Impact.main(cvs, XType, fps, width, height, 1, Impact.ImpactSplashLoader);
 };
 
 XType.checkOrientation = function() {

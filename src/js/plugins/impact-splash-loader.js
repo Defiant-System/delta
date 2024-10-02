@@ -6,8 +6,8 @@ Impact.ImpactSplashLoader = Impact.Loader.extend({
 	logoWidth: 340,
 	logoHeight: 120,
 	init: function(gameClass, resources) {
-		this.logo = new Image();
-		this.logo.src = 'media/impact.png';
+		// this.logo = new Image();
+		// this.logo.src = 'media/impact.png';
 		this.parent(gameClass, resources);
 	},
 	end: function() {
@@ -48,9 +48,9 @@ Impact.ImpactSplashLoader = Impact.Loader.extend({
 		ctx.strokeRect(25, this.logoHeight + 40, 300, 20);
 		ctx.fillStyle = 'rgb(255,255,255)';
 		ctx.fillRect(30, this.logoHeight + 45, 290 * this._drawStatus, 10);
-		if (this.logo.width) {
-			ctx.drawImage(this.logo, 0, 0);
-		}
+		// if (this.logo.width) {
+		// 	ctx.drawImage(this.logo, 0, 0);
+		// }
 		ctx.restore();
 	}
 });

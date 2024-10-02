@@ -1,4 +1,16 @@
 
+if (!Array.prototype.erase) {
+	Array.prototype.erase = function(item) {
+		for (var i = this.length; i--; ) {
+			if (this[i] === item) {
+				this.splice(i, 1);
+			}
+		}
+		return this;
+	};
+}
+
+
 let Impact = {
 	game: null,
 	debug: null,
@@ -86,6 +98,24 @@ let Impact = {
 		}
 		
 		return values;
+	},
+
+	// Ah, yes. I love vendor prefixes. So much fun!
+	setVendorAttribute: function( el, attr, val ) {
+		var uc = attr.charAt(0).toUpperCase() + attr.substr(1);
+		el[attr] = el['ms'+uc] = el['moz'+uc] = el['webkit'+uc] = el['o'+uc] = val;
+	},
+
+	getVendorAttribute: function( el, attr ) {
+		var uc = attr.charAt(0).toUpperCase() + attr.substr(1);
+		return el[attr] || el['ms'+uc] || el['moz'+uc] || el['webkit'+uc] || el['o'+uc];
+	},
+
+	normalizeVendorAttribute: function( el, attr ) {
+		var prefixedVal = ig.getVendorAttribute( el, attr );
+		if( !el[attr] && prefixedVal ) {
+			el[attr] = prefixedVal;
+		}
 	},
 
 	// This function normalizes getImageData to extract the real, actual
@@ -257,8 +287,8 @@ Impact.Class.extend = function(prop) {
 };
 
 
-Impact.main = function( canvasId, gameClass, fps, width, height, scale, loaderClass ) {
-	Impact.system = new Impact.System( canvasId, fps, width, height, scale || 1 );
+Impact.main = function( canvas, gameClass, fps, width, height, scale, loaderClass ) {
+	Impact.system = new Impact.System( canvas, fps, width, height, scale || 1 );
 	Impact.input = new Impact.Input();
 	Impact.soundManager = new Impact.SoundManager();
 	Impact.music = new Impact.Music();

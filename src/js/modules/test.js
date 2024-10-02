@@ -6,5 +6,6 @@ let Test = {
 
 		APP.dispatch({ type: "new-game" });
 
+
 	}
 };

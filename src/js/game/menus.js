@@ -15,9 +15,9 @@ let MenuItem = Impact.Class.extend({
 let Menu = Impact.Class.extend({
 	clearColor: null,
 	name: null,
-	font: new Impact.Font('media/fonts/tungsten-48.png'),
-	fontSelected: new Impact.Font('media/fonts/tungsten-48-orange.png'),
-	fontTitle: new Impact.Font('media/fonts/tungsten-48.png'),
+	// font: new Impact.Font('media/fonts/tungsten-48.png'),
+	// fontSelected: new Impact.Font('media/fonts/tungsten-48-orange.png'),
+	// fontTitle: new Impact.Font('media/fonts/tungsten-48.png'),
 	current: 0,
 	itemClasses: [],
 	items: [],
@@ -28,43 +28,43 @@ let Menu = Impact.Class.extend({
 		}
 	},
 	update: function() {
-		if (Impact.input.pressed('up')) {
-			this.current--;
-		}
-		if (Impact.input.pressed('down')) {
-			this.current++;
-		}
-		this.current = this.current.limit(0, this.items.length - 1);
-		if (Impact.input.pressed('left')) {
-			this.items[this.current].left();
-		}
-		if (Impact.input.pressed('right')) {
-			this.items[this.current].right();
-		}
-		var margin = Impact.ua.mobile ? this.font.height / 2 : 0;
-		var ys = this.y;
-		var xs = Impact.system.width / 2;
-		var hoverItem = null;
-		for (var i = 0; i < this.items.length; i++) {
-			var item = this.items[i];
-			var w = this.font.widthForString(item.getText()) / 2 + margin;
-			if (Impact.input.mouse.x > xs - w && Impact.input.mouse.x < xs + w && Impact.input.mouse.y > ys - margin && Impact.input.mouse.y < ys + this.font.height + margin) {
-				hoverItem = item;
-				this.current = i;
-			}
-			ys += this.font.height + 20;
-		}
-		if (hoverItem) {
-			Impact.system.canvas.style.cursor = 'pointer';
-			if (Impact.input.pressed('shoot')) {
-				hoverItem.click();
-			}
-		} else {
-			Impact.system.canvas.style.cursor = 'auto';
-		}
-		if (Impact.input.pressed('ok')) {
-			this.items[this.current].ok();
-		}
+		// if (Impact.input.pressed('up')) {
+		// 	this.current--;
+		// }
+		// if (Impact.input.pressed('down')) {
+		// 	this.current++;
+		// }
+		// this.current = this.current.limit(0, this.items.length - 1);
+		// if (Impact.input.pressed('left')) {
+		// 	this.items[this.current].left();
+		// }
+		// if (Impact.input.pressed('right')) {
+		// 	this.items[this.current].right();
+		// }
+		// var margin = Impact.ua.mobile ? this.font.height / 2 : 0;
+		// var ys = this.y;
+		// var xs = Impact.system.width / 2;
+		// var hoverItem = null;
+		// for (var i = 0; i < this.items.length; i++) {
+		// 	var item = this.items[i];
+		// 	var w = this.font.widthForString(item.getText()) / 2 + margin;
+		// 	if (Impact.input.mouse.x > xs - w && Impact.input.mouse.x < xs + w && Impact.input.mouse.y > ys - margin && Impact.input.mouse.y < ys + this.font.height + margin) {
+		// 		hoverItem = item;
+		// 		this.current = i;
+		// 	}
+		// 	ys += this.font.height + 20;
+		// }
+		// if (hoverItem) {
+		// 	Impact.system.canvas.style.cursor = 'pointer';
+		// 	if (Impact.input.pressed('shoot')) {
+		// 		hoverItem.click();
+		// 	}
+		// } else {
+		// 	Impact.system.canvas.style.cursor = 'auto';
+		// }
+		// if (Impact.input.pressed('ok')) {
+		// 	this.items[this.current].ok();
+		// }
 	},
 	draw: function() {
 		if (this.clearColor) {

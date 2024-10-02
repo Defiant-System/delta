@@ -511,7 +511,7 @@ Impact.Sound.FORMAT = {
 };
 Impact.Sound.use = [Impact.Sound.FORMAT.OGG, Impact.Sound.FORMAT.MP3];
 Impact.Sound.channels = 4;
-Impact.Sound.enabled = true;
+Impact.Sound.enabled = false;
 
 // Impact.normalizeVendorAttribute(window, 'AudioContext');
 Impact.Sound.useWebAudio = !!window.AudioContext;

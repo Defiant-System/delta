@@ -8,7 +8,7 @@ let EntityEnemyHeart = EntityEnemy.extend({
 		x: 0,
 		y: 12
 	},
-	image: new Impact.Image('media/sprites/heart.png'),
+	image: new Impact.Image('~/sprites/heart.png'),
 	health: 400,
 	bullets: 16,
 	killScore: 10000,
@@ -112,7 +112,7 @@ let EntityExplosionHuge = Impact.Entity.extend({
 	lifetime: 1,
 	fadetime: 1,
 	alpha: 0,
-	img: new Impact.Image('media/sprites/explosion-huge.jpg',512,512),
+	img: new Impact.Image('~/sprites/explosion-huge.jpg',512,512),
 	init: function(x, y, settings) {
 		this.parent(x, y, settings);
 		this.idleTimer = new Impact.Timer();

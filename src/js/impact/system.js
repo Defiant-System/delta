@@ -17,11 +17,12 @@ Impact.System = Impact.Class.extend({
 	canvas: null,
 	context: null,
 	
-	init: function( canvasId, fps, width, height, scale ) {
+	init: function( canvasEl, fps, width, height, scale ) {
 		this.fps = fps;
 		
 		this.clock = new Impact.Timer();
-		this.canvas = Impact.$(canvasId);
+		this.canvasEl = canvasEl;
+		this.canvas = this.canvasEl[0];
 		this.resize( width, height, scale );
 		this.context = this.canvas.getContext('2d');
 		
@@ -82,7 +83,7 @@ Impact.System = Impact.Class.extend({
 	
 	startRunLoop: function() {
 		this.stopRunLoop();
-		this.animationId = Impact.setAnimation( this.run.bind(this) );
+		// this.animationId = Impact.setAnimation( this.run.bind(this) );
 		this.running = true;
 	},
 	
