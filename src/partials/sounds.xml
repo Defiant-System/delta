@@ -1,4 +1,4 @@
 <Sounds>
 	<i id="explosion" url="~/audio/explosion.mp3"/>
-	<i id="plasma" url="~/audio/plasma.mp3"/>
+	<i id="plasma" url="~/audio/plasma.mp3" loop="1"/>
 </Sounds>
