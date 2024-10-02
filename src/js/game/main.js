@@ -221,8 +221,8 @@ let XType = Impact.Game.extend({
 	},
 	draw: function() {
 		// this.backdrop.draw(0, 0);
-		Impact.system.clear("#000");
-		// Impact.system.context.clearRect(0, 0, Impact.system.width, Impact.system.height);
+		// Impact.system.clear("#000");
+		Impact.system.context.clearRect(0, 0, Impact.system.width, Impact.system.height);
 
 		var d = this.lastKillTimer.delta();
 		Impact.system.context.globalAlpha = d < 0 ? d * -3 + 0.3 : 0.3;

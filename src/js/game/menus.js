@@ -274,8 +274,13 @@ let GameOverMenu = Menu.extend({
 	itemClasses: [MenuItemBack],
 	draw: function() {
 		var ypos = 100;
-		this.fontTitle.draw('Game Over', Impact.system.width / 2, ypos, Impact.Font.ALIGN.CENTER);
-		this.fontTitle.draw('Score: ' + Impact.game.score.zeroFill(6), Impact.system.width / 2, ypos + 60, Impact.Font.ALIGN.CENTER);
-		this.parent();
+		console.log("game over");
+
+		XType.paused = true;
+		Impact.system.stopRunLoop();
+
+		// this.fontTitle.draw('Game Over', Impact.system.width / 2, ypos, Impact.Font.ALIGN.CENTER);
+		// this.fontTitle.draw('Score: ' + Impact.game.score.zeroFill(6), Impact.system.width / 2, ypos + 60, Impact.Font.ALIGN.CENTER);
+		// this.parent();
 	}
 });

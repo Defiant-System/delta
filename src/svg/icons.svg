@@ -73,4 +73,162 @@
 		</g>
 	</svg>
 
+	<svg id="sprite-shield" viewBox="0 0 48 48" size="keep">
+		<style type="text/css">
+			.st0{fill:#eee;}
+		</style>
+		<circle class="st0" cx="24" cy="24" r="23"/>
+	</svg>
+
+	<svg id="sprite-ship" viewBox="0 0 32 32" size="keep">
+		<style type="text/css">
+			.st0{fill:#CBCBCB;}
+			.st1{fill:#8EA8AD;}
+			.st2{fill:#BDD6DB;}
+			.st3{fill:#F2F2F2;}
+			.st4{fill:#36BBF5;}
+			.st5{fill:#1884B4;}
+			.st6{fill:#8ED9FA;}
+			.st7{fill:#4A3C55;}
+			.st8{fill:#ECBD02;}
+			.st9{fill:#BF9900;}
+			.st10{fill:#FFCC00;}
+			.st11{fill:#D3E1E7;}
+		</style>
+		<path class="st0" d="M16.6,1h0.2c0.1,0,0.2,0,0.3,0.1l0.2,0.3l1.8,5.1L18.7,7l-1.8-5.2h-0.2V1 M23,27.3l-2.7,3.5
+			C20.1,31,20,31,19.8,31h-7.6c-0.2,0-0.3-0.1-0.4-0.2L9,27.3l0.3-0.8l2.9,3.8h7.6l2.9-3.8L23,27.3 M12.8,6.5l1.8-5.1
+			c0-0.1,0.1-0.3,0.2-0.3C14.9,1,15,1,15.2,1h0.2v0.8h-0.2L13.3,7l-0.1,0.1L12.8,6.5"/>
+		<path class="st1" d="M12.8,6.5l0.5,0.6l-2.2,3.3l-8.5,13l-0.2-0.9L12.8,6.5 M18.7,7l0.5-0.4l10.4,15.8l-0.2,1l-8.5-13L18.7,7"/>
+		<path class="st2" d="M18.7,7l2.3,3.5l5,13.5l-1.1,1.4h-1.3l1.1-1.4L18.7,7 M11.1,10.4l2.2-3.3L13.3,7L7.4,24l1.1,1.4H7.2L6,23.9
+			L11.1,10.4"/>
+		<path class="st3" d="M16.6,1.8h0.2L18.7,7l5.9,17l-1.1,1.4l-0.9,1.1l-2.9,3.8h-7.6l-2.9-3.8l-0.9-1.1L7.4,24l5.9-17l1.8-5.2h0.2
+			l-5.1,20.9l2,4.7h7.5l2-4.7L16.6,1.8"/>
+		<path class="st4" d="M16.6,1.8l5.1,20.9l-2,4.7h-7.5l-2-4.7l5.1-20.9H16.6 M13.3,14.2l-0.1,0.4h5.6l-0.1-0.4l-2-8.9h-1.4L13.3,14.2
+			L13.3,14.2 M28.9,27l0.1-0.5l0.2-1.1l0.3-2l1.1,1.7V27H28.9 M2.6,23.4l0.3,2L3,26.5L3.1,27H1.4v-1.9L2.6,23.4"/>
+		<path class="st5" d="M2.6,23.4l-1.1,1.7V27h1.6l0.1,0.8l-0.1,0H1.4c-0.2,0-0.3-0.1-0.4-0.2c-0.1-0.2-0.2-0.4-0.2-0.6v-1.9
+			c0-0.2,0.1-0.4,0.2-0.5l1.4-2.1L2.6,23.4 M16.6,1v0.8h-1.3V1H16.6 M29.6,22.4l1.4,2.2c0.1,0.1,0.1,0.3,0.1,0.5V27
+			c0,0.2-0.1,0.4-0.2,0.6c-0.1,0.1-0.3,0.2-0.5,0.2h-1.6h-0.1l0.1-0.8h1.6v-1.9l-1.1-1.7L29.6,22.4"/>
+		<path class="st6" d="M18.7,14.2l-2-8.1h-1.4l-2,8.1h0l2-8.9h1.4L18.7,14.2"/>
+		<path class="st7" d="M18.7,14.2l0.1,0.4h-5.6l0.1-0.4l2-8.1h1.4L18.7,14.2"/>
+		<path class="st8" d="M23.5,25.4h1.3L24,26.5h-1.3L23.5,25.4 M7.2,25.4h1.3l0.9,1.1H8L7.2,25.4"/>
+		<path class="st9" d="M28.8,27.8l-0.2-0.1l-0.2-0.3H23l-0.3-0.8H24h5L28.9,27L28.8,27.8 M9,27.3H3.7l-0.2,0.3l-0.2,0.1L3.1,27L3,26.5
+			h5h1.3L9,27.3"/>
+		<path class="st10" d="M29,26.5h-5l0.9-1.1h4.3L29,26.5 M2.8,25.4h4.3L8,26.5H3L2.8,25.4"/>
+		<path class="st11" d="M2.8,25.4l-0.3-2l8.5-13L6,23.9l1.1,1.4H2.8 M24.8,25.4l1.1-1.4l-5-13.5l8.5,13l-0.3,2H24.8"/>
+	</svg>
+
+
+	<svg id="sprite-plasma" viewBox="0 0 96 96" size="keep">
+		<style type="text/css">
+			.st0{fill:url(#SVGID_1_);}
+			.st1{fill:url(#SVGID_2_);}
+			.st2{fill:#FFFFFF;}
+			.st3{fill:url(#SVGID_3_);}
+		</style>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="48" y1="48" x2="48" y2="96">
+			<stop  offset="0" style="stop-color:#fff"/>
+			<stop  offset="1" style="stop-color:#fff;stop-opacity:0"/>
+		</linearGradient>
+		<path class="st0" d="M49.5,48c0,0.8-0.7,47.5-1.5,47.5S46.5,48.8,46.5,48s0.7-1.5,1.5-1.5S49.5,47.2,49.5,48z"/>
+		<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="48" y1="48" x2="48" y2="96">
+			<stop  offset="0" style="stop-color:#fff"/>
+			<stop  offset="1" style="stop-color:#fff;stop-opacity:0"/>
+		</linearGradient>
+		<path class="st1" d="M48.5,48c0,0.8-0.2,47.5-0.5,47.5S47.5,48.8,47.5,48s0.2-1.5,0.5-1.5S48.5,47.2,48.5,48z"/>
+		<circle class="st2" cx="48" cy="48" r="1.5"/>
+		<radialGradient id="SVGID_3_" cx="48" cy="48" r="23.6614" gradientUnits="userSpaceOnUse">
+			<stop  offset="0" style="stop-color:#fff;stop-opacity:0.2"/>
+			<stop  offset="1" style="stop-color:#fff;stop-opacity:0"/>
+		</radialGradient>
+		<circle class="st3" cx="48" cy="48" r="24"/>
+	</svg>
+
+
+	<svg id="sprite-crosshair-1" viewBox="0 0 32 32" size="keep">
+		<style type="text/css">
+			.st0{fill:#f90;}
+			.st1{fill:none;stroke:#fff;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:1;}
+			.st2{fill:none;stroke:#f90;stroke-miterlimit:10;}
+			.st3{fill:#f90;}
+		</style>
+		<circle class="st0" cx="16" cy="16" r="0.7"/>
+		<path class="st1" d="M7.8,3.6c-4,2.7-6.7,7.2-6.7,12.4s2.7,9.8,6.7,12.4"/>
+		<path class="st1" d="M24.2,28.4c4-2.7,6.7-7.2,6.7-12.4s-2.7-9.8-6.7-12.4"/>
+		<g>
+			<path class="st2" d="M15,5.4C9.9,5.9,5.9,9.9,5.4,15"/>
+			<path class="st2" d="M26.6,15c-0.5-5.1-4.5-9.1-9.6-9.6"/>
+			<path class="st2" d="M5.4,17c0.5,5.1,4.5,9.1,9.6,9.6"/>
+			<path class="st2" d="M17,26.6c5.1-0.5,9.1-4.5,9.6-9.6"/>
+		</g>
+		<rect x="15.5" y="3.4" class="st3" width="1" height="4"/>
+		<rect x="15.5" y="24.6" class="st3" width="1" height="4"/>
+		<rect x="26.1" y="14" transform="matrix(-1.836970e-16 1 -1 -1.836970e-16 42.6115 -10.6115)" class="st3" width="1" height="4"/>
+		<rect x="4.9" y="14" transform="matrix(-1.836970e-16 1 -1 -1.836970e-16 21.3885 10.6115)" class="st3" width="1" height="4"/>
+	</svg>
+
+
+	<svg id="sprite-crosshair-2" viewBox="0 0 32 32" size="keep">
+
+	</svg>
+
+
+	<svg id="sprite-crosshair-3" viewBox="0 0 32 32" size="keep">
+
+	</svg>
+
+
+	<svg id="sprite-enemy-arm" viewBox="0 0 44 44" size="keep">
+
+	</svg>
+
+
+	<svg id="sprite-enemy-bullet" viewBox="0 0 20 24" size="keep">
+		<style type="text/css">
+			.st0{fill:#78888C;}
+			.st1{fill:#AC3939;}
+			.st2{fill:#802B2B;}
+			.st3{fill:#97AAAF;}
+			.st4{fill:#BDD6DB;}
+		</style>
+		<path class="st0" d="M9.5,2L8.7,3.2h2.5L10.5,2H9.5 M5.9,16.1h1.2C7.1,15.7,7,15.2,7,14.8c0-0.2,0-0.3,0-0.5c0-0.3,0-0.5,0-0.8
+			c0-1.7,0.2-3.4,0.3-5.1c0-0.4,0.1-0.8,0.1-1.3L6.2,7.6c0,0.2,0,0.5-0.1,0.7c-0.2,1.7-0.3,3.4-0.3,5.2v0c0,0.3,0,0.5,0,0.8
+			c0,0.2,0,0.3,0,0.5c0,0,0,0.1,0,0.1C5.8,15.3,5.9,15.7,5.9,16.1 M14.2,14.2c0-0.2,0-0.5,0-0.7v0c0-1.8-0.1-3.5-0.3-5.2
+			c0-0.2-0.1-0.5-0.1-0.7l-1.3-0.5c0.1,0.4,0.1,0.8,0.2,1.3c0.2,1.7,0.3,3.4,0.3,5.1c0,0.3,0,0.5,0,0.8c0,0.2,0,0.3,0,0.5
+			c-0.1,0.5-0.1,0.9-0.2,1.3H14c0.1-0.4,0.1-0.8,0.2-1.2c0-0.1,0-0.1,0-0.2C14.2,14.6,14.2,14.4,14.2,14.2
+			C14.2,14.3,14.2,14.2,14.2,14.2z"/>
+		<path class="st1" d="M13.6,1.2h-1.6l-0.8,2l1.3,4l2-1.9L13.6,1.2 M6.4,1.2L5.5,5.3l2,1.9l1.3-4l-0.8-2H6.4 M12.8,16.1
+			c-0.9-0.2-1.9-0.3-2.8-0.2c-0.9-0.1-1.9,0-2.8,0.2c0.5,3,1.4,5.3,2.8,6.7C11.4,21.4,12.3,19.1,12.8,16.1z"/>
+		<path class="st2" d="M12.5,7.2l1.3,0.5l1.5-1.4c0.2-0.1,0.3-0.3,0.3-0.5c0.1-0.2,0.1-0.4,0-0.6l-0.9-4.1c-0.1-0.3-0.2-0.5-0.4-0.7
+			C14.2,0.1,13.9,0,13.6,0h-1.6c-0.2,0-0.5,0.1-0.7,0.2C11.2,0.4,11,0.5,11,0.8L10.5,2l0.8,1.2l0.8-2h1.6l0.9,4.1L12.5,7.2 M5.5,5.3
+			l0.9-4.1h1.6l0.8,2L9.5,2L9,0.8C9,0.5,8.8,0.4,8.6,0.2C8.4,0.1,8.2,0,7.9,0H6.4C6.1,0,5.8,0.1,5.6,0.3C5.4,0.5,5.3,0.7,5.2,0.9
+			L4.3,5c0,0.2,0,0.4,0,0.6C4.4,5.9,4.5,6,4.7,6.2l1.5,1.4l1.3-0.5L5.5,5.3 M10.3,24c0.2-0.1,0.4-0.2,0.6-0.3c1.6-1.6,2.6-4,3.1-7.4v0
+			c0,0,0-0.1,0-0.2h-1.2c-0.5,3-1.4,5.3-2.8,6.7c-1.4-1.5-2.4-3.7-2.8-6.7H5.9c0,0.1,0,0.2,0,0.2v0c0.5,3.3,1.6,5.8,3.2,7.4
+			c0.2,0.2,0.3,0.3,0.5,0.3C9.9,24,10.1,24,10.3,24z"/>
+		<path class="st3" d="M7.3,8.4h5.3c0-0.4-0.1-0.8-0.2-1.3l-1.3-4H8.7l-1.3,4C7.4,7.6,7.4,8,7.3,8.4 M10,15.8c0.9-0.1,1.9,0,2.8,0.2
+			c0.1-0.4,0.1-0.9,0.2-1.3c0-0.2,0-0.3,0-0.5c-1-0.1-2-0.2-3-0.2c-1,0-2,0-3,0.2c0,0.2,0,0.3,0,0.5c0,0.5,0.1,0.9,0.2,1.3
+			C8.1,15.9,9.1,15.8,10,15.8z"/>
+		<path class="st4" d="M13,13.5c0-1.7-0.1-3.4-0.3-5.1H7.3C7.1,10.1,7,11.8,7,13.5c0,0.3,0,0.5,0,0.8c1-0.1,2-0.2,3-0.2c1,0,2,0,3,0.2
+			C13,14,13,13.8,13,13.5z"/>
+	</svg>
+
+
+	<svg id="sprite-enemy-heart" viewBox="0 0 68 88" size="keep">
+
+	</svg>
+
+
+	<svg id="sprite-enemy-missilebox" viewBox="0 0 44 44" size="keep">
+
+	</svg>
+
+
+	<svg id="sprite-enemy-plasmabox" viewBox="0 0 44 44" size="keep">
+
+	</svg>
+
+
+	<svg id="sprite-particle" viewBox="0 0 20 24" size="keep">
+
+	</svg>
+
 </svg>

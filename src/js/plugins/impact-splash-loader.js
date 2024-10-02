@@ -16,11 +16,11 @@ Impact.ImpactSplashLoader = Impact.Loader.extend({
 		this.endTime = Date.now();
 		Impact.system.setDelegate(this);
 
-		setTimeout(() => {
-			// Impact.game.setGame();
-			Impact.system.stopRunLoop();
-			XType.paused = true;
-		}, 5e3)
+		// setTimeout(() => {
+		// 	// Impact.game.setGame();
+		// 	Impact.system.stopRunLoop();
+		// 	XType.paused = true;
+		// }, 5e3);
 	},
 	run: function() {
 		var t = Date.now() - this.endTime;

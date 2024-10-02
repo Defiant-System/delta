@@ -1,14 +1,14 @@
 
 let EntityPlayer = Impact.Entity.extend({
-	animSheet: new Impact.AnimationSheet("~/sprites/ship.png",24,24),
-	shieldAnimSheet: new Impact.AnimationSheet("~/sprites/shield.png",48,48),
+	animSheet: new Impact.AnimationSheet("~/icons/sprite-ship.png", 32, 32),
+	shieldAnimSheet: new Impact.AnimationSheet("~/icons/sprite-shield.png", 48, 48),
 	size: {
 		x: 2,
 		y: 2
 	},
 	offset: {
-		x: 11,
-		y: 11
+		x: 16,
+		y: 16
 	},
 	angle: -Math.PI / 2,
 	targetAngle: -Math.PI / 2,
@@ -136,7 +136,7 @@ let EntityPlayer = Impact.Entity.extend({
 		Impact.game.loseLive();
 	},
 	shoot: function() {
-		this.currentAnim = this.anims.shoot.rewind();
+		// this.currentAnim = this.anims.shoot.rewind();
 		var angle = this.angle + Math.random() * 0.1 - 0.05;
 		Impact.game.spawnEntity(EntityPlasma, this.pos.x - 1, this.pos.y - 1, {
 			angle: angle
@@ -150,7 +150,7 @@ let EntityPlasma = Impact.Entity.extend({
 		x: 1000,
 		y: 1000
 	},
-	image: new Impact.Image("~/sprites/plasma.png"),
+	image: new Impact.Image("~/icons/sprite-plasma.png"),
 	size: {
 		x: 4,
 		y: 4

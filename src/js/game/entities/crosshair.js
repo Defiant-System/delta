@@ -1,13 +1,13 @@
 
 let EntityCrosshair = Impact.Entity.extend({
-	animSheet: new Impact.AnimationSheet('~/sprites/crosshair.png',18,18),
+	animSheet: new Impact.AnimationSheet('~/icons/sprite-crosshair-1.png', 32, 32),
 	size: {
 		x: 2,
 		y: 2
 	},
 	offset: {
-		x: 8,
-		y: 8
+		x: 16,
+		y: 16
 	},
 	type: Impact.Entity.TYPE.NONE,
 	init: function(x, y, settings) {
