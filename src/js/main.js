@@ -69,32 +69,28 @@ const xwing = {
 				Bg.dispatch({ type: "pause" });
 				break;
 			case "window.keydown":
-				if (!XType.paused) {
-					switch (event.char) {
-						// case "w":
-						// case "up": Impact.input.presses["up"] = true; break;
-						// case "s":
-						// case "down": Impact.input.presses["down"] = true; break;
-						// case "a":
-						// case "left": Impact.input.presses["left"] = true; break;
-						// case "d":
-						// case "right": Impact.input.presses["right"] = true; break;
-						case "p": Self.dispatch({ type: "toggle-pause" }); break;
-					}
+				switch (event.char) {
+					// case "w":
+					// case "up": Impact.input.presses["up"] = true; break;
+					// case "s":
+					// case "down": Impact.input.presses["down"] = true; break;
+					// case "a":
+					// case "left": Impact.input.presses["left"] = true; break;
+					// case "d":
+					// case "right": Impact.input.presses["right"] = true; break;
+					case "p": Self.dispatch({ type: "toggle-pause" }); break;
 				}
 				break;
 			case "window.keyup":
-				if (!XType.paused) {
-					switch (event.char) {
-						// case "w":
-						// case "up": Impact.input.presses["up"] = false; break;
-						// case "s":
-						// case "down": Impact.input.presses["down"] = false; break;
-						// case "a":
-						// case "left": Impact.input.presses["left"] = false; break;
-						// case "d":
-						// case "right": Impact.input.presses["right"] = false; break;
-					}
+				switch (event.char) {
+					// case "w":
+					// case "up": Impact.input.presses["up"] = false; break;
+					// case "s":
+					// case "down": Impact.input.presses["down"] = false; break;
+					// case "a":
+					// case "left": Impact.input.presses["left"] = false; break;
+					// case "d":
+					// case "right": Impact.input.presses["right"] = false; break;
 				}
 				break;
 			// custom events
@@ -105,9 +101,13 @@ const xwing = {
 				if (XType.paused) {
 					Impact.system.startRunLoop();
 					XType.paused = false;
+					// resume background worker
+					Bg.dispatch({ type: "resume" });
 				} else {
 					Impact.system.stopRunLoop();
 					XType.paused = true;
+					// pause background worker
+					Bg.dispatch({ type: "pause" });
 				}
 				break;
 			case "toggle-sound-fx": break;

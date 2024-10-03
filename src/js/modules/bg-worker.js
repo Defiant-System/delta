@@ -13,7 +13,7 @@ let Anim = {
 				Self.ctx = Self.cvs.getContext("2d");
 				Self.dispatch({ type: "create-scene" });
 				Self.paused = false;
-				Self.active = "grid";
+				Self.active = "lines";
 				Self.draw();
 				break;
 			case "pause":
