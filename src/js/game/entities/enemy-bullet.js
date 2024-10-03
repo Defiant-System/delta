@@ -1,12 +1,12 @@
 
 let EntityEnemyBullet = EntityEnemy.extend({
 	size: {
-		x: 16,
-		y: 16
+		x: 20,
+		y: 24
 	},
 	offset: {
-		x: 2,
-		y: 4
+		x: 12,
+		y: 28
 	},
 	image: new Impact.Image("~/icons/sprite-enemy-bullet.png"),
 	explodeParticles: 3,

@@ -31,9 +31,7 @@ let EntityEnemyPlasmabox = EntityEnemy.extend({
 				var angle = a * Math.PI / 180;
 				var x = this.pos.x + 18;
 				var y = this.pos.y + 18;
-				Impact.game.spawnEntity(EntityEnemyPlasmaBullet, x, y, {
-					angle: angle
-				});
+				Impact.game.spawnEntity(EntityEnemyPlasmaBullet, x, y, { angle });
 				a += inc;
 			}
 			this.shootTimer.set(this.reloadTime);
@@ -47,8 +45,8 @@ let EntityEnemyPlasmaBullet = EntityEnemy.extend({
 		y: 12
 	},
 	offset: {
-		x: 28,
-		y: 28
+		x: 32,
+		y: 32
 	},
 	image: new Impact.Image('~/icons/sprite-plasma-bullet.png'),
 	health: 10,
@@ -65,7 +63,7 @@ let EntityEnemyPlasmaBullet = EntityEnemy.extend({
 			this.kill();
 		}
 	},
-	draw: function() {
-		Impact.system.context.drawImage(this.image.data, this.pos.x - Impact.game._rscreen.x - this.offset.x, this.pos.y - Impact.game._rscreen.y - this.offset.y);
-	}
+	// draw: function() {
+	// 	Impact.system.context.drawImage(this.image.data, this.pos.x - Impact.game._rscreen.x - this.offset.x, this.pos.y - Impact.game._rscreen.y - this.offset.y);
+	// }
 });

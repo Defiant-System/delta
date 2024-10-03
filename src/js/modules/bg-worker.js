@@ -1,8 +1,6 @@
 
 let Anim = {
-	init(canvas) {
-		this.TAU = Math.PI * 2;
-
+	init() {
 		// setTimeout(() => { this.paused = true }, 300);
 	},
 	dispatch(event) {

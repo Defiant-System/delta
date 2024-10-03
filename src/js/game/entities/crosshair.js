@@ -12,13 +12,17 @@ let EntityCrosshair = Impact.Entity.extend({
 	},
 	type: Impact.Entity.TYPE.NONE,
 	init: function(x, y, settings) {
+		this.def = {
+			x: (window.innerWidth - 24) >> 1,
+			y: (window.innerHeight - 148) >> 1,
+		};
 		this.parent(x, y, settings);
 		this.addAnim("idle", 60, [0]);
 		this.bg = new Impact.Animation(this.bgSheet, 1, [0]);
 	},
 	update: function() {
-		this.pos.x = Impact.input.mouse.x;
-		this.pos.y = Impact.input.mouse.y;
+		this.pos.x = Impact.input.mouse.x || this.def.x;
+		this.pos.y = Impact.input.mouse.y || this.def.x;
 		this.currentAnim.angle += .5 * Impact.system.tick;
 	},
 	draw: function() {

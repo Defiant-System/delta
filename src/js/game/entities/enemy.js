@@ -22,7 +22,7 @@ let EntityEnemy = Impact.Entity.extend({
 	},
 	explodeParticles: 10,
 	attachmentPoints: [],
-	soundExplode: new Impact.Sound('media/sounds/explosion.ogg'),
+	// soundExplode: new Impact.Sound('media/sounds/explosion.ogg'),
 	type: Impact.Entity.TYPE.B,
 	checkAgainst: Impact.Entity.TYPE.A,
 	killTimerTime: 0.3,
@@ -63,14 +63,13 @@ let EntityEnemy = Impact.Entity.extend({
 		return c;
 	},
 	updateChildren: function() {
-		if (!this.children.length)
-			return;
-		var sv = Math.sin(this.angle - Math.PI / 2)
-		  , cv = Math.cos(this.angle - Math.PI / 2);
+		if (!this.children.length) return;
+		var sv = Math.sin(this.angle - Math.PI / 2),
+			cv = Math.cos(this.angle - Math.PI / 2);
 		for (var i = 0; i < this.children.length; i++) {
 			var c = this.children[i];
-			var cx = c.nodeOffset.x
-			  , cy = c.nodeOffset.y;
+			var cx = c.nodeOffset.x,
+				cy = c.nodeOffset.y;
 			c.pos.x = this.pos.x + cv * cx - sv * cy - c.size.x / 2 + this.size.x / 2;
 			c.pos.y = this.pos.y + cv * cy + sv * cx - c.size.y / 2 + this.size.y / 2;
 			c.angle = this.angle + c.ownAngle;
@@ -78,8 +77,8 @@ let EntityEnemy = Impact.Entity.extend({
 		}
 	},
 	draw: function() {
-		var sx = this.image.width / 2
-		  , sy = this.image.height / 2;
+		var sx = this.image.width / 2,
+			sy = this.image.height / 2;
 		Impact.system.context.save();
 		Impact.system.context.globalCompositeOperation = 'source-over';
 		Impact.system.context.translate(this.pos.x - Impact.game._rscreen.x - this.offset.x + sx, this.pos.y - Impact.game._rscreen.y - this.offset.y + sy);

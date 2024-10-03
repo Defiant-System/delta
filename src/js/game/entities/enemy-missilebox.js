@@ -31,9 +31,7 @@ let EntityEnemyMissilebox = EntityEnemy.extend({
 				var angle = a * Math.PI / 180;
 				var x = this.pos.x + 20 + Math.cos(angle) * radius;
 				var y = this.pos.y + 20 + Math.sin(angle) * radius;
-				Impact.game.spawnEntity(EntityEnemyBullet, x, y, {
-					angle: angle
-				});
+				Impact.game.spawnEntity(EntityEnemyBullet, x, y, { angle });
 				a += inc;
 			}
 

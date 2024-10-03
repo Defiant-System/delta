@@ -10,6 +10,8 @@
 		<Menu type="divider"/>
 		<Menu name="Toggle Sound FX" click="toggle-sound-fx"/>
 		<Menu name="Toggle Music" click="toggle-music"/>
+		<Menu type="divider"/>
+		<Menu name="Toggle Pause" click="toggle-pause"/>
 	</Menu>
 	<Menu name="Help">
 		<Menu name="Help" click="open-help"/>

@@ -38,12 +38,12 @@ let XType = Impact.Game.extend({
 			Impact.input.bind(Impact.KEY.DOWN_ARROW, 'down');
 			Impact.input.bind(Impact.KEY.LEFT_ARROW, 'left');
 			Impact.input.bind(Impact.KEY.RIGHT_ARROW, 'right');
-			Impact.input.bind(Impact.KEY.W, 'up');
-			Impact.input.bind(Impact.KEY.S, 'down');
-			Impact.input.bind(Impact.KEY.A, 'left');
-			Impact.input.bind(Impact.KEY.D, 'right');
-			Impact.input.bind(Impact.KEY.ENTER, 'ok');
-			Impact.input.bind(Impact.KEY.ESC, 'menu');
+			// Impact.input.bind(Impact.KEY.W, 'up');
+			// Impact.input.bind(Impact.KEY.S, 'down');
+			// Impact.input.bind(Impact.KEY.A, 'left');
+			// Impact.input.bind(Impact.KEY.D, 'right');
+			// Impact.input.bind(Impact.KEY.ENTER, 'ok');
+			// Impact.input.bind(Impact.KEY.ESC, 'menu');
 			// Impact.music.volume = 0.6;
 			// Impact.music.add(this.music);
 		} else {
@@ -69,12 +69,8 @@ let XType = Impact.Game.extend({
 		this.entitiesSortedByPosTypeB = [];
 		this.score = 0,
 		this.lives = 3,
-		this.level = {
-			level: 0,
-			support: 1,
-			plasma: 0,
-			missile: 0
-		};
+		this.level = { level: 0, support: 1, plasma: 0, missile: 0 };
+		// this.level = { level: 2, support: 3, plasma: 1, missile: 1 };
 	},
 	setGame: function() {
 		// window.scrollTo(0, 0);

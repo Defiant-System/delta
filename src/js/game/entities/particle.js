@@ -38,13 +38,13 @@ let EntityParticles = Impact.Class.extend({
 	},
 	draw: function() {
 		var l = this.count * 2;
-		var p = this._pos
-		  , v = this._vel
-		  , t = Impact.system.tick
-		  , ctx = Impact.system.context
-		  , img = this.image.data
-		  , sx = Impact.game._rscreen.x
-		  , sy = Impact.game._rscreen.y;
+		var p = this._pos,
+			v = this._vel,
+			t = Impact.system.tick,
+			ctx = Impact.system.context,
+			img = this.image.data,
+			sx = Impact.game._rscreen.x,
+			sy = Impact.game._rscreen.y;
 		Impact.system.context.globalAlpha = this.alpha;
 		for (var i = 0; i < l; i += 2) {
 			p[i] += v[i] * t;
