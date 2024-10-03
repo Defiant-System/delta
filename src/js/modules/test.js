@@ -5,7 +5,7 @@ let Test = {
 		// return;
 
 		// APP.dispatch({ type: "new-game" });
-
+		APP.content.data({ show: "game-view" });
 
 	}
 };

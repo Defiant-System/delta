@@ -1,7 +1,7 @@
 
 let EntityPlayer = Impact.Entity.extend({
 	animSheet: new Impact.AnimationSheet("~/icons/sprite-ship.png", 48, 48),
-	shieldAnimSheet: new Impact.AnimationSheet("~/icons/sprite-shield.png", 64, 64),
+	shieldAnimSheet: new Impact.AnimationSheet("~/icons/sprite-shield.png", 76, 76),
 	size: {
 		x: 24,
 		y: 24
@@ -39,7 +39,7 @@ let EntityPlayer = Impact.Entity.extend({
 		this.parent();
 		if (this.shieldTimer) {
 			this.shield.alpha = this.shieldTimer.delta().map(-0.5, 0, 0.5, 0).limit(0, 0.5);
-			this.shield.draw(this.pos.x - 32 - Impact.game._rscreen.x, this.pos.y - 32 - Impact.game._rscreen.y);
+			this.shield.draw(this.pos.x - 38 - Impact.game._rscreen.x, this.pos.y - 38 - Impact.game._rscreen.y);
 		}
 	},
 	update: function() {

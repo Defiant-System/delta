@@ -9,6 +9,8 @@ content {
 	right: 0;
 	bottom: 0;
 	border-radius: inherit;
+	font-weight: 400;
+	font-family: Tungsten, sans-serif;
 
 	&:before {
 		content: "";
@@ -84,8 +86,6 @@ content {
 		}
 
 		ul.menu {
-			font-weight: 400;
-			font-family: Tungsten, sans-serif;
 			font-size: 50px;
 			text-align: center;
 			line-height: 1.5;
@@ -125,8 +125,6 @@ content {
 			position: absolute;
 			left: 11px;
 			bottom: 7px;
-			font-weight: 400;
-			font-family: Tungsten, sans-serif;
 			font-size: 18px;
 			color: #aa9;
 			line-height: 1.2;
@@ -162,6 +160,57 @@ content {
 			height: 100%;
 			border-radius: inherit;
 			cursor: none;
+		}
+
+		.hud {
+			position: absolute;
+			top: 11px;
+			left: 11px;
+			right: 11px;
+
+			&:before {
+				content: "";
+				position: absolute;
+				top: -11px;
+				left: -11px;
+				right: -11px;
+				height: 53px;
+				pointer-events: none;
+				background: linear-gradient(180deg, rgba(#000,.65), rgba(#000,0));
+			}
+
+			.lives {
+				position: absolute;
+				top: 5px;
+				left: 3px;
+				height: 24px;
+				background-repeat: no-repeat;
+				background-size: 24px 24px;
+				background-image: url(~/icons/sprite-ship.png),
+									url(~/icons/sprite-ship.png),
+									url(~/icons/sprite-ship.png);
+				background-position: 0px 50%,
+									27px 50%,
+									54px 50%;
+				transition: width 200ms ease-in-out;
+
+				&[data-count="3"] { width: 79px; }
+				&[data-count="2"] { width: 51px; }
+				&[data-count="1"] { width: 24px; }
+			}
+
+			.score {
+				position: absolute;
+				top: 0;
+				right: 0;
+				text-align: right;
+				font-size: 37px;
+				letter-spacing: 1px;
+				color: transparent;
+				background: linear-gradient(180deg, #f0f0ff, #dde 50%, #bbc 50%, #aab);
+				background-clip: text;
+				filter: drop-shadow(0 2px 0 #669);
+			}
 		}
 	}
 }
