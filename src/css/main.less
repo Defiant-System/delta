@@ -92,13 +92,12 @@ content {
 			// text-shadow: 0 2px 7px rgba(#000,.5);
 
 			li {
-				color: transparent;
-				background: linear-gradient(180deg, #ffe, #eed 50%, #ccb 50%, #bba);
-				background-clip: text;
-				filter: drop-shadow(0 2px 0 #887)
-						drop-shadow(0 2px 7px rgba(#000,.65));
-
 				span {
+					color: transparent;
+					background: linear-gradient(180deg, #ffe, #eed 50%, #ccb 50%, #bba);
+					background-clip: text;
+					filter: drop-shadow(0 2px 0 #887)
+							drop-shadow(0 2px 7px rgba(#000,.65));
 					padding: 3px 5px;
 					display: inline-block;
 					cursor: pointer;
@@ -109,7 +108,15 @@ content {
 				}
 
 				b {
-					color: #fff;
+					color: #393;
+					filter: drop-shadow(0 2px 0 #151)
+							drop-shadow(0 2px 7px rgba(#000,.65));
+
+					&.off {
+						color: #c44;
+						filter: drop-shadow(0 2px 0 #922)
+								drop-shadow(0 2px 7px rgba(#000,.65));
+					}
 				}
 			}
 		}
@@ -117,17 +124,18 @@ content {
 		.info {
 			position: absolute;
 			left: 11px;
-			bottom: 9px;
+			bottom: 7px;
 			font-weight: 400;
 			font-family: Tungsten, sans-serif;
 			font-size: 18px;
 			color: #aa9;
-			line-height: 1.15;
+			line-height: 1.2;
 			letter-spacing: .5px;
 			text-shadow: 0 1px 1px rgba(#000,.25);
 
 			b {
 				color: #fff;
+				margin: 0 1px;
 			}
 		}
 
