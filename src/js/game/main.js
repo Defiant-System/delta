@@ -69,8 +69,8 @@ let XType = Impact.Game.extend({
 		this.entitiesSortedByPosTypeB = [];
 		this.score = 0,
 		this.lives = 3,
-		this.level = { level: 0, support: 1, plasma: 0, missile: 0 };
-		// this.level = { level: 2, support: 3, plasma: 1, missile: 1 };
+		// this.level = { level: 0, support: 1, plasma: 0, missile: 0 };
+		this.level = { level: 2, support: 3, plasma: 1, missile: 1 };
 	},
 	setGame: function() {
 		// window.scrollTo(0, 0);

@@ -34,6 +34,9 @@ let EntityEnemyPlasmabox = EntityEnemy.extend({
 				Impact.game.spawnEntity(EntityEnemyPlasmaBullet, x, y, { angle });
 				a += inc;
 			}
+			// play sound fx
+			window.audio.play("beam");
+			
 			this.shootTimer.set(this.reloadTime);
 		}
 	}
