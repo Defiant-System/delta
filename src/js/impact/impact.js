@@ -333,6 +333,7 @@ Impact.main = function( canvas, gameClass, fps, width, height, scale, loaderClas
 	
 	var loader = new (loaderClass || Impact.Loader)( gameClass, Impact.resources );
 	loader.load();
+
 };
 
 

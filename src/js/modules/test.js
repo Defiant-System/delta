@@ -4,7 +4,7 @@ let Test = {
 		
 		// return;
 
-		APP.dispatch({ type: "new-game" });
+		// APP.dispatch({ type: "new-game" });
 
 
 	}

@@ -120,9 +120,12 @@ const xwing = {
 				break;
 			case "new-game":
 				// pause background worker
-				Bg.dispatch({ type: "pause" });
+				// Bg.dispatch({ type: "pause" });
 
 				Self.content.data({ show: "game-view" });
+
+				// start game
+				XType.startGame();
 				break;
 		}
 	}

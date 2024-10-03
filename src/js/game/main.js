@@ -455,7 +455,7 @@ XType.MODE = {
 	SCORES: 3
 };
 
-XType.paused = false;
+XType.paused = true;
 
 XType.startGame = function() {
 	Impact.Sound.channels = 2;
@@ -512,7 +512,7 @@ XType.checkOrientation = function() {
 			XType.paused = false;
 		} else if (!XType.initialized) {
 			// window.scrollTo(0, 0);
-			setTimeout(XType.startGame, 1);
+			// setTimeout(XType.startGame, 1);
 		}
 	} else {
 		if (XType.initialized) {
