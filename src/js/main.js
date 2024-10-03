@@ -98,6 +98,9 @@ const xwing = {
 				karaqu.shell("fs -u '~/help/index.md'");
 				break;
 			case "toggle-pause":
+				// stop potential shooting
+				window.audio.stop("plasma");
+
 				if (XType.paused) {
 					Impact.system.startRunLoop();
 					XType.paused = false;

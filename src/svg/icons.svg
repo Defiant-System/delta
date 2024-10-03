@@ -935,10 +935,10 @@
 		</radialGradient>
 		<ellipse class="st2" cx="44.1" cy="64.4" rx="19.8" ry="23.4"/>
 		<radialGradient id="SVGID_4_" cx="48" cy="48" r="8.9754" gradientUnits="userSpaceOnUse">
-			<stop  offset="0" style="stop-color:#FFFFFF"/>
+			<stop  offset="0" style="stop-color:#fff"/>
 			<!-- <stop  offset="1.977524e-02" style="stop-color:#F1F5FE;stop-opacity:0.9813"/>
-			<stop  offset="0.1309" style="stop-color:#A9C0FB;stop-opacity:0.8762"/>
-			<stop  offset="0.2355" style="stop-color:#6D94F8;stop-opacity:0.7773"/> -->
+			<stop  offset="0.1309" style="stop-color:#A9C0FB;stop-opacity:0.8762"/> -->
+			<stop  offset="0.2355" style="stop-color:#6D94F8;stop-opacity:0.7773"/>
 			<stop  offset="0.2355" style="stop-color:#F1F5FE;stop-opacity:0.6875"/>
 			<stop  offset="0.414" style="stop-color:#A9C0FB;stop-opacity:0.6085"/>
 			<stop  offset="0.483" style="stop-color:#074AF2;stop-opacity:0.5433"/>

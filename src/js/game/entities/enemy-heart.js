@@ -8,7 +8,9 @@ let EntityEnemyHeart = EntityEnemy.extend({
 		x: 0,
 		y: 12
 	},
-	image: new Impact.Image('~/icons/sprite-enemy-heart.png'),
+	isBoss: true,
+	isRoot: true,
+	image: new Impact.Image("~/icons/sprite-enemy-heart.png"),
 	health: 400,
 	bullets: 16,
 	killScore: 10000,
@@ -22,15 +24,10 @@ let EntityEnemyHeart = EntityEnemy.extend({
 	},
 	explodeParticles: 40,
 	killTimerTime: 0.3,
-	attachmentPoints: [{
-		x: 40,
-		y: 42,
-		angle: -45
-	}, {
-		x: 44,
-		y: -20,
-		angle: -110
-	}],
+	attachmentPoints: [
+		{ x: 40, y: 42, angle: -45 },
+		{ x: 44, y: -20, angle: -110 }
+	],
 	init: function(x, y, settings) {
 		this.parent(x, y - 18, settings);
 		this.shootTimer = new Impact.Timer(2);
@@ -112,7 +109,7 @@ let EntityExplosionHuge = Impact.Entity.extend({
 	lifetime: 1,
 	fadetime: 1,
 	alpha: 0,
-	img: new Impact.Image('~/sprites/explosion-huge.jpg',512,512),
+	img: new Impact.Image("~/sprites/explosion-huge.jpg",512,512),
 	init: function(x, y, settings) {
 		this.parent(x, y, settings);
 		this.idleTimer = new Impact.Timer();

@@ -8,6 +8,7 @@ let EntityEnemyPlasmabox = EntityEnemy.extend({
 		x: 2,
 		y: 2
 	},
+	isBoss: true,
 	image: new Impact.Image('~/icons/sprite-enemy-plasmabox.png'),
 	health: 180,
 	reloadTime: 4,
@@ -51,6 +52,8 @@ let EntityEnemyPlasmaBullet = EntityEnemy.extend({
 		x: 32,
 		y: 32
 	},
+	isBoss: false,
+	isRoot: false,
 	image: new Impact.Image('~/icons/sprite-plasma-bullet.png'),
 	health: 10,
 	speed: 10,

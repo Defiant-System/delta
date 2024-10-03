@@ -22,7 +22,6 @@ let EntityEnemy = Impact.Entity.extend({
 	},
 	explodeParticles: 10,
 	attachmentPoints: [],
-	// soundExplode: new Impact.Sound('media/sounds/explosion.ogg'),
 	type: Impact.Entity.TYPE.B,
 	checkAgainst: Impact.Entity.TYPE.A,
 	killTimerTime: 0.3,
@@ -76,15 +75,87 @@ let EntityEnemy = Impact.Entity.extend({
 			c.updateChildren();
 		}
 	},
-	draw: function() {
+	draw2: function() {
 		var sx = this.image.width / 2,
 			sy = this.image.height / 2;
+
 		Impact.system.context.save();
-		Impact.system.context.globalCompositeOperation = 'source-over';
+		Impact.system.context.globalCompositeOperation = "source-over";
 		Impact.system.context.translate(this.pos.x - Impact.game._rscreen.x - this.offset.x + sx, this.pos.y - Impact.game._rscreen.y - this.offset.y + sy);
 		Impact.system.context.rotate(this.angle - Math.PI / 2);
 		Impact.system.context.drawImage(this.image.data, -sx, -sy);
 		Impact.system.context.restore();
+	},
+	draw: function() {
+		var sx = this.image.width / 2,
+			sy = this.image.height / 2;
+		
+		if (!this.isBoss) {
+			Impact.system.context.save();
+			Impact.system.context.globalCompositeOperation = "source-over";
+			Impact.system.context.translate(this.pos.x - Impact.game._rscreen.x - this.offset.x + sx, this.pos.y - Impact.game._rscreen.y - this.offset.y + sy);
+			Impact.system.context.rotate(this.angle - Math.PI / 2);
+			Impact.system.context.drawImage(this.image.data, -sx, -sy);
+			Impact.system.context.restore();
+		} else if (this.isBoss) {
+			Impact.game.off1.ctx.save();
+			Impact.game.off1.ctx.translate(this.pos.x - Impact.game._rscreen.x - this.offset.x + sx, this.pos.y - Impact.game._rscreen.y - this.offset.y + sy);
+			Impact.game.off1.ctx.rotate(this.angle - Math.PI / 2);
+			Impact.game.off1.ctx.drawImage(this.image.data, -sx, -sy);
+			Impact.game.off1.ctx.restore();
+
+			if (this.isRoot) {
+				Impact.system.context.drawImage(Impact.game.off1.cvs[0], 0, 0);
+				Impact.game.off1.cvs.attr({ width: Impact.system.width });
+			}
+		}
+	},
+	draw3: function() {
+		var sx = this.image.width / 2,
+			sy = this.image.height / 2;
+		
+		if (!this.isBoss) {
+			Impact.system.context.save();
+			Impact.system.context.globalCompositeOperation = "source-over";
+			Impact.system.context.translate(this.pos.x - Impact.game._rscreen.x - this.offset.x + sx, this.pos.y - Impact.game._rscreen.y - this.offset.y + sy);
+			Impact.system.context.rotate(this.angle - Math.PI / 2);
+			Impact.system.context.drawImage(this.image.data, -sx, -sy);
+			Impact.system.context.restore();
+		} else if (this.isBoss) {
+			Impact.game.off1.ctx.save();
+			Impact.game.off1.ctx.translate(this.pos.x - Impact.game._rscreen.x - this.offset.x + sx, this.pos.y - Impact.game._rscreen.y - this.offset.y + sy);
+			Impact.game.off1.ctx.rotate(this.angle - Math.PI / 2);
+			Impact.game.off1.ctx.drawImage(this.image.data, -sx, -sy);
+			Impact.game.off1.ctx.restore();
+
+			if (this.isRoot) {
+				let dArr = [-1,-1, 0,-1, 1,-1, -1,0, 1,0, -1,1, 0,1, 1,1], // offset array
+					s = 1,  // thickness scale
+					i = 0,  // iterator
+					x = 5,  // final position
+					y = 5,
+					w = Impact.system.width,
+					h = Impact.system.height;
+
+				Impact.game.off2.cvs.attr({ width: w });
+
+				// draw images at offsets from the array scaled by s
+				for(; i<dArr.length; i+=2) {
+					Impact.game.off2.ctx.drawImage(Impact.game.off1.cvs[0], x + dArr[i]*s, y + dArr[i+1]*s);
+				}
+
+				// fill with color
+				Impact.game.off2.ctx.globalCompositeOperation = "source-in";
+				Impact.game.off2.ctx.fillStyle = "#fff";
+				Impact.game.off2.ctx.fillRect(0, 0, w, h);
+
+				Impact.game.off2.ctx.globalCompositeOperation = "source-over";
+				Impact.game.off2.ctx.drawImage(Impact.game.off1.cvs[0], x, y);
+
+				Impact.system.context.drawImage(Impact.game.off2.cvs[0], 0, 0);
+				Impact.game.off1.cvs.attr({ width: w });
+			}
+		}
 	},
 	receiveDamage: function(amount, other) {
 		var childTookDamage = false;
@@ -101,17 +172,15 @@ let EntityEnemy = Impact.Entity.extend({
 		this.hitTimer.set(0.3);
 		Impact.game.score += this.hitScore;
 		if (this.health <= 0) {
+			// play sound fx
 			window.audio.play("explosion");
-			// this.soundExplode.play();
 			this.explode();
 			Impact.game.lastKillTimer.set(this.killTimerTime);
 			Impact.game.score += this.killScore;
 		} else {
 			var px = other.pos.x - other.size.x / 2;
 			var py = other.pos.y - other.size.y / 2;
-			Impact.game.spawnEntity(EntityExplosionParticleLargeSlow, px, py, {
-				count: 1
-			});
+			Impact.game.spawnEntity(EntityExplosionParticleLargeSlow, px, py, { count: 1 });
 		}
 	},
 	receiveSilentDamage: function(amount) {
@@ -131,9 +200,7 @@ let EntityEnemy = Impact.Entity.extend({
 	explode: function() {
 		var px = this.pos.x + this.size.x / 2;
 		var py = this.pos.y + this.size.y / 2;
-		Impact.game.spawnEntity(EntityExplosionParticleLarge, px, py, {
-			count: this.explodeParticles
-		});
+		Impact.game.spawnEntity(EntityExplosionParticleLarge, px, py, { count: this.explodeParticles });
 	},
 	kill: function(killedByParent) {
 		for (var i = 0; i < this.children.length; i++) {
@@ -165,7 +232,7 @@ let EntityExplosionParticleLarge = EntityParticles.extend({
 		x: 150,
 		y: 150
 	},
-	image: new Impact.Image('~/icons/sprite-enemy-explosion.png')
+	image: new Impact.Image("~/icons/sprite-enemy-explosion.png")
 });
 
 let EntityExplosionParticleLargeSlow = EntityParticles.extend({
@@ -175,5 +242,5 @@ let EntityExplosionParticleLargeSlow = EntityParticles.extend({
 		x: 20,
 		y: 20
 	},
-	image: new Impact.Image('~/icons/sprite-enemy-explosion.png')
+	image: new Impact.Image("~/icons/sprite-enemy-explosion.png")
 });

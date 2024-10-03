@@ -55,7 +55,11 @@ let XType = Impact.Game.extend({
 			this.stickLeft = new Impact.AnalogStick(x1,y,radius,30);
 			this.stickRight = new Impact.AnalogStick(x2,y,radius,30);
 		}
-		
+
+		// offscreen canvas for later use
+		this.off1 = Utils.createCanvas(Impact.system.width, Impact.system.height);
+		this.off2 = Utils.createCanvas(Impact.system.width, Impact.system.height);
+
 		this.reset();
 		// this.setTitle();
 		this.setGame();
@@ -77,7 +81,7 @@ let XType = Impact.Game.extend({
 		Impact.music.play();
 		Impact.system.canvas.style.cursor = "";
 		this.menu = null;
-		this.initTimer = new Impact.Timer(3);
+		this.initTimer = new Impact.Timer(0);  // hbi: 3
 		this.lastKillTimer.reset();
 		if (!Impact.ua.mobile) {
 			this.crosshair = this.spawnEntity(EntityCrosshair, 0, 0);
@@ -156,7 +160,7 @@ let XType = Impact.Game.extend({
 		for (i = 0; i < ents.length; i++) {
 			maxY = Math.max(ents[i].pos.y, maxY);
 		}
-		this.heart.pos.y = -maxY - 120;
+		this.heart.pos.y = -maxY + 120; // hbi "minus"
 		this.heart.vel.y = 70;
 		this.heart.update();
 	},
@@ -216,9 +220,8 @@ let XType = Impact.Game.extend({
 		}
 	},
 	draw: function() {
-		// this.backdrop.draw(0, 0);
-		// Impact.system.clear("#000");
-		Impact.system.context.clearRect(0, 0, Impact.system.width, Impact.system.height);
+		// Impact.system.context.clearRect(0, 0, Impact.system.width, Impact.system.height);
+		Impact.system.canvas.width = Impact.system.width;
 
 		var d = this.lastKillTimer.delta();
 		Impact.system.context.globalAlpha = d < 0 ? d * -3 + 0.3 : 0.3;
@@ -455,7 +458,7 @@ XType.MODE = {
 	SCORES: 3
 };
 
-XType.paused = true;
+XType.paused = false;
 
 XType.startGame = function() {
 	Impact.Sound.channels = 2;

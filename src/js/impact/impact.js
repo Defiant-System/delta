@@ -1,4 +1,11 @@
 
+/*
+ * Impact.js by Dominic Szablewski
+ * dominic.szablewski@gmail.com
+ * https://github.com/phoboslab/impact
+ */
+
+
 if (!Array.prototype.erase) {
 	Array.prototype.erase = function(item) {
 		for (var i = this.length; i--; ) {
@@ -51,7 +58,7 @@ if (!Number.prototype.map) {
 let Impact = {
 	game: null,
 	debug: null,
-	version: "1.24",
+	version: "1.25k", // k-suffix indicates changes for Karaqu
 	global: window,
 	modules: {},
 	resources: [],

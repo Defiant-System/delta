@@ -21,8 +21,8 @@ let EntityPlayer = Impact.Entity.extend({
 		y: 300
 	},
 	speed: 110,
-	soundShoot: new Impact.Sound("media/sounds/plasma-burst.ogg"),
-	soundExplode: new Impact.Sound("media/sounds/explosion.ogg"),
+	// soundShoot: new Impact.Sound("media/sounds/plasma-burst.ogg"),
+	// soundExplode: new Impact.Sound("media/sounds/explosion.ogg"),
 	type: Impact.Entity.TYPE.A,
 	init: function(x, y, settings) {
 		this.parent(x, y, settings);
@@ -32,7 +32,7 @@ let EntityPlayer = Impact.Entity.extend({
 		this.shieldTimer = new Impact.Timer(2);
 		this.lastShootTimer = new Impact.Timer(0);
 		this.crosshair = Impact.game.crosshair;
-		this.soundShoot.volume = 0.7;
+		// this.soundShoot.volume = 0.7;
 		Impact.game.player = this;
 	},
 	draw: function() {
@@ -127,9 +127,7 @@ let EntityPlayer = Impact.Entity.extend({
 		window.audio.play("blow-up");
 
 		Impact.game.lastKillTimer.set(0.5);
-		Impact.game.spawnEntity(EntityExplosionParticleBlue, this.pos.x, this.pos.y, {
-			count: 40
-		});
+		Impact.game.spawnEntity(EntityExplosionParticleBlue, this.pos.x, this.pos.y, { count: 40 });
 		this.pos.y = Impact.system.height + 300;
 		this.parent();
 		Impact.game.loseLive();
@@ -137,9 +135,7 @@ let EntityPlayer = Impact.Entity.extend({
 	shoot: function() {
 		// this.currentAnim = this.anims.shoot.rewind();
 		var angle = this.angle + Math.random() * 0.1 - 0.05;
-		Impact.game.spawnEntity(EntityPlasma, this.pos.x - 1, this.pos.y - 1, {
-			angle: angle
-		});
+		Impact.game.spawnEntity(EntityPlasma, this.pos.x - 1, this.pos.y - 1, { angle });
 	}
 });
 
@@ -155,8 +151,8 @@ let EntityPlasma = Impact.Entity.extend({
 		y: 4
 	},
 	offset: {
-		x: 46,
-		y: 46
+		x: 47,
+		y: 47
 	},
 	checkAgainst: Impact.Entity.TYPE.B,
 	init: function(x, y, settings) {
