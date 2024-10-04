@@ -75,6 +75,9 @@ let XType = Impact.Game.extend({
 		this.lives = 3,
 		// this.level = { level: 0, support: 1, plasma: 0, missile: 0 };
 		this.level = { level: 2, support: 3, plasma: 1, missile: 1 };
+
+		// UI update lives
+		xwing.game.dispatch({ type: "set-lives", value: this.lives });
 	},
 	setGame: function() {
 		// window.scrollTo(0, 0);
@@ -218,6 +221,8 @@ let XType = Impact.Game.extend({
 		} else {
 			this.setGameOver();
 		}
+		// UI update lives
+		xwing.game.dispatch({ type: "set-lives", value: this.lives });
 	},
 	draw: function() {
 		// Impact.system.context.clearRect(0, 0, Impact.system.width, Impact.system.height);

@@ -41,7 +41,6 @@
 				
 				if (!Self.song) {
 					let opt = {
-						volume: 1,
 						onend: e => {
 							// turn "off" button
 							// let el = Self.els.el.find(`.menu li[data-click="toggle-music"] b`),
