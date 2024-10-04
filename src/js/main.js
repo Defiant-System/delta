@@ -3,17 +3,17 @@
 
 @import "./impact/impact.js"
 @import "./impact/image.js"
-@import "./impact/font.js"
-@import "./impact/sound.js"
+@import "./impact/font.js" // to be removed
+@import "./impact/sound.js" // to be removed
 @import "./impact/loader.js"
 @import "./impact/timer.js"
 @import "./impact/system.js"
-@import "./impact/input.js"
+@import "./impact/input.js" // to be removed
 @import "./impact/animation.js"
 @import "./impact/entity.js"
 @import "./impact/map.js"
 @import "./impact/collision-map.js"
-@import "./impact/background-map.js"
+@import "./impact/background-map.js" // to be removed
 @import "./impact/game.js"
 
 @import "./game/entities/particle.js"
@@ -27,13 +27,15 @@
 @import "./game/entities/enemy-arm.js"
 
 @import "./plugins/impact-splash-loader.js"
-@import "./plugins/analog-stick.js"
+@import "./plugins/analog-stick.js" // to be removed
 
-@import "./game/menus.js"
+@import "./game/menus.js" // to be removed
 @import "./game/main.js"
 
 @import "./modules/bg.js"
 @import "./modules/test.js"
+
+
 
 
 const xwing = {
@@ -44,13 +46,19 @@ const xwing = {
 		// init objects
 		Bg.init();
 
+		// init all sub-objects
+		Object.keys(this)
+			.filter(i => typeof this[i].init === "function")
+			.map(i => this[i].init(this));
+
 		// DEV-ONLY-START
 		Test.init(this);
 		// DEV-ONLY-END
 	},
 	dispatch(event) {
 		let Self = xwing,
-			name;
+			value,
+			el;
 		// console.log(event.type);
 		switch (event.type) {
 			// system events
@@ -113,25 +121,26 @@ const xwing = {
 					Bg.dispatch({ type: "pause" });
 				}
 				break;
-			case "toggle-sound-fx": break;
-			case "toggle-music": break;
 			case "start-view":
 				// resume background worker
 				Bg.dispatch({ type: "resume" });
 
 				Self.content.data({ show: "start-view" });
 				break;
-			case "new-game":
-				// pause background worker
-				// Bg.dispatch({ type: "pause" });
-
-				Self.content.data({ show: "game-view" });
-
-				// start game
-				XType.startGame();
-				break;
+			default:
+				el = event.el;
+				if (!el && event.origin) el = event.origin.el;
+				if (el) {
+					let pEl = el.parents(`?div[data-area]`);
+					if (pEl.length) {
+						let name = pEl.data("area");
+						return Self[name].dispatch(event);
+					}
+				}
 		}
-	}
+	},
+	start: @import "./areas/start.js",
+	game: @import "./areas/game.js",
 };
 
 window.exports = xwing;

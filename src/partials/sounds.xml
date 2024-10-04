@@ -1,7 +1,9 @@
 <Sounds>
+	<i id="button" url="~/audio/button.mp3"/>
 	<i id="blow-up" url="~/audio/blow-up.mp3"/>
 	<i id="beam" url="~/audio/beam.mp3"/>
 	<i id="pulse" url="~/audio/pulse.mp3"/>
 	<i id="explosion" url="~/audio/explosion.mp3"/>
 	<i id="plasma" url="~/audio/plasma.mp3" loop="1"/>
+	<i id="song" url="/cdn/audio/mp3/Defiant One - Hakan Bilgin.mp3"/>
 </Sounds>

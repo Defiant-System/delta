@@ -67,7 +67,7 @@ content {
 			position: relative;
 			width: 446px;
 			height: 102px;
-			margin: 73px auto 53px;
+			margin: 67px auto 73px;
 
 			svg {
 				position: absolute;
@@ -82,6 +82,25 @@ content {
 						// drop-shadow(0 6px 0 hsl(214, 5%, 43%))
 						drop-shadow(0 3px 3px rgba(#000,.5))
 						sepia(.35);
+			}
+		}
+
+		.hiscore {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 167px;
+			text-align: center;
+			font-size: 24px;
+			color: #aa9;
+			line-height: 1.2;
+			letter-spacing: .5px;
+			text-shadow: 0 1px 1px rgba(#000,.25);
+			margin-bottom: 37px;
+
+			b {
+				color: #fff;
+				margin: 0 1px;
 			}
 		}
 
@@ -108,14 +127,17 @@ content {
 				}
 
 				b {
+					display: inline-block;
+					width: 36px;
+					pointer-events: none;
 					color: #393;
 					filter: drop-shadow(0 2px 0 #151)
-							drop-shadow(0 2px 7px rgba(#000,.65));
+							drop-shadow(0 2px 7px rgba(#030,.65));
 
 					&.off {
 						color: #c44;
 						filter: drop-shadow(0 2px 0 #922)
-								drop-shadow(0 2px 7px rgba(#000,.65));
+								drop-shadow(0 2px 7px rgba(#600,.65));
 					}
 				}
 			}

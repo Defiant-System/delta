@@ -75,17 +75,18 @@ let EntityEnemy = Impact.Entity.extend({
 			c.updateChildren();
 		}
 	},
-	draw2: function() {
-		var sx = this.image.width / 2,
-			sy = this.image.height / 2;
+	// ORIGINAL
+	// draw2: function() {
+	// 	var sx = this.image.width / 2,
+	// 		sy = this.image.height / 2;
 
-		Impact.system.context.save();
-		Impact.system.context.globalCompositeOperation = "source-over";
-		Impact.system.context.translate(this.pos.x - Impact.game._rscreen.x - this.offset.x + sx, this.pos.y - Impact.game._rscreen.y - this.offset.y + sy);
-		Impact.system.context.rotate(this.angle - Math.PI / 2);
-		Impact.system.context.drawImage(this.image.data, -sx, -sy);
-		Impact.system.context.restore();
-	},
+	// 	Impact.system.context.save();
+	// 	Impact.system.context.globalCompositeOperation = "source-over";
+	// 	Impact.system.context.translate(this.pos.x - Impact.game._rscreen.x - this.offset.x + sx, this.pos.y - Impact.game._rscreen.y - this.offset.y + sy);
+	// 	Impact.system.context.rotate(this.angle - Math.PI / 2);
+	// 	Impact.system.context.drawImage(this.image.data, -sx, -sy);
+	// 	Impact.system.context.restore();
+	// },
 	draw: function() {
 		var sx = this.image.width / 2,
 			sy = this.image.height / 2;
@@ -110,53 +111,53 @@ let EntityEnemy = Impact.Entity.extend({
 			}
 		}
 	},
-	draw3: function() {
-		var sx = this.image.width / 2,
-			sy = this.image.height / 2;
+	// draw3: function() {
+	// 	var sx = this.image.width / 2,
+	// 		sy = this.image.height / 2;
 		
-		if (!this.isBoss) {
-			Impact.system.context.save();
-			Impact.system.context.globalCompositeOperation = "source-over";
-			Impact.system.context.translate(this.pos.x - Impact.game._rscreen.x - this.offset.x + sx, this.pos.y - Impact.game._rscreen.y - this.offset.y + sy);
-			Impact.system.context.rotate(this.angle - Math.PI / 2);
-			Impact.system.context.drawImage(this.image.data, -sx, -sy);
-			Impact.system.context.restore();
-		} else if (this.isBoss) {
-			Impact.game.off1.ctx.save();
-			Impact.game.off1.ctx.translate(this.pos.x - Impact.game._rscreen.x - this.offset.x + sx, this.pos.y - Impact.game._rscreen.y - this.offset.y + sy);
-			Impact.game.off1.ctx.rotate(this.angle - Math.PI / 2);
-			Impact.game.off1.ctx.drawImage(this.image.data, -sx, -sy);
-			Impact.game.off1.ctx.restore();
+	// 	if (!this.isBoss) {
+	// 		Impact.system.context.save();
+	// 		Impact.system.context.globalCompositeOperation = "source-over";
+	// 		Impact.system.context.translate(this.pos.x - Impact.game._rscreen.x - this.offset.x + sx, this.pos.y - Impact.game._rscreen.y - this.offset.y + sy);
+	// 		Impact.system.context.rotate(this.angle - Math.PI / 2);
+	// 		Impact.system.context.drawImage(this.image.data, -sx, -sy);
+	// 		Impact.system.context.restore();
+	// 	} else if (this.isBoss) {
+	// 		Impact.game.off1.ctx.save();
+	// 		Impact.game.off1.ctx.translate(this.pos.x - Impact.game._rscreen.x - this.offset.x + sx, this.pos.y - Impact.game._rscreen.y - this.offset.y + sy);
+	// 		Impact.game.off1.ctx.rotate(this.angle - Math.PI / 2);
+	// 		Impact.game.off1.ctx.drawImage(this.image.data, -sx, -sy);
+	// 		Impact.game.off1.ctx.restore();
 
-			if (this.isRoot) {
-				let dArr = [-1,-1, 0,-1, 1,-1, -1,0, 1,0, -1,1, 0,1, 1,1], // offset array
-					s = 1,  // thickness scale
-					i = 0,  // iterator
-					x = 5,  // final position
-					y = 5,
-					w = Impact.system.width,
-					h = Impact.system.height;
+	// 		if (this.isRoot) {
+	// 			let dArr = [-1,-1, 0,-1, 1,-1, -1,0, 1,0, -1,1, 0,1, 1,1], // offset array
+	// 				s = 1,  // thickness scale
+	// 				i = 0,  // iterator
+	// 				x = 5,  // final position
+	// 				y = 5,
+	// 				w = Impact.system.width,
+	// 				h = Impact.system.height;
 
-				Impact.game.off2.cvs.attr({ width: w });
+	// 			Impact.game.off2.cvs.attr({ width: w });
 
-				// draw images at offsets from the array scaled by s
-				for(; i<dArr.length; i+=2) {
-					Impact.game.off2.ctx.drawImage(Impact.game.off1.cvs[0], x + dArr[i]*s, y + dArr[i+1]*s);
-				}
+	// 			// draw images at offsets from the array scaled by s
+	// 			for(; i<dArr.length; i+=2) {
+	// 				Impact.game.off2.ctx.drawImage(Impact.game.off1.cvs[0], x + dArr[i]*s, y + dArr[i+1]*s);
+	// 			}
 
-				// fill with color
-				Impact.game.off2.ctx.globalCompositeOperation = "source-in";
-				Impact.game.off2.ctx.fillStyle = "#fff";
-				Impact.game.off2.ctx.fillRect(0, 0, w, h);
+	// 			// fill with color
+	// 			Impact.game.off2.ctx.globalCompositeOperation = "source-in";
+	// 			Impact.game.off2.ctx.fillStyle = "#fff";
+	// 			Impact.game.off2.ctx.fillRect(0, 0, w, h);
 
-				Impact.game.off2.ctx.globalCompositeOperation = "source-over";
-				Impact.game.off2.ctx.drawImage(Impact.game.off1.cvs[0], x, y);
+	// 			Impact.game.off2.ctx.globalCompositeOperation = "source-over";
+	// 			Impact.game.off2.ctx.drawImage(Impact.game.off1.cvs[0], x, y);
 
-				Impact.system.context.drawImage(Impact.game.off2.cvs[0], 0, 0);
-				Impact.game.off1.cvs.attr({ width: w });
-			}
-		}
-	},
+	// 			Impact.system.context.drawImage(Impact.game.off2.cvs[0], 0, 0);
+	// 			Impact.game.off1.cvs.attr({ width: w });
+	// 		}
+	// 	}
+	// },
 	receiveDamage: function(amount, other) {
 		var childTookDamage = false;
 		if (this.health <= 10 && this.children.length) {

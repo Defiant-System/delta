@@ -224,10 +224,10 @@ let XType = Impact.Game.extend({
 		Impact.system.canvas.width = Impact.system.width;
 
 		var d = this.lastKillTimer.delta();
-		Impact.system.context.globalAlpha = d < 0 ? d * -3 + 0.3 : 0.3;
-		for (var i = 0; i < this.backgroundMaps.length; i++) {
-			this.backgroundMaps[i].draw();
-		}
+		// Impact.system.context.globalAlpha = d < 0 ? d * -3 + 0.3 : 0.3;
+		// for (var i = 0; i < this.backgroundMaps.length; i++) {
+		// 	this.backgroundMaps[i].draw();
+		// }
 
 		Impact.system.context.globalAlpha = 1;
 		if (d < 0.5) {
