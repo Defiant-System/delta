@@ -14,6 +14,7 @@
 		let APP = xwing,
 			Self = APP.game,
 			value,
+			total,
 			el;
 		// console.log(event);
 		switch (event.type) {
@@ -23,7 +24,25 @@
 				Self.els.lives.data({ count: event.value });
 				break;
 			case "update-score":
-				Self.els.score.html(event.value.toString().padStart(8, "0"));
+				// Self.els.score.html(event.value.toString().padStart(6, "0"));
+
+				// player bankroll ticker
+				value = +Self.els.score.text();
+				total = +event.value;
+				// Self.settings.hiscore = event.value;
+				// ticker
+				Self.els.score
+					.css({
+						"--value": value,
+						"--total": total,
+					})
+					.cssSequence("ticker", "animationend", el => {
+						// update score content
+						el.removeClass("ticker")
+							.html(total.toString().padStart(6, "0"))
+							.cssProp({ "--value": "", "--total": "" });
+					});
+
 				break;
 		}
 	}

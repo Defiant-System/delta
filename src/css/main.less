@@ -232,10 +232,47 @@ content {
 				background: linear-gradient(180deg, #f0f0ff, #dde 50%, #bbc 50%, #aab);
 				background-clip: text;
 				filter: drop-shadow(0 2px 0 #669);
+
+				&.ticker {
+					background: transparent;
+					background-clip: unset;
+					font-size: 0;
+					filter: none;
+
+					&:after {
+						counter-reset: my-counter var( --value );
+						content: counter(my-counter, pad-6);
+						animation: count 200ms ease-in-out;
+						font-size: 37px;
+						background: linear-gradient(180deg, #f0f0ff, #dde 50%, #bbc 50%, #aab);
+						color: transparent;
+						background-clip: text;
+						filter: drop-shadow(0 2px 0 #669);
+					}
+				}
 			}
 		}
 	}
 }
+
+
+@counter-style pad-6 {
+    system: numeric;
+    symbols: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9";
+    pad: 6 "0";
+}
+
+
+@property --value {
+	syntax: '<integer>';
+	inherits: true;
+	initial-value: 0;
+}
+
+@keyframes count {
+	to { --value: var( --total ); }
+}
+
 
 
 // custom fonts
