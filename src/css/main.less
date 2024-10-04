@@ -67,7 +67,7 @@ content {
 			position: relative;
 			width: 446px;
 			height: 102px;
-			margin: 67px auto 73px;
+			margin: 73px auto 31px;
 
 			svg {
 				position: absolute;
@@ -85,29 +85,10 @@ content {
 			}
 		}
 
-		.hiscore {
-			position: absolute;
-			left: 0;
-			right: 0;
-			top: 167px;
-			text-align: center;
-			font-size: 24px;
-			color: #aa9;
-			line-height: 1.2;
-			letter-spacing: .5px;
-			text-shadow: 0 1px 1px rgba(#000,.25);
-			margin-bottom: 37px;
-
-			b {
-				color: #fff;
-				margin: 0 1px;
-			}
-		}
-
 		ul.menu {
 			font-size: 50px;
 			text-align: center;
-			line-height: 1.5;
+			line-height: 1.15;
 			// text-shadow: 0 2px 7px rgba(#000,.5);
 
 			li {
@@ -140,6 +121,37 @@ content {
 								drop-shadow(0 2px 7px rgba(#600,.65));
 					}
 				}
+			}
+		}
+
+		.ship {
+			background: url(/app/ant/icons/app-icon-xwing.png) 50% 0px no-repeat;
+			background-size: 110px auto;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 427px;
+			height: 110px;
+			filter: saturate(1.5) brightness(1.15) hue-rotate(335deg) drop-shadow(0 2px 7px rgba(#000,.5));
+			animation: anim 3s ease-in-out infinite;
+		}
+
+		.hiscore {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 557px;
+			text-align: center;
+			font-size: 24px;
+			color: #aa9;
+			line-height: 1.2;
+			letter-spacing: .5px;
+			text-shadow: 0 1px 1px rgba(#000,.25);
+			margin-bottom: 37px;
+
+			b {
+				color: #fff;
+				margin: 0 1px;
 			}
 		}
 
@@ -273,6 +285,13 @@ content {
 	to { --value: var( --total ); }
 }
 
+
+
+@keyframes anim {
+	0%   { transform: translateY(5px) }
+	50%  { transform: translateY(-5px) }
+	100% { transform: translateY(5px) }
+}
 
 
 // custom fonts

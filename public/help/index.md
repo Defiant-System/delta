@@ -6,3 +6,6 @@
 
 ### How to
 
+
+---
+*This game is based on the excellent game X-Type, originally written by Dominic Szablewski. Play the [original game here](https://phoboslab.org/xtype/).*
