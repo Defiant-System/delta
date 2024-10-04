@@ -22,6 +22,9 @@
 				// reset seats
 				Self.els.lives.data({ count: event.value });
 				break;
+			case "update-score":
+				Self.els.score.html(event.value.toString().padStart(8, "0"));
+				break;
 		}
 	}
 }

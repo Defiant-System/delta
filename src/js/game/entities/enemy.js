@@ -178,6 +178,8 @@ let EntityEnemy = Impact.Entity.extend({
 			this.explode();
 			Impact.game.lastKillTimer.set(this.killTimerTime);
 			Impact.game.score += this.killScore;
+			// update hud
+			xwing.game.dispatch({ type: "update-score", value: Impact.game.score });
 		} else {
 			var px = other.pos.x - other.size.x / 2;
 			var py = other.pos.y - other.size.y / 2;
