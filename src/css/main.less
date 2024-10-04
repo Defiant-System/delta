@@ -37,6 +37,20 @@ content {
 			visibility: visible;
 		}
 	}
+
+	&.show-pause {
+		.view-pause {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
+	&.show-game-over {
+		.view-game-over {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
 	
 	canvas.bg {
 		position: absolute;
@@ -60,6 +74,50 @@ content {
 		opacity: 0;
 		visibility: hidden;
 		border-radius: inherit;
+	}
+
+	h2 {
+		font-size: 60px;
+		margin: 0 auto 11px;
+		color: transparent;
+		background: linear-gradient(180deg, #ffe, #eed 50%, #ccb 50%, #bba);
+		background-clip: text;
+		filter: drop-shadow(0 2px 0 #887)
+				drop-shadow(0 2px 7px rgba(#000,.65));
+	}
+
+	.view-pause {
+		text-align: center;
+		padding-top: 61%;
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: -5px;
+			left: -5px;
+			right: -5px;
+			bottom: -5px;
+			background: rgba(#012,.5);
+			backdrop-filter: blur(11px);
+			// filter: url(#galcon-noise);
+		}
+	}
+
+	.view-game-over {
+		text-align: center;
+		padding-top: 61%;
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: -5px;
+			left: -5px;
+			right: -5px;
+			bottom: -5px;
+			background: rgba(#012,.5);
+			backdrop-filter: blur(11px);
+			// filter: url(#galcon-noise);
+		}
 	}
 
 	.start-view {

@@ -127,6 +127,12 @@ const xwing = {
 
 				Self.content.data({ show: "start-view" });
 				break;
+			case "resume-game":
+				Self.content.removeClass("show-pause");
+				break;
+			case "intro-view":
+				Self.content.removeClass("show-game-over");
+				break;
 			default:
 				el = event.el;
 				if (!el && event.origin) el = event.origin.el;

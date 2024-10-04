@@ -1,4 +1,4 @@
-<content data-show="start-view" data-context="game-content">
+<content class="show-pause" data-show="start-view" data-context="game-content">
 	<canvas class="bg"></canvas>
 	
 	<div class="start-view" data-area="start">
@@ -39,5 +39,15 @@
 			<div class="lives" data-count="3"></div>
 			<div class="score">000000</div>
 		</div>
+	</div>
+
+	<!-- for game paused -->
+	<div class="view-pause" data-click="resume-game">
+		<h2>Paused</h2>
+	</div>
+
+	<!-- for game paused -->
+	<div class="view-game-over" data-click="intro-view">
+		<h2>Game Over</h2>
 	</div>
 </content>
