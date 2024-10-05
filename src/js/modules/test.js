@@ -4,7 +4,7 @@ let Test = {
 		// return;
 		
 		
-		return APP.content.addClass("show-fireworks");
+		// return APP.content.addClass("show-fireworks");
 
 		// APP.start.dispatch({ type: "new-game" });
 		APP.dispatch({ type: "show-view-game" });

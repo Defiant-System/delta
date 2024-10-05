@@ -89,29 +89,38 @@ let Anim = {
 		ctx.clearRect(0, 0, cvs.width, cvs.height);
 
 		ctx.save();
-		ctx.translate(.5, .5);
-		ctx.strokeStyle = "#7788dd44";
-
-		// horizontal lines
-		Self.grid.points.map(row => {
+		ctx.fillStyle = "#f00";
+		Self.grid.forces.map(f => {
 			ctx.beginPath();
-			ctx.moveTo(row[0].x, row[0].y);
-			row.map(p => ctx.lineTo(p.x, p.y));
-			ctx.stroke();
-			ctx.closePath();
+			ctx.arc(f.x, f.y, f.radius, TAU, false);
+			ctx.fill();
 		});
-
-		// vertical lines
-		for (let x=0, xl=Self.grid.xl; x<xl; x++) {
-			ctx.beginPath();
-			ctx.moveTo(Self.grid.points[0][x].x, Self.grid.points[0][x].y);
-			for (let y=0, yl=Self.grid.yl; y<yl; y++) {
-				ctx.lineTo(Self.grid.points[y][x].x, Self.grid.points[y][x].y);
-			}
-			ctx.stroke();
-			ctx.closePath();
-		}
 		ctx.restore();
+
+		// ctx.save();
+		// ctx.translate(.5, .5);
+		// ctx.strokeStyle = "#7788dd44";
+
+		// // horizontal lines
+		// Self.grid.points.map(row => {
+		// 	ctx.beginPath();
+		// 	ctx.moveTo(row[0].x, row[0].y);
+		// 	row.map(p => ctx.lineTo(p.x, p.y));
+		// 	ctx.stroke();
+		// 	ctx.closePath();
+		// });
+
+		// // vertical lines
+		// for (let x=0, xl=Self.grid.xl; x<xl; x++) {
+		// 	ctx.beginPath();
+		// 	ctx.moveTo(Self.grid.points[0][x].x, Self.grid.points[0][x].y);
+		// 	for (let y=0, yl=Self.grid.yl; y<yl; y++) {
+		// 		ctx.lineTo(Self.grid.points[y][x].x, Self.grid.points[y][x].y);
+		// 	}
+		// 	ctx.stroke();
+		// 	ctx.closePath();
+		// }
+		// ctx.restore();
 
 		// next tick
 		if (!Self.paused) {
@@ -142,7 +151,18 @@ let Utils = {
 		return Math.sqrt((xDistance ** 2) + (yDistance ** 2));
 	},
 	bounce: (t,b,c,d) => c*Math.sin(t/d*(Math.PI))+b,
+
+	getElasticOut: (amplitude,period) => {
+		var TAU = Math.PI * 2;
+		return function(t) {
+			if (t==0 || t==1) return t;
+			var s = period/TAU * Math.asin(1/amplitude);
+			return (amplitude*Math.pow(2,-10*t)*Math.sin((t-s)*TAU/period )+1);
+		};
+	}
 };
+
+Utils.elasticOut = Utils.getElasticOut(1.15, 0.35);
 
 
 class Point {
@@ -162,16 +182,23 @@ class Explode {
 		this.x = x;
 		this.y = y;
 		this.v = 2.25;
-		this.force = 50;
+		this.force = 100;
 		this.decay = 50;
-		this.radius = this.decay ** this.v;
+
+		this.acc = 0;
+		// this.radius = this.decay ** this.v;
 	}
 
 	update() {
-		this.decay--;
+		this.acc++;
+		// this.radius = ((Utils.elasticOut(this.acc / this.force)) * this.force) ** this.v;
+		this.radius = Utils.elasticOut(this.acc / this.force) * this.force;
+
+		// this.decay--;
+		// this.radius = ((Utils.elasticOut(this.decay / this.force)) * this.force) ** this.v;
 		// this.radius = (Utils.bounce(this.decay, this.force, this.decay-this.force, this.force)) ** this.v;
-		this.radius = this.decay ** this.v;
-		if (!this.decay) {
+		// this.radius = this.decay ** this.v;
+		if (this.acc >= this.force) {
 			let grid = Anim.grid,
 				index = grid.forces.findIndex(e => e == this);
 			grid.forces.splice(index, 1);
