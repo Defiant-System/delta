@@ -26,30 +26,60 @@ let Anim = {
 			case "create-scene":
 				// grid
 				Self.grid = {
-					margin: 30,
-					size: 30,
+					margin: { x: 19, y: 20 },
+					size: 22,
 					points: [],
 					forces: [],
 				};
 
-				Self.grid.yl = ((Self.cvs.height - Self.grid.margin) / Self.grid.size) | 1;
-				Self.grid.xl = ((Self.cvs.width - Self.grid.margin) / Self.grid.size) | 1;
+				Self.grid.yl = Math.round(((Self.cvs.height - Self.grid.margin.y) / Self.grid.size));
+				Self.grid.xl = Math.round(((Self.cvs.width - Self.grid.margin.x) / Self.grid.size));
 				for (let y=0; y<Self.grid.yl; y++) {
 					// insert row
 					Self.grid.points[y] = [];
 					for (let x=0; x<Self.grid.xl; x++) {
 						// insert column (point)
-						let pX = (x * Self.grid.size) + Self.grid.margin,
-							pY = (y * Self.grid.size) + Self.grid.margin;
+						let pX = (x * Self.grid.size) + Self.grid.margin.x,
+							pY = (y * Self.grid.size) + Self.grid.margin.y;
 						Self.grid.points[y].push(new Point(pX, pY));
 					}
 				}
+
+				// setTimeout(() => Self.dispatch({ type: "explode", x: 300, y: 300 }), 1500);
+				break;
+			case "explode":
+				Self.grid.forces.push(new Explode(event.x, event.y));
+				break;
+			case "implode":
+				Self.grid.forces.push(new Implode(event.x, event.y));
 				break;
 		}
 	},
 	update(Self) {
 		let w = Self.cvs.width,
 			h = Self.cvs.height;
+		// update forces
+		Self.grid.forces.map(item => item.update());
+		// update points
+		Self.grid.points.map(row => {
+			row.map(p => {
+				// apply force on point
+				Self.grid.forces.map(f => {
+					let dx = f.x - p.x,
+						dy = f.y - p.y,
+						d2 = dx**2 + dy**2;
+					if (d2 <= f.radius) {
+						p.x -= dx / 7;
+						p.y -= dy / 7;
+					}
+				});
+				// resist entropy
+				let dxo = p.x - p.xo,
+					dyo = p.y - p.yo;
+				p.x -= dxo / 21;
+				p.y -= dyo / 21;
+			});
+		});
 	},
 	draw() {
 		let Self = Anim,
@@ -61,7 +91,7 @@ let Anim = {
 
 		ctx.save();
 		ctx.translate(.5, .5);
-		ctx.strokeStyle = "#7788cc55";
+		ctx.strokeStyle = "#7788dd44";
 
 		// horizontal lines
 		Self.grid.points.map(row => {
@@ -126,16 +156,40 @@ class Point {
 	}
 }
 
+
 class Explode {
 	constructor(x, y) {
 		this.x = x;
 		this.y = y;
+		this.decay = 50;
+		this.radius = this.decay ** 2.25;
+	}
+
+	update() {
+		this.decay--;
+		this.radius = this.decay ** 2.25;
+		if (!this.decay) {
+			let grid = Anim.grid,
+				index = grid.forces.findIndex(e => e == this);
+			grid.forces.splice(index, 1);
+		}
 	}
 }
+
 
 class Implode {
 	constructor(x, y) {
 		this.x = x;
 		this.y = y;
+		this.decay = 50;
+	}
+
+	update() {
+		this.decay--;
+		if (!this.decay) {
+			let grid = Anim.grid,
+				index = grid.forces.findIndex(e => e == this);
+			grid.forces.splice(index, 1);
+		}
 	}
 }

@@ -24,9 +24,9 @@ let Bg = {
 				value = Self.cvs[0].transferControlToOffscreen();
 				Self.worker.postMessage({ ...event, canvas: value }, [value]);
 				break;
-			case "pause":
-				// if (!window.isFocused) 
-				Self.worker.postMessage(event);
+			// case "pause":
+			// 	// if (!window.isFocused) 
+			// 	Self.worker.postMessage(event);
 				break;
 			case "resume":
 				if (window.isFocused) Self.worker.postMessage(event);
@@ -34,6 +34,8 @@ let Bg = {
 			case "dispose":
 				Self.worker.terminate();
 				break;
+			default:
+				Self.worker.postMessage(event);
 		}
 	}
 };
