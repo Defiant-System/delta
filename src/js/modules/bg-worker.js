@@ -45,8 +45,6 @@ let Anim = {
 						Self.grid.points[y].push(new Point(pX, pY));
 					}
 				}
-
-				// setTimeout(() => Self.dispatch({ type: "explode", x: 300, y: 300 }), 1500);
 				break;
 			case "explode":
 				Self.grid.forces.push(new Explode(event.x, event.y));
@@ -142,7 +140,8 @@ let Utils = {
 		let xDistance = p1x - p2x,
 			yDistance = p1y - p2y;
 		return Math.sqrt((xDistance ** 2) + (yDistance ** 2));
-	}
+	},
+	bounce: (t,b,c,d) => c*Math.sin(t/d*(Math.PI))+b,
 };
 
 
@@ -162,13 +161,16 @@ class Explode {
 	constructor(x, y) {
 		this.x = x;
 		this.y = y;
+		this.v = 2.25;
+		this.force = 50;
 		this.decay = 50;
-		this.radius = this.decay ** 2.25;
+		this.radius = this.decay ** this.v;
 	}
 
 	update() {
 		this.decay--;
-		this.radius = this.decay ** 2.25;
+		// this.radius = (Utils.bounce(this.decay, this.force, this.decay-this.force, this.force)) ** this.v;
+		this.radius = this.decay ** this.v;
 		if (!this.decay) {
 			let grid = Anim.grid,
 				index = grid.forces.findIndex(e => e == this);
