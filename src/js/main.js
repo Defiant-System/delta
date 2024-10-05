@@ -121,16 +121,20 @@ const xwing = {
 					Bg.dispatch({ type: "pause" });
 				}
 				break;
-			case "start-view":
-				// resume background worker
-				Bg.dispatch({ type: "resume" });
-
-				Self.content.data({ show: "start-view" });
+			case "show-view-start":
+				 Self.content.data({ show: "start-view" });
 				break;
-			case "resume-game":
+			case "show-view-game":
+				 Self.content.data({ show: "game-view" });
+				break;
+			case "show-view-pause":
+			case "show-view-game-over":
+				Self.content.attr({ class: `show-${event.type.slice(10)}` });
+				break;
+			case "to-resume-game":
 				Self.content.removeClass("show-pause");
 				break;
-			case "intro-view":
+			case "to-start-view":
 				Self.content.removeClass("show-game-over");
 				break;
 			default:

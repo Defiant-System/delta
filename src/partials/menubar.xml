@@ -5,7 +5,13 @@
 		<Menu name="Quit X-wing" shell="win -c"/>
 	</Menu>
 	<Menu name="Game" for="game-content">
-		<Menu name="Start View" click="start-view"/>
+		<Menu name="Show View&#8230;">
+			<Menu name="Start" click="show-view-start"/>
+			<Menu name="Game" click="show-view-game"/>
+			<Menu type="divider"/>
+			<Menu name="Pause" click="show-view-pause"/>
+			<Menu name="Game Over" click="show-view-game-over"/>
+		</Menu>
 		<Menu name="New Game" click="new-game"/>
 		<Menu type="divider"/>
 		<Menu name="Toggle Sound FX" click="toggle-sound-fx"/>
