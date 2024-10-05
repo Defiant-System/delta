@@ -1,7 +1,7 @@
 
 let Test = {
 	init(APP) {
-		// return;
+		return;
 		
 		
 		// return APP.content.addClass("show-fireworks");
@@ -11,7 +11,7 @@ let Test = {
 
 		// setTimeout(() => Bg.dispatch({ type: "explode", x: 300, y: 300 }), 1000);
 		APP.content.on("mousedown", e => {
-			Bg.dispatch({ type: "explode", x: e.offsetX, y: e.offsetY })
+			Bg.dispatch({ type: "explode", x: e.offsetX, y: e.offsetY, force: 1.5 })
 		});
 
 		// APP.content.data({ show: "game-view" });

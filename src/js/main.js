@@ -122,10 +122,10 @@ const xwing = {
 				}
 				break;
 			case "show-view-start":
-				 Self.content.data({ show: "start-view" });
+				Self.content.data({ show: "start-view" });
 				break;
 			case "show-view-game":
-				 Self.content.data({ show: "game-view" });
+				Self.content.data({ show: "game-view" });
 				break;
 			case "show-view-pause":
 			case "show-view-game-over":

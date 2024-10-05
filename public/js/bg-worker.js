@@ -12,6 +12,7 @@ let Anim = {
 				Self.ctx = Self.cvs.getContext("2d");
 				Self.dispatch({ type: "create-scene" });
 				Self.paused = true;
+				Self.active = "lines";
 				Self.draw();
 				break;
 			case "pause":
@@ -23,6 +24,9 @@ let Anim = {
 					Self.draw();
 				}
 				break;
+			case "set-active-mode":
+				Self.active = event.mode;
+				break;
 			case "create-scene":
 				// grid
 				Self.grid = {
@@ -31,7 +35,6 @@ let Anim = {
 					points: [],
 					forces: [],
 				};
-
 				Self.grid.yl = Math.round(((Self.cvs.height - Self.grid.margin.y) / Self.grid.size));
 				Self.grid.xl = Math.round(((Self.cvs.width - Self.grid.margin.x) / Self.grid.size));
 				for (let y=0; y<Self.grid.yl; y++) {
@@ -44,40 +47,58 @@ let Anim = {
 						Self.grid.points[y].push(new Point(pX, pY));
 					}
 				}
+
+				// lines
+				Self.lines = {
+					perlin: new ClassicalNoise(),
+					variation: .0027,
+					amp: 560,
+					maxLines: 37,
+					variators: [],
+					startY: Self.cvs.height >> 1,
+				};
+
+				for (let i=0, u=0; i<Self.lines.maxLines; i++, u+=.025) {
+					Self.lines.variators[i] = u;
+				}
 				break;
 			case "explode":
-				Self.grid.forces.push(new Explode(event.x, event.y));
-				break;
-			case "implode":
-				Self.grid.forces.push(new Implode(event.x, event.y));
+				Self.grid.forces.push(new Explode(event.x, event.y, event.force));
 				break;
 		}
 	},
 	update(Self) {
 		let w = Self.cvs.width,
 			h = Self.cvs.height;
-		// update forces
-		Self.grid.forces.map(item => item.update());
-		// update points
-		Self.grid.points.map(row => {
-			row.map(p => {
-				// apply force on point
-				Self.grid.forces.map(f => {
-					let dx = f.x - p.x,
-						dy = f.y - p.y,
-						d2 = dx**2 + dy**2;
-					if (d2 <= f.radius) {
-						p.x -= dx / 7;
-						p.y -= dy / 7;
-					}
+
+		switch (Self.active) {
+			case "lines":
+				break;
+			case "grid":
+				// update forces
+				Self.grid.forces.map(item => item.update());
+				// update points
+				Self.grid.points.map(row => {
+					row.map(p => {
+						// apply force on point
+						Self.grid.forces.map(f => {
+							let dx = f.x - p.x,
+								dy = f.y - p.y,
+								d2 = dx**2 + dy**2;
+							if (d2 <= f.radius) {
+								p.x -= dx / 7;
+								p.y -= dy / 7;
+							}
+						});
+						// resist entropy
+						let dxo = p.x - p.xo,
+							dyo = p.y - p.yo;
+						p.x -= dxo / 21;
+						p.y -= dyo / 21;
+					});
 				});
-				// resist entropy
-				let dxo = p.x - p.xo,
-					dyo = p.y - p.yo;
-				p.x -= dxo / 21;
-				p.y -= dyo / 21;
-			});
-		});
+				break;
+		}
 	},
 	draw() {
 		let Self = Anim,
@@ -87,39 +108,49 @@ let Anim = {
 		// clear react
 		ctx.clearRect(0, 0, cvs.width, cvs.height);
 
-		ctx.save();
-		ctx.fillStyle = "#f00";
-		Self.grid.forces.map(f => {
-			ctx.beginPath();
-			ctx.arc(f.x, f.y, f.radius, TAU, false);
-			ctx.fill();
-		});
-		ctx.restore();
+		switch (Self.active) {
+			case "grid":
+				ctx.save();
+				ctx.translate(.5, .5);
+				ctx.strokeStyle = "#7788dd44";
+				// horizontal lines
+				Self.grid.points.map(row => {
+					ctx.beginPath();
+					ctx.moveTo(row[0].x, row[0].y);
+					row.map(p => ctx.lineTo(p.x, p.y));
+					ctx.stroke();
+					ctx.closePath();
+				});
+				// vertical lines
+				for (let x=0, xl=Self.grid.xl; x<xl; x++) {
+					ctx.beginPath();
+					ctx.moveTo(Self.grid.points[0][x].x, Self.grid.points[0][x].y);
+					for (let y=0, yl=Self.grid.yl; y<yl; y++) {
+						ctx.lineTo(Self.grid.points[y][x].x, Self.grid.points[y][x].y);
+					}
+					ctx.stroke();
+					ctx.closePath();
+				}
+				ctx.restore();
+				break;
+			case "lines":
+				// lines
+				ctx.strokeStyle = `#aaddff33`;
+				for (let i=0; i<=Self.lines.maxLines; i++) {
+					ctx.beginPath();
+					ctx.moveTo(-5, Self.startY);
 
-		// ctx.save();
-		// ctx.translate(.5, .5);
-		// ctx.strokeStyle = "#7788dd44";
-
-		// // horizontal lines
-		// Self.grid.points.map(row => {
-		// 	ctx.beginPath();
-		// 	ctx.moveTo(row[0].x, row[0].y);
-		// 	row.map(p => ctx.lineTo(p.x, p.y));
-		// 	ctx.stroke();
-		// 	ctx.closePath();
-		// });
-
-		// // vertical lines
-		// for (let x=0, xl=Self.grid.xl; x<xl; x++) {
-		// 	ctx.beginPath();
-		// 	ctx.moveTo(Self.grid.points[0][x].x, Self.grid.points[0][x].y);
-		// 	for (let y=0, yl=Self.grid.yl; y<yl; y++) {
-		// 		ctx.lineTo(Self.grid.points[y][x].x, Self.grid.points[y][x].y);
-		// 	}
-		// 	ctx.stroke();
-		// 	ctx.closePath();
-		// }
-		// ctx.restore();
+					for (let x=0; x<cvs.width; x++) {
+						let y = Self.lines.perlin.noise(x * Self.lines.variation + Self.lines.variators[i], x * Self.lines.variation, 0);
+						ctx.lineTo(x, Self.lines.startY + Self.lines.amp * y);
+					}
+					ctx.stroke();
+					ctx.closePath();
+					// wavines
+					Self.lines.variators[i] += .00075;
+				}
+				break;
+		}
 
 		// next tick
 		if (!Self.paused) {
@@ -149,19 +180,7 @@ let Utils = {
 			yDistance = p1y - p2y;
 		return Math.sqrt((xDistance ** 2) + (yDistance ** 2));
 	},
-	bounce: (t,b,c,d) => c*Math.sin(t/d*(Math.PI))+b,
-
-	getElasticOut: (amplitude,period) => {
-		var TAU = Math.PI * 2;
-		return function(t) {
-			if (t==0 || t==1) return t;
-			var s = period/TAU * Math.asin(1/amplitude);
-			return (amplitude*Math.pow(2,-10*t)*Math.sin((t-s)*TAU/period )+1);
-		};
-	}
 };
-
-Utils.elasticOut = Utils.getElasticOut(1.15, 0.35);
 
 
 class Point {
@@ -177,26 +196,17 @@ class Point {
 
 
 class Explode {
-	constructor(x, y) {
+	constructor(x, y, f=1) {
 		this.x = x;
 		this.y = y;
 		this.v = 2.25;
-		this.force = 100;
-		this.decay = 50;
-
-		this.acc = 0;
-		// this.radius = this.decay ** this.v;
+		this.force = 50 * f;
+		this.decay = 50 * f;
 	}
 
 	update() {
-		this.acc++;
-		// this.radius = ((Utils.elasticOut(this.acc / this.force)) * this.force) ** this.v;
-		this.radius = Utils.elasticOut(this.acc / this.force) * this.force;
-
-		// this.decay--;
-		// this.radius = ((Utils.elasticOut(this.decay / this.force)) * this.force) ** this.v;
-		// this.radius = (Utils.bounce(this.decay, this.force, this.decay-this.force, this.force)) ** this.v;
-		// this.radius = this.decay ** this.v;
+		this.decay--;
+		this.radius = this.decay ** this.v;
 		if (this.acc >= this.force) {
 			let grid = Anim.grid,
 				index = grid.forces.findIndex(e => e == this);
@@ -205,20 +215,95 @@ class Explode {
 	}
 }
 
-
-class Implode {
-	constructor(x, y) {
-		this.x = x;
-		this.y = y;
-		this.decay = 50;
+class ClassicalNoise {
+	constructor(r) {
+		if (r == undefined) r = Math;
+		this.grad3 = [[1,1,0],[-1,1,0],[1,-1,0],[-1,-1,0], 
+					 [1,0,1],[-1,0,1],[1,0,-1],[-1,0,-1], 
+					 [0,1,1],[0,-1,1],[0,1,-1],[0,-1,-1]]; 
+		this.p = [];
+		for (let i=0; i<256; i++) {
+			this.p[i] = Math.floor(r.random()*256);
+		}
+		// To remove the need for index wrapping, double the permutation table length 
+		this.perm = []; 
+		for(let i=0; i<512; i++) {
+			this.perm[i]=this.p[i & 255];
+		}
 	}
 
-	update() {
-		this.decay--;
-		if (!this.decay) {
-			let grid = Anim.grid,
-				index = grid.forces.findIndex(e => e == this);
-			grid.forces.splice(index, 1);
-		}
+	dot(g, x, y, z) { 
+		return g[0]*x + g[1]*y + g[2]*z; 
+	}
+
+	mix(a, b, t) { 
+		return (1.0-t)*a + t*b; 
+	}
+
+	fade(t) { 
+		return t*t*t*(t*(t*6.0-15.0)+10.0); 
+	}
+
+	// Classic Perlin noise, 3D version 
+	noise(x, y, z) { 
+		// Find unit grid cell containing point 
+		let X = Math.floor(x); 
+		let Y = Math.floor(y); 
+		let Z = Math.floor(z); 
+		
+		// Get relative xyz coordinates of point within that cell 
+		x = x - X; 
+		y = y - Y; 
+		z = z - Z; 
+		
+		// Wrap the integer cells at 255 (smaller integer period can be introduced here) 
+		X = X & 255; 
+		Y = Y & 255; 
+		Z = Z & 255;
+		
+		// Calculate a set of eight hashed gradient indices 
+		let gi000 = this.perm[X+this.perm[Y+this.perm[Z]]] % 12; 
+		let gi001 = this.perm[X+this.perm[Y+this.perm[Z+1]]] % 12; 
+		let gi010 = this.perm[X+this.perm[Y+1+this.perm[Z]]] % 12; 
+		let gi011 = this.perm[X+this.perm[Y+1+this.perm[Z+1]]] % 12; 
+		let gi100 = this.perm[X+1+this.perm[Y+this.perm[Z]]] % 12; 
+		let gi101 = this.perm[X+1+this.perm[Y+this.perm[Z+1]]] % 12; 
+		let gi110 = this.perm[X+1+this.perm[Y+1+this.perm[Z]]] % 12; 
+		let gi111 = this.perm[X+1+this.perm[Y+1+this.perm[Z+1]]] % 12; 
+		
+		// The gradients of each corner are now: 
+		// g000 = grad3[gi000]; 
+		// g001 = grad3[gi001]; 
+		// g010 = grad3[gi010]; 
+		// g011 = grad3[gi011]; 
+		// g100 = grad3[gi100]; 
+		// g101 = grad3[gi101]; 
+		// g110 = grad3[gi110]; 
+		// g111 = grad3[gi111]; 
+		// Calculate noise contributions from each of the eight corners 
+		let n000= this.dot(this.grad3[gi000], x, y, z); 
+		let n100= this.dot(this.grad3[gi100], x-1, y, z); 
+		let n010= this.dot(this.grad3[gi010], x, y-1, z); 
+		let n110= this.dot(this.grad3[gi110], x-1, y-1, z); 
+		let n001= this.dot(this.grad3[gi001], x, y, z-1); 
+		let n101= this.dot(this.grad3[gi101], x-1, y, z-1); 
+		let n011= this.dot(this.grad3[gi011], x, y-1, z-1); 
+		let n111= this.dot(this.grad3[gi111], x-1, y-1, z-1); 
+		// Compute the fade curve value for each of x, y, z 
+		let u = this.fade(x); 
+		let v = this.fade(y); 
+		let w = this.fade(z); 
+		 // Interpolate along x the contributions from each of the corners 
+		let nx00 = this.mix(n000, n100, u); 
+		let nx01 = this.mix(n001, n101, u); 
+		let nx10 = this.mix(n010, n110, u); 
+		let nx11 = this.mix(n011, n111, u); 
+		// Interpolate the four results along y 
+		let nxy0 = this.mix(nx00, nx10, v); 
+		let nxy1 = this.mix(nx01, nx11, v); 
+		// Interpolate the two last results along z 
+		let nxyz = this.mix(nxy0, nxy1, w); 
+
+		return nxyz;
 	}
 }

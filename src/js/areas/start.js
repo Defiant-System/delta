@@ -60,6 +60,8 @@
 			case "new-game":
 				// pause background worker
 				Self.els.content.data({ show: "game-view" });
+				// switch BG worker
+				Bg.dispatch({ type: "set-active-mode", mode: "grid" });
 				// start game
 				XType.startGame();
 				break;
