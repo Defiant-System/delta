@@ -820,35 +820,15 @@
 
 	<svg id="sprite-plasma-bullet" viewBox="0 0 64 64" size="keep">
 		<style type="text/css">
-			.st0{opacity:0.2;fill:url(#SVGID_1_);enable-background:new    ;}
-			.st1{opacity:0.2;fill:url(#SVGID_2_);enable-background:new    ;}
-			.st2{opacity:0.5;fill:url(#SVGID_3_);}
-			.st3{fill:url(#SVGID_4_);}
+			.st0{fill:url(#SVGID_1_);}
 		</style>
-		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-1091.4827" y1="829.1287" x2="-1091.4827" y2="796.686" gradientTransform="matrix(-1 0 0 1 -1059.4827 -797.024)">
-			<stop  offset="0" style="stop-color:#FFFFFF"/>
-			<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/>
-		</linearGradient>
-		<path class="st0" d="M30.8,32c0-0.4,0.8-32,1.2-32c0.4,0,1.2,31.6,1.2,32c0,0.4-0.8,1.2-1.2,1.2C31.6,33.1,30.8,32.8,30.8,32z"/>
-		<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="-1091.4827" y1="829.1287" x2="-1091.4827" y2="796.686" gradientTransform="matrix(-1 0 0 1 -1059.4827 -797.024)">
-			<stop  offset="0" style="stop-color:#FFFFFF"/>
-			<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/>
-		</linearGradient>
-		<path class="st1" d="M31.6,32c0-0.4,0-32,0.4-32c0.4,0,0.4,31.6,0.4,32c0,0.4,0,1.2-0.4,1.2C31.6,33.1,31.6,32.8,31.6,32z"/>
-		<radialGradient id="SVGID_3_" cx="-1091.4827" cy="829.0862" r="16.8454" gradientTransform="matrix(-1 0 0 1 -1059.4827 -797.024)" gradientUnits="userSpaceOnUse">
-			<stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0.2"/>
-			<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/>
-		</radialGradient>
-		<circle class="st2" cx="32" cy="32.1" r="17.2"/>
-		<radialGradient id="SVGID_4_" cx="32" cy="809.9999" r="4.1464" gradientTransform="matrix(1 0 0 1 0 -778)" gradientUnits="userSpaceOnUse">
+		<radialGradient id="SVGID_1_" cx="32" cy="809.9999" r="5" gradientTransform="matrix(1 0 0 1 0 -778)" gradientUnits="userSpaceOnUse">
 			<stop  offset="0" style="stop-color:#fff"/>
 			<stop  offset="0.6853" style="stop-color:#f00;stop-opacity:0.75"/>
-			<stop  offset="0.7622" style="stop-color:#f00;stop-opacity:0.5778"/>
-			<stop  offset="0.8483" style="stop-color:#f00;stop-opacity:0.341"/>
-			<stop  offset="0.9386" style="stop-color:#f00;stop-opacity:9.747440e-02"/>
-			<stop  offset="1" style="stop-color:#f00;stop-opacity:0"/>
+			<stop  offset="0.7622" style="stop-color:#f00;stop-opacity:0.4"/>
+			<stop  offset=".9" style="stop-color:#f00;stop-opacity:0.1"/>
 		</radialGradient>
-		<circle class="st3" cx="32" cy="32" r="5"/>
+		<circle class="st0" cx="32" cy="32" r="5"/>
 	</svg>
 
 

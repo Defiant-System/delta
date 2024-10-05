@@ -72,7 +72,7 @@ let XType = Impact.Game.extend({
 		this.entitiesSortedByPosTypeA = [];
 		this.entitiesSortedByPosTypeB = [];
 		this.score = 0,
-		this.lives = 3,
+		this.lives = 1,
 		// this.level = { level: 0, support: 1, plasma: 0, missile: 0 };
 		this.level = { level: 2, support: 3, plasma: 1, missile: 1 };
 
@@ -113,7 +113,12 @@ let XType = Impact.Game.extend({
 		// 	Impact.$('#scoreButton').focus();
 		// }
 		this.mode = XType.MODE.GAME_OVER;
-		this.menu = new GameOverMenu();
+		// this.menu = new GameOverMenu();
+
+		console.log("game over");
+
+		XType.paused = true;
+		Impact.system.stopRunLoop();
 	},
 	toggleMenu: function() {
 		if (this.mode == XType.MODE.TITLE) {

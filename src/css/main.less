@@ -84,7 +84,8 @@ content {
 		border-radius: inherit;
 	}
 
-	h2 {
+	h2,
+	h3 {
 		font-size: 60px;
 		margin: 0 auto 11px;
 		color: transparent;
@@ -113,7 +114,7 @@ content {
 
 	.view-game-over {
 		text-align: center;
-		padding-top: 61%;
+		padding-top: 53%;
 
 		&:before {
 			content: "";
@@ -129,6 +130,25 @@ content {
 
 		h2 {
 			font-size: 70px;
+		}
+
+		h3 {
+			font-size: 50px;
+			filter: none;
+
+			i {
+				font-style: normal;
+				background: linear-gradient(180deg, #ccb, #bba 50%, #998 50%, #887);
+				background-clip: text;
+				filter: drop-shadow(0 2px 0 #665)
+						drop-shadow(0 2px 7px rgba(#000,.5));
+			}
+
+			b {
+				background: linear-gradient(180deg, #f0f0ff, #dde 50%, #bbc 50%, #aab);
+				background-clip: text;
+				filter: drop-shadow(0 2px 0 #669);
+			}
 		}
 	}
 
