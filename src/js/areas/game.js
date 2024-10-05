@@ -42,7 +42,10 @@
 							.html(total.toString().padStart(6, "0"))
 							.cssProp({ "--value": "", "--total": "" });
 					});
-
+				break;
+			case "end-fireworks":
+				APP.content.removeClass("show-fireworks");
+				APP.dispatch({ type: "show-view-start" });
 				break;
 		}
 	}
