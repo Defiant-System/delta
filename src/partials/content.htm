@@ -42,15 +42,17 @@
 	</div>
 
 	<!-- for game paused -->
-	<div class="view-pause" data-click="to-resume-game">
+	<div class="view-pause" data-click="toggle-pause">
 		<h2>Paused</h2>
 	</div>
 
 	<!-- for game paused -->
-	<div class="view-game-over" data-click="to-start-view">
+	<div class="view-game-over" data-area="game" data-click="to-start-view">
 		<h2>Game Over</h2>
-		<h3>Score</h3>
-		<h4>&#160;</h4>
+		<div class="go-score">
+			<h3>Score</h3>
+			<h4>&#160;</h4>
+		</div>
 
 		<!-- for best score -->
 		<div class="best-score">

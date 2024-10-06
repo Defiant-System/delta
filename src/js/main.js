@@ -118,14 +118,14 @@ const xwing = {
 			case "init-settings":
 				// get settings, if any
 				Self.settings = window.settings.getItem("settings") || defaultSettings;
-
-				if (Self.settings.hiscore > 0) {
-					Self.dispatch({ type: "start-view-hiscore" });
-				}
+				// show hiscore, if non-zero
+				Self.dispatch({ type: "start-view-hiscore" });
 				break;
 			case "start-view-hiscore":
-				let hiScore = Self.content.find(".start-view .hiscore").removeClass("hidden");
-				hiScore.find("b").html(Self.settings.hiscore);
+				if (Self.settings.hiscore > 0) {
+					let hiScore = Self.content.find(".start-view .hiscore").removeClass("hidden");
+					hiScore.find("b").html(Self.settings.hiscore);
+				}
 				break;
 			case "toggle-pause":
 				// stop potential shooting
@@ -134,11 +134,15 @@ const xwing = {
 				if (XType.paused) {
 					Impact.system.startRunLoop();
 					XType.paused = false;
+					// hide pause view
+					Self.content.removeClass("show-pause");
 					// resume background worker
 					Bg.dispatch({ type: "resume" });
 				} else {
 					Impact.system.stopRunLoop();
 					XType.paused = true;
+					// show pause view
+					Self.content.addClass("show-pause");
 					// pause background worker
 					Bg.dispatch({ type: "pause" });
 				}
@@ -152,13 +156,6 @@ const xwing = {
 			case "show-view-pause":
 			case "show-view-game-over":
 				Self.content.attr({ class: `show-${event.type.slice(10)}` });
-				break;
-			case "to-resume-game":
-				Self.content.removeClass("show-pause");
-				break;
-			case "to-start-view":
-				Self.dispatch({ type: "start-view-hiscore" });
-				Self.content.removeClass("show-game-over");
 				break;
 			default:
 				el = event.el;

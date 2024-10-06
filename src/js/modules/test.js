@@ -10,9 +10,13 @@ let Test = {
 		// APP.dispatch({ type: "show-view-game" });
 
 		setTimeout(() => {
-			// Impact.game.crosshair.dispose();
+			// APP.dispatch({ type: "toggle-pause" });
 			Impact.game.setGameOver();
-		}, 1500);
+		}, 1000);
+
+		setTimeout(() => {
+			APP.game.dispatch({ type: "to-start-view" });
+		}, 2000);
 
 		// setTimeout(() => Bg.dispatch({ type: "explode", x: 300, y: 300 }), 1000);
 		// APP.content.on("mousedown", e => {
