@@ -81,7 +81,7 @@ let EntityEnemyHeart = EntityEnemy.extend({
 		this.vel.y = this.getNewVelocity(this.vel.y, this.accel.y, this.friction.y, this.maxVel.y);
 		this.pos.x += this.vel.x * Impact.system.tick;
 		this.pos.y += this.vel.y * Impact.system.tick;
-		if (this.children.length == 0 && this.shootTimer.delta() > 0) {
+		if (this.children.length == 0 && this.shootTimer.delta() > 0 && Impact.game.mode === XType.MODE.GAME) {
 			var inc = 140 / (this.bullets - 1);
 			var a2 = 20;
 			var radius = 22;
@@ -130,6 +130,6 @@ let EntityExplosionHuge = Impact.Entity.extend({
 		ctx.globalAlpha = this.alpha;
 		this.img.draw(-256, -256);
 		ctx.globalAlpha = 1;
-		Impact.system.context.restore();
+		ctx.restore();
 	}
 });

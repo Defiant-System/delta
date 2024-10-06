@@ -6,6 +6,7 @@
 		// fast references
 		this.els = {
 			el: window.find(".game-view"),
+			content: window.find("content"),
 			lives: window.find(".hud .lives"),
 			score: window.find(".hud .score"),
 		};
@@ -43,8 +44,17 @@
 							.cssProp({ "--value": "", "--total": "" });
 					});
 				break;
+			case "show-game-over":
+				// stop potential shooting
+				window.audio.stop("plasma");
+				// update UI
+				Self.els.content.attr({ class: `show-game-over` });
+				// show score on "game over" view
+				value = +Self.els.score.html();
+				Self.els.content.find(".view-game-over h4").html(value);
+				break;
 			case "end-fireworks":
-				APP.content.removeClass("show-fireworks");
+				Self.els.content.removeClass("show-fireworks");
 				APP.dispatch({ type: "show-view-start" });
 				break;
 		}

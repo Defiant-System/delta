@@ -10,6 +10,10 @@ let EntityCrosshair = Impact.Entity.extend({
 		x: 16,
 		y: 16
 	},
+	fade: {
+		out: false,
+		alpha: 1
+	},
 	type: Impact.Entity.TYPE.NONE,
 	init: function(x, y, settings) {
 		this.def = {
@@ -20,13 +24,29 @@ let EntityCrosshair = Impact.Entity.extend({
 		this.addAnim("idle", 60, [0]);
 		this.bg = new Impact.Animation(this.bgSheet, 1, [0]);
 	},
+	dispose: function() {
+		this.fade.out = true;
+	},
 	update: function() {
+		if (this.fade.out) {
+			this.fade.alpha -= .05;
+			if (this.fade.alpha <= 0) {
+				Impact.game.removeEntity(this);
+				return;
+			}
+		}
 		this.pos.x = Impact.input.mouse.x || this.def.x;
 		this.pos.y = Impact.input.mouse.y || this.def.x;
 		this.currentAnim.angle += .5 * Impact.system.tick;
 	},
 	draw: function() {
+		var ctx = Impact.system.context;
+		ctx.save();
+		ctx.globalAlpha = this.fade.alpha;
+
 		this.parent();
 		this.bg.draw(this.pos.x - 16, this.pos.y - 16);
+
+		ctx.restore();
 	}
 });

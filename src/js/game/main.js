@@ -1,11 +1,4 @@
 
-// Number.zeroes = '000000000000';
-
-// Number.prototype.zeroFill = function(d) {
-// 	var s = this.toString();
-// 	return Number.zeroes.substr(0, d - s.length) + s;
-// };
-
 let XType = Impact.Game.extend({
 	menu: null,
 	mode: 0,
@@ -58,7 +51,7 @@ let XType = Impact.Game.extend({
 
 		// offscreen canvas for later use
 		this.off1 = Utils.createCanvas(Impact.system.width, Impact.system.height);
-		this.off2 = Utils.createCanvas(Impact.system.width, Impact.system.height);
+		// this.off2 = Utils.createCanvas(Impact.system.width, Impact.system.height);
 
 		this.reset();
 		// this.setTitle();
@@ -72,9 +65,9 @@ let XType = Impact.Game.extend({
 		this.entitiesSortedByPosTypeA = [];
 		this.entitiesSortedByPosTypeB = [];
 		this.score = 0,
-		this.lives = 1,
-		// this.level = { level: 0, support: 1, plasma: 0, missile: 0 };
-		this.level = { level: 2, support: 3, plasma: 1, missile: 1 };
+		this.lives = 3,
+		this.level = { level: 0, support: 1, plasma: 0, missile: 0 }; // hbi
+		// this.level = { level: 2, support: 3, plasma: 1, missile: 1 };
 
 		// UI update lives
 		xwing.game.dispatch({ type: "set-lives", value: this.lives });
@@ -93,12 +86,12 @@ let XType = Impact.Game.extend({
 		this.player = this.spawnEntity(EntityPlayer, Impact.system.width / 2, Impact.system.height + 12);
 		this.mode = XType.MODE.GAME;
 	},
-	setTitle: function() {
-		this.reset();
-		this.mode = XType.MODE.TITLE;
-		this.menu = new TitleMenu();
-		// Impact.$('#scoreBox').style.display = 'none';
-	},
+	// setTitle: function() {
+	// 	this.reset();
+	// 	this.mode = XType.MODE.TITLE;
+	// 	this.menu = new TitleMenu();
+	// 	// Impact.$('#scoreBox').style.display = 'none';
+	// },
 	setGameOver: function() {
 		// if (this.score > 0) {
 		// 	var name = this.getCookie('scoreName');
@@ -112,13 +105,15 @@ let XType = Impact.Game.extend({
 		// if (Impact.ua.android) {
 		// 	Impact.$('#scoreButton').focus();
 		// }
-		this.mode = XType.MODE.GAME_OVER;
 		// this.menu = new GameOverMenu();
 
-		console.log("game over");
+		this.mode = XType.MODE.GAME_OVER;
+		Impact.game.crosshair.dispose();
+		
+		xwing.game.dispatch({ type: "show-game-over" });
 
-		XType.paused = true;
-		Impact.system.stopRunLoop();
+		// XType.paused = true;
+		// Impact.system.stopRunLoop();
 	},
 	toggleMenu: function() {
 		if (this.mode == XType.MODE.TITLE) {

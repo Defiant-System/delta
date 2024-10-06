@@ -24,7 +24,7 @@ let EntityEnemyMissilebox = EntityEnemy.extend({
 	},
 	update: function() {
 		this.parent();
-		if (this.shootTimer.delta() > 0) {
+		if (this.shootTimer.delta() > 0 && Impact.game.mode === XType.MODE.GAME) {
 			var inc = 140 / (this.bullets - 1);
 			var a = 20 + (this.angle - Math.PI / 2) * 180 / Math.PI;
 			var radius = 22;

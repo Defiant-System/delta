@@ -37,6 +37,11 @@
 
 
 
+// default settings
+const defaultSettings = {
+	hiscore: 0,
+};
+
 
 const xwing = {
 	init() {
@@ -45,6 +50,9 @@ const xwing = {
 
 		// init objects
 		Bg.init();
+
+		// apply settings
+		this.dispatch({ type: "init-settings" });
 
 		// init all sub-objects
 		Object.keys(this)
@@ -65,6 +73,8 @@ const xwing = {
 			case "window.init":
 				break;
 			case "window.close":
+				// save settings
+				// window.settings.setItem("settings", Self.settings);
 				// kill bg canvas worker
 				Bg.dispatch({ type: "dispose" });
 				break;
@@ -105,6 +115,18 @@ const xwing = {
 			case "open-help":
 				karaqu.shell("fs -u '~/help/index.md'");
 				break;
+			case "init-settings":
+				// get settings, if any
+				Self.settings = window.settings.getItem("settings") || defaultSettings;
+
+				if (Self.settings.hiscore > 0) {
+					Self.dispatch({ type: "start-view-hiscore" });
+				}
+				break;
+			case "start-view-hiscore":
+				let hiScore = Self.content.find(".start-view .hiscore").removeClass("hidden");
+				hiScore.find("b").html(Self.settings.hiscore);
+				break;
 			case "toggle-pause":
 				// stop potential shooting
 				window.audio.stop("plasma");
@@ -135,6 +157,7 @@ const xwing = {
 				Self.content.removeClass("show-pause");
 				break;
 			case "to-start-view":
+				Self.dispatch({ type: "start-view-hiscore" });
 				Self.content.removeClass("show-game-over");
 				break;
 			default:

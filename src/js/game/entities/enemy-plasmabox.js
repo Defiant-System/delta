@@ -24,7 +24,7 @@ let EntityEnemyPlasmabox = EntityEnemy.extend({
 	},
 	update: function() {
 		this.parent();
-		if (this.shootTimer.delta() > 0) {
+		if (this.shootTimer.delta() > 0 && Impact.game.mode === XType.MODE.GAME) {
 			var inc = 360 / (this.bullets - 1);
 			var a = 0;
 			var radius = 0;
