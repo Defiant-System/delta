@@ -79,6 +79,8 @@
 			case "go-to-start":
 				// smooth transition to start view
 				Self.els.content.cssSequence("pause-to-start-view", "transitionend", el => {
+					// resume background worker
+					Bg.dispatch({ type: "resume" });
 					// switch BG worker
 					Bg.dispatch({ type: "set-active-mode", mode: "lines" });
 					// reset content element

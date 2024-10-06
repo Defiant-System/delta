@@ -68,7 +68,6 @@
 					if (Impact.game) {
 						Impact.game.reset();
 						Impact.game.setGame(XType.MODE.GAME);
-						console.log("game");
 					}
 				});
 				break;

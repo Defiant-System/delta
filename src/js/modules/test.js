@@ -1,7 +1,7 @@
 
 let Test = {
 	init(APP) {
-		return;
+		// return;
 		
 		
 		// return APP.content.addClass("show-fireworks");
