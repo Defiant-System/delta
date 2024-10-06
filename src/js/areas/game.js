@@ -51,7 +51,7 @@
 				// update UI
 				Self.els.content.attr({ class: `show-game-over` });
 				// show score on "game over" view
-				value = 2300; // +Self.els.score.html();
+				value = +Self.els.score.html();
 				Self.els.gameover.find("h4").html(value);
 
 				if (value > APP.settings.hiscore) {

@@ -58,18 +58,22 @@
 				}
 				break;
 			case "new-game":
-				// pause background worker
-				Self.els.content.data({ show: "game-view" });
 				// switch BG worker
 				Bg.dispatch({ type: "set-active-mode", mode: "grid" });
 
-				// start game
-				if (Impact.game) {
-					Impact.game.reset();
-					Impact.game.setGame();
-				} else {
-					XType.startGame();
-				}
+				// smooth transition to game view
+				Self.els.content.cssSequence("to-game-view", "transitionend", el => {
+					// pause background worker
+					el.removeClass("to-game-view").data({ show: "game-view" });
+
+					// start game
+					if (Impact.game) {
+						Impact.game.reset();
+						Impact.game.setGame();
+					} else {
+						XType.startGame();
+					}
+				});
 				break;
 		}
 	}

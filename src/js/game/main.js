@@ -469,10 +469,13 @@ XType.startGame = function() {
 	Impact.Sound.channels = 2;
 	Impact.System.drawMode = Impact.System.DRAW.SUBPIXEL;
 
-	let cvs = window.find(".game-view canvas.game");
 	let width = window.innerWidth;
 	let height = window.innerHeight;
+	let cvs = window.find(".game-view canvas.game");
 	let fps = 60;
+
+	// set canvas dim
+	cvs.attr({ width, height });
 
 	// if (Impact.ua.mobile) {
 	// 	Impact.Sound.enabled = false;

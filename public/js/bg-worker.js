@@ -25,7 +25,9 @@ let Anim = {
 				}
 				break;
 			case "set-active-mode":
-				Self.active = event.mode;
+				// Self.active = event.mode;
+				console.log( event.mode );
+				Self.alpha = { from: 1, to: 0, step: -.025, mode: event.mode };
 				break;
 			case "create-scene":
 				// grid
@@ -107,6 +109,21 @@ let Anim = {
 			TAU = Math.PI * 2;
 		// clear react
 		ctx.clearRect(0, 0, cvs.width, cvs.height);
+
+		if (Self.alpha) {
+			Self.alpha.from += Self.alpha.step;
+			// console.log( Self.alpha.from );
+			ctx.globalAlpha = Self.alpha.from;
+
+			if (Self.alpha.from <= Self.alpha.to && Self.alpha.mode) {
+				Self.active = Self.alpha.mode;
+				// reverse fade
+				Self.alpha = { from: 0, to: 1, step: .025 };
+			} else if (Self.alpha.from >= Self.alpha.to && !Self.alpha.mode) {
+				// done fading
+				delete Self.alpha;
+			}
+		}
 
 		switch (Self.active) {
 			case "grid":

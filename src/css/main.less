@@ -37,6 +37,10 @@ content {
 		.game-view {
 			opacity: 1;
 			visibility: visible;
+
+			.hud {
+				transform: translateY(0px);
+			}
 		}
 	}
 
@@ -51,6 +55,29 @@ content {
 		.view-game-over {
 			opacity: 1;
 			visibility: visible;
+		}
+	}
+
+	&.to-game-view {
+		min-height: 2px;
+		background: #410d4c;
+		transition: min-height, background 700ms linear;
+
+		.start-view {
+			opacity: 0;
+			transition: opacity 400ms ease-in-out;
+		}
+
+		.game-view {
+			opacity: 1;
+			visibility: visible;
+			transition: opacity 400ms ease-in-out;
+			transition-delay: 300ms;
+
+			.hud {
+				transform: translateY(0px);
+				transition-delay: 300ms;
+			}
 		}
 	}
 
@@ -161,14 +188,14 @@ content {
 
 				> .before,
 				> .after {
-					animation: 1s bang ease-out 7 backwards,
-								1s gravity ease-in 7 backwards,
-								5s position linear 7 backwards;
+					animation: 1s bang ease-out 5 backwards,
+								1s gravity ease-in 5 backwards,
+								4s position linear 5 backwards;
 				}
 
 				> .after {
 					animation-delay: 1.25s, 1.25s, 1.25s;
-					animation-duration: 1.25s, 1.25s, 6.25s;
+					animation-duration: 1.25s, 1.25s, 4.25s;
 				}
 			}
 		}
@@ -386,7 +413,7 @@ content {
 			width: 100%;
 			height: 100%;
 			border-radius: inherit;
-			// cursor: none;
+			cursor: none;
 		}
 
 		.hud {
@@ -394,6 +421,8 @@ content {
 			top: 11px;
 			left: 11px;
 			right: 11px;
+			transform: translateY(-60px);
+			transition: transform 300ms ease-in-out;
 
 			&:before {
 				content: "";
