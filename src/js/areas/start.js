@@ -62,8 +62,14 @@
 				Self.els.content.data({ show: "game-view" });
 				// switch BG worker
 				Bg.dispatch({ type: "set-active-mode", mode: "grid" });
+
 				// start game
-				XType.startGame();
+				if (Impact.game) {
+					Impact.game.reset();
+					Impact.game.setGame();
+				} else {
+					XType.startGame();
+				}
 				break;
 		}
 	}
