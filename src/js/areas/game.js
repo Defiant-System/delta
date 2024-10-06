@@ -69,8 +69,25 @@
 					}, 5e3);
 				}
 				break;
-			case "to-resume-game":
-				Self.els.content.removeClass("show-pause");
+			case "toggle-sound-fx":
+			case "toggle-music":
+				APP.start.dispatch(event);
+				break;
+			case "toggle-pause":
+				APP.start.dispatch(event);
+				break;
+			case "go-to-start":
+				// smooth transition to start view
+				Self.els.content.cssSequence("pause-to-start-view", "transitionend", el => {
+					// switch BG worker
+					Bg.dispatch({ type: "set-active-mode", mode: "lines" });
+					// reset content element
+					el.removeClass("show-pause pause-to-start-view").data({ show: "start-view" });
+					// impact specific calls
+					Impact.system.startRunLoop();
+					XType.paused = false;
+					Impact.game.setGame(XType.MODE.GAME_OVER);
+				});
 				break;
 			case "to-start-view":
 				APP.dispatch({ type: "start-view-hiscore" });

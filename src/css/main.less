@@ -54,12 +54,26 @@ content {
 				visibility: visible;
 			}
 		}
+
+		.game-view {
+			.hud {
+				.pause-button {
+					display: none;
+				}
+			}
+		}
 	}
 
 	&.show-game-over {
 		.view-game-over {
 			opacity: 1;
 			visibility: visible;
+		}
+
+		.game-view {
+			.hud {
+				display: none;
+			}
 		}
 	}
 
@@ -93,6 +107,25 @@ content {
 		
 		.game-view,
 		.view-game-over {
+			opacity: 0;
+			transition: opacity 700ms ease-in-out;
+		}
+
+		.start-view {
+			opacity: 1;
+			visibility: visible;
+			transition: opacity 700ms ease-in-out;
+			transition-delay: 300ms;
+		}
+	}
+
+	&.pause-to-start-view {
+		min-height: 1px;
+		background: #2f4e59;
+		transition: min-height, background 1000ms linear;
+
+		.game-view,
+		.view-pause {
 			opacity: 0;
 			transition: opacity 700ms ease-in-out;
 		}
@@ -143,7 +176,7 @@ content {
 
 	.view-pause {
 		text-align: center;
-		padding-top: 61%;
+		padding-top: 21%;
 		transition: opacity 300ms ease-in-out;
 
 		&:before {
@@ -158,6 +191,25 @@ content {
 			background: rgba(#012,.5);
 			backdrop-filter: blur(3px);
 			transition: opacity 300ms ease-in-out;
+		}
+
+		h2 {
+			font-size: 67px;
+			margin-bottom: 13%;
+			filter: drop-shadow(0 3px 0 #887)
+					drop-shadow(0 1px 5px rgba(#000,.5))
+					drop-shadow(0 1px 17px rgba(#fff,.95));
+		}
+
+		ul.menu {
+			li:last-child {
+				margin-top: 13%;
+
+				span {
+					background: linear-gradient(180deg, #ccb, #bba 50%, #998 50%, #887);
+					background-clip: text;
+				}
+			}
 		}
 	}
 
@@ -317,45 +369,6 @@ content {
 			}
 		}
 
-		ul.menu {
-			font-size: 50px;
-			text-align: center;
-			line-height: 1.15;
-			// text-shadow: 0 2px 7px rgba(#000,.5);
-
-			li {
-				span {
-					color: transparent;
-					background: linear-gradient(180deg, #ffe, #eed 50%, #ccb 50%, #bba);
-					background-clip: text;
-					filter: drop-shadow(0 2px 0 #887)
-							drop-shadow(0 2px 7px rgba(#000,.65));
-					padding: 3px 5px;
-					display: inline-block;
-					cursor: pointer;
-				
-					&:hover {
-						color: #fff;
-					}
-				}
-
-				b {
-					display: inline-block;
-					width: 36px;
-					pointer-events: none;
-					color: #393;
-					filter: drop-shadow(0 2px 0 #151)
-							drop-shadow(0 2px 7px rgba(#030,.65));
-
-					&.off {
-						color: #c44;
-						filter: drop-shadow(0 2px 0 #922)
-								drop-shadow(0 2px 7px rgba(#600,.65));
-					}
-				}
-			}
-		}
-
 		.ship {
 			background: url(/app/ant/icons/app-icon-xwing.png) 50% 0px no-repeat;
 			background-size: 110px auto;
@@ -437,6 +450,7 @@ content {
 			top: 11px;
 			left: 11px;
 			right: 11px;
+			z-index: 2;
 			transform: translateY(-60px);
 			transition: transform 300ms ease-in-out;
 
@@ -449,13 +463,40 @@ content {
 				height: 63px;
 				pointer-events: none;
 				background: linear-gradient(180deg, rgba(#000,.75), rgba(#000,0));
+				pointer-events: none;
+			}
+
+			.pause-button {
+				position: absolute;
+				top: 7px;
+				left: 7px;
+				width: 15px;
+				height: 19px;
+				cursor: pointer;
+				
+				&:before,
+				&:after {
+					content: "";
+					position: absolute;
+					top: 0;
+					left: 0;
+					height: 19px;
+					width: 5px;
+					background: linear-gradient(180deg, #f0f0ff, #dde 50%, #bbc 50%, #aab);
+					filter: drop-shadow(0 2px 0 #669);
+				}
+
+				&:after {
+					left: 10px;
+				}
 			}
 
 			.lives {
 				position: absolute;
 				top: 5px;
-				left: 3px;
+				left: 37px;
 				height: 24px;
+				pointer-events: none;
 				background-repeat: no-repeat;
 				background-size: 24px 24px;
 				background-image: url(~/icons/sprite-ship.png),
@@ -482,6 +523,7 @@ content {
 				background: linear-gradient(180deg, #f0f0ff, #dde 50%, #bbc 50%, #aab);
 				background-clip: text;
 				filter: drop-shadow(0 2px 0 #669);
+				pointer-events: none;
 
 				&.ticker {
 					background: transparent;
@@ -499,6 +541,45 @@ content {
 						background-clip: text;
 						filter: drop-shadow(0 2px 0 #669);
 					}
+				}
+			}
+		}
+	}
+
+	ul.menu {
+		font-size: 50px;
+		text-align: center;
+		line-height: 1.15;
+		// text-shadow: 0 2px 7px rgba(#000,.5);
+
+		li {
+			span {
+				color: transparent;
+				background: linear-gradient(180deg, #ffe, #eed 50%, #ccb 50%, #bba);
+				background-clip: text;
+				filter: drop-shadow(0 2px 0 #887)
+						drop-shadow(0 2px 7px rgba(#000,.65));
+				padding: 3px 5px;
+				display: inline-block;
+				cursor: pointer;
+			
+				&:hover {
+					color: #fff;
+				}
+			}
+
+			b {
+				display: inline-block;
+				width: 36px;
+				pointer-events: none;
+				color: #393;
+				filter: drop-shadow(0 2px 0 #151)
+						drop-shadow(0 2px 7px rgba(#030,.65));
+
+				&.off {
+					color: #c44;
+					filter: drop-shadow(0 2px 0 #922)
+							drop-shadow(0 2px 7px rgba(#600,.65));
 				}
 			}
 		}

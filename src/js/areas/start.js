@@ -20,7 +20,7 @@
 		switch (event.type) {
 			// custom events
 			case "toggle-sound-fx":
-				el = Self.els.el.find(`.menu li[data-click="toggle-sound-fx"] b`);
+				el = Self.els.content.find(`.menu li[data-click="toggle-sound-fx"] b`);
 
 				value = el.hasClass("off");
 				el.toggleClass("off", value);
@@ -32,7 +32,7 @@
 				window.audio.play("button");
 				break;
 			case "toggle-music":
-				el = Self.els.el.find(`.menu li[data-click="toggle-music"] b`);
+				el = Self.els.content.find(`.menu li[data-click="toggle-music"] b`);
 
 				value = el.hasClass("off");
 				el.toggleClass("off", value);
@@ -43,12 +43,8 @@
 				
 				if (!Self.song) {
 					let opt = {
+						volume: 1.5,
 						onend: e => {
-							// turn "off" button
-							// let el = Self.els.el.find(`.menu li[data-click="toggle-music"] b`),
-							// 	value = el.hasClass("off");
-							// el.toggleClass("off", value);
-							// el.html(value ? "On" : "Off");
 							// reset reference
 							delete Self.song;
 						}
@@ -72,6 +68,7 @@
 					if (Impact.game) {
 						Impact.game.reset();
 						Impact.game.setGame(XType.MODE.GAME);
+						console.log("game");
 					}
 				});
 				break;

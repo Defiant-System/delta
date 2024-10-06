@@ -35,14 +35,30 @@
 	<div class="game-view" data-area="game">
 		<canvas class="game"></canvas>
 		<div class="hud">
+			<div class="pause-button" data-click="toggle-pause"></div>
 			<div class="lives" data-count="3"></div>
 			<div class="score">000000</div>
 		</div>
 	</div>
 
 	<!-- for game paused -->
-	<div class="view-pause" data-click="toggle-pause">
+	<div class="view-pause" data-area="game">
 		<h2>Paused</h2>
+
+		<ul class="menu">
+			<li data-click="toggle-sound-fx">
+				<span>Sound FX</span> <b>On</b>
+			</li>
+			<li data-click="toggle-music">
+				<span>Music</span> <b class="off">Off</b>
+			</li>
+			<li data-click="toggle-pause">
+				<span>Resume</span>
+			</li>
+			<li data-click="go-to-start">
+				<span>Start View</span>
+			</li>
+		</ul>
 	</div>
 
 	<!-- for game paused -->
