@@ -72,19 +72,22 @@ let XType = Impact.Game.extend({
 		// UI update lives
 		xwing.game.dispatch({ type: "set-lives", value: this.lives });
 	},
-	setGame: function() {
+	setGame: function(mode) {
 		// window.scrollTo(0, 0);
-		Impact.music.play();
-		Impact.system.canvas.style.cursor = "";
-		this.menu = null;
+		// Impact.music.play();
+		// Impact.system.canvas.style.cursor = "";
+		// this.menu = null;
 		this.initTimer = new Impact.Timer(0);  // hbi: 3
 		this.lastKillTimer.reset();
 		if (!Impact.ua.mobile) {
 			this.crosshair = this.spawnEntity(EntityCrosshair, 0, 0);
 		}
 		this.bossEndTimer = null;
-		this.player = this.spawnEntity(EntityPlayer, Impact.system.width / 2, Impact.system.height + 12);
-		this.mode = XType.MODE.GAME;
+		this.mode = mode || XType.MODE.GAME_OVER;
+
+		if (this.mode === XType.MODE.GAME) {
+			this.player = this.spawnEntity(EntityPlayer, Impact.system.width / 2, Impact.system.height + 12);
+		}
 	},
 	// setTitle: function() {
 	// 	this.reset();

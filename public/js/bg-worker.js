@@ -26,7 +26,6 @@ let Anim = {
 				break;
 			case "set-active-mode":
 				// Self.active = event.mode;
-				console.log( event.mode );
 				Self.alpha = { from: 1, to: 0, step: -.025, mode: event.mode };
 				break;
 			case "create-scene":

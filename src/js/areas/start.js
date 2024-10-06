@@ -8,6 +8,8 @@
 			content: window.find("content"),
 			el: window.find(".start-view"),
 		};
+		
+		XType.startGame();
 	},
 	dispatch(event) {
 		let APP = xwing,
@@ -69,9 +71,7 @@
 					// start game
 					if (Impact.game) {
 						Impact.game.reset();
-						Impact.game.setGame();
-					} else {
-						XType.startGame();
+						Impact.game.setGame(XType.MODE.GAME);
 					}
 				});
 				break;

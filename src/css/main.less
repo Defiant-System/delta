@@ -48,6 +48,11 @@ content {
 		.view-pause {
 			opacity: 1;
 			visibility: visible;
+
+			&:before {
+				opacity: 1;
+				visibility: visible;
+			}
 		}
 	}
 
@@ -139,6 +144,7 @@ content {
 	.view-pause {
 		text-align: center;
 		padding-top: 61%;
+		transition: opacity 300ms ease-in-out;
 
 		&:before {
 			content: "";
@@ -147,9 +153,11 @@ content {
 			left: -5px;
 			right: -5px;
 			bottom: -5px;
+			opacity: inherit;
+			visibility: inherit;
 			background: rgba(#012,.5);
 			backdrop-filter: blur(3px);
-			// filter: url(#galcon-noise);
+			transition: opacity 300ms ease-in-out;
 		}
 	}
 
@@ -161,10 +169,10 @@ content {
 		&:before {
 			content: "";
 			position: absolute;
-			top: 3px;
-			left: 3px;
-			right: 3px;
-			bottom: 3px;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
 			border-radius: inherit;
 			background: rgba(#012,.35);
 			backdrop-filter: blur(2px);
@@ -247,7 +255,7 @@ content {
 				position: relative;
 				top: 11px;
 				font-size: 59px;
-				background: linear-gradient(180deg, #ffe, #eed 50%, #ccb 50%, #bba);
+				background: linear-gradient(180deg, #ffffce, #ffff32 50%, #dede0d 50%, #919101);
 				color: transparent;
 				background-clip: text;
 				filter: drop-shadow(0 3px 1px #665)

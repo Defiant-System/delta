@@ -11,6 +11,8 @@
 			lives: window.find(".hud .lives"),
 			score: window.find(".hud .score"),
 		};
+
+		XType.startGame();
 	},
 	dispatch(event) {
 		let APP = xwing,
@@ -51,10 +53,13 @@
 				// update UI
 				Self.els.content.attr({ class: `show-game-over` });
 				// show score on "game over" view
-				value = +Self.els.score.html();
+				value = +Self.els.score.cssProp("--total");
 				Self.els.gameover.find("h4").html(value);
 
 				if (value > APP.settings.hiscore) {
+					// update settings hiscore
+					APP.settings.hiscore = value;
+					// show fireworks
 					Self.els.gameover.addClass("fireworks");
 				}
 				break;
