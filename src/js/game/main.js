@@ -111,29 +111,33 @@ let XType = Impact.Game.extend({
 		// this.menu = new GameOverMenu();
 
 		this.mode = XType.MODE.GAME_OVER;
-		Impact.game.crosshair.dispose();
+		this.crosshair.dispose();
+
+		// reset canvases
+		// Impact.system.canvas.width = Impact.system.width;
+		// this.off1.cvs.attr({ width: Impact.system.width });
 		
 		xwing.game.dispatch({ type: "show-game-over" });
 
 		// XType.paused = true;
 		// Impact.system.stopRunLoop();
 	},
-	toggleMenu: function() {
-		if (this.mode == XType.MODE.TITLE) {
-			if (this.menu instanceof TitleMenu) {
-				this.menu = new PauseMenu();
-			} else {
-				this.menu = new TitleMenu();
-			}
-		} else {
-			if (this.menu) {
-				Impact.system.canvas.style.cursor = "";
-				this.menu = null;
-			} else {
-				this.menu = new PauseMenu();
-			}
-		}
-	},
+	// toggleMenu: function() {
+	// 	if (this.mode == XType.MODE.TITLE) {
+	// 		if (this.menu instanceof TitleMenu) {
+	// 			this.menu = new PauseMenu();
+	// 		} else {
+	// 			this.menu = new TitleMenu();
+	// 		}
+	// 	} else {
+	// 		if (this.menu) {
+	// 			Impact.system.canvas.style.cursor = "";
+	// 			this.menu = null;
+	// 		} else {
+	// 			this.menu = new PauseMenu();
+	// 		}
+	// 	}
+	// },
 	checkBoss: function() {
 		if (!this.heart && !this.initTimer) {
 			if (!this.bossEndTimer) {
@@ -197,19 +201,19 @@ let XType = Impact.Game.extend({
 		}
 	},
 	update: function() {
-		if (!this.menu && (Impact.input.pressed('menu') || (Impact.ua.mobile && Impact.input.pressed('shoot') && Impact.input.mouse.x < 100 && Impact.input.mouse.y < 100))) {
-			this.toggleMenu();
-		}
-		if (this.menu) {
-			// this.backgroundMaps[0].scroll.y -= 100 * Impact.system.tick;
-			this.menu.update();
-			if (this.mode == XType.MODE.TITLE && Impact.input.pressed('shoot') && Impact.input.mouse.x > Impact.system.width - 154 && Impact.input.mouse.y > Impact.system.height - 56) {
-				// window.location = 'http://impactjs.com/';
-			}
-			if (!(this.menu instanceof GameOverMenu)) {
-				return;
-			}
-		}
+		// if (!this.menu && (Impact.input.pressed('menu') || (Impact.ua.mobile && Impact.input.pressed('shoot') && Impact.input.mouse.x < 100 && Impact.input.mouse.y < 100))) {
+		// 	this.toggleMenu();
+		// }
+		// if (this.menu) {
+		// 	// this.backgroundMaps[0].scroll.y -= 100 * Impact.system.tick;
+		// 	this.menu.update();
+		// 	if (this.mode == XType.MODE.TITLE && Impact.input.pressed('shoot') && Impact.input.mouse.x > Impact.system.width - 154 && Impact.input.mouse.y > Impact.system.height - 56) {
+		// 		// window.location = 'http://impactjs.com/';
+		// 	}
+		// 	if (!(this.menu instanceof GameOverMenu)) {
+		// 		return;
+		// 	}
+		// }
 		this.parent();
 		// this.backgroundMaps[0].scroll.y -= 100 * Impact.system.tick;
 		if (this.mode == XType.MODE.GAME) {

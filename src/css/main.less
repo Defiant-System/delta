@@ -184,7 +184,10 @@ content {
 			.go-score { display: none; }
 
 			.best-score {
-				display: block;
+				opacity: 1;
+				visibility: visible;
+				transition: opacity 400ms ease-in-out;
+				transition-delay: 800ms;
 
 				h4 {
 					animation: textBounce 1000ms ease-in-out 4;
@@ -192,7 +195,10 @@ content {
 			}
 
 			.pyro {
-				display: block;
+				opacity: 1;
+				visibility: visible;
+				transition: opacity 400ms ease-in-out;
+				transition-delay: 800ms;
 
 				> .before,
 				> .after {
@@ -233,7 +239,8 @@ content {
 		}
 
 		.best-score {
-			display: none;
+			opacity: 0;
+			visibility: hidden;
 			position: relative;
 			top: 5px;
 			left: 0;
@@ -265,7 +272,8 @@ content {
 		}
 
 		.pyro {
-			display: none;
+			opacity: 0;
+			visibility: hidden;
 			position: absolute;
 			top: 0;
 			left: 0;

@@ -5,5 +5,5 @@
 	<i id="pulse" url="~/audio/pulse.mp3"/>
 	<i id="explosion" url="~/audio/explosion.mp3"/>
 	<i id="plasma" url="~/audio/plasma.mp3" loop="1"/>
-	<i id="song" url="/cdn/audio/mp3/Get ready for you mission.mp3"/>
+	<i id="song" url="/cdn/audio/mp3/Defiant One - Hakan Bilgin.mp3"/>
 </Sounds>

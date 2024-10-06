@@ -61,6 +61,12 @@
 					APP.settings.hiscore = value;
 					// show fireworks
 					Self.els.gameover.addClass("fireworks");
+					// auto go to start view
+					setTimeout(() => {
+						if (Self.els.content.hasClass("show-game-over")) {
+							Self.dispatch({ type: "to-start-view" });
+						}
+					}, 5e3);
 				}
 				break;
 			case "to-resume-game":

@@ -131,6 +131,8 @@ const xwing = {
 				// stop potential shooting
 				window.audio.stop("plasma");
 
+				if (Self.content.data("show") !== "game-view" || Impact.game.mode !== XType.MODE.GAME) return;
+
 				if (XType.paused) {
 					Impact.system.startRunLoop();
 					XType.paused = false;
