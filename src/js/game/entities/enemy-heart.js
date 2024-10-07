@@ -22,7 +22,7 @@ let EntityEnemyHeart = EntityEnemy.extend({
 		x: 0,
 		y: 0
 	},
-	explodeParticles: 40,
+	explodeParticles: 28,
 	killTimerTime: 0.3,
 	attachmentPoints: [
 		{ x: 40, y: 42, angle: -45 },

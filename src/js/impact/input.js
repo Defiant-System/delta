@@ -278,10 +278,12 @@ Impact.Input = Impact.Class.extend({
 	
 	
 	pressed: function( action ) {
+		this.actions[action] = true;
 		return this.presses[action];
 	},
 	
 	released: function( action ) {
+		this.actions[action] = false;
 		return !!this.delayedKeyup[action];
 	},
 		

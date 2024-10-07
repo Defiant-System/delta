@@ -88,27 +88,29 @@ const xwing = {
 				break;
 			case "window.keydown":
 				switch (event.char) {
-					// case "w":
-					// case "up": Impact.input.presses["up"] = true; break;
-					// case "s":
-					// case "down": Impact.input.presses["down"] = true; break;
-					// case "a":
-					// case "left": Impact.input.presses["left"] = true; break;
-					// case "d":
-					// case "right": Impact.input.presses["right"] = true; break;
-					case "p": Self.dispatch({ type: "toggle-pause" }); break;
+					case "w":
+					case "up": Impact.input.pressed("up"); break;
+					case "s":
+					case "down": Impact.input.pressed("down"); break;
+					case "a":
+					case "left": Impact.input.pressed("left"); break;
+					case "d":
+					case "right": Impact.input.pressed("right"); break;
+					case "p":
+						Self.dispatch({ type: "toggle-pause" });
+						break;
 				}
 				break;
 			case "window.keyup":
 				switch (event.char) {
-					// case "w":
-					// case "up": Impact.input.presses["up"] = false; break;
-					// case "s":
-					// case "down": Impact.input.presses["down"] = false; break;
-					// case "a":
-					// case "left": Impact.input.presses["left"] = false; break;
-					// case "d":
-					// case "right": Impact.input.presses["right"] = false; break;
+					case "w":
+					case "up": Impact.input.released("up"); break;
+					case "s":
+					case "down": Impact.input.released("down"); break;
+					case "a":
+					case "left": Impact.input.released("left"); break;
+					case "d":
+					case "right": Impact.input.released("right"); break;
 				}
 				break;
 			// custom events
@@ -130,6 +132,8 @@ const xwing = {
 			case "toggle-pause":
 				// stop potential shooting
 				window.audio.stop("plasma");
+				// play sound fx
+				window.audio.play("button");
 
 				if (Self.content.data("show") !== "game-view" || Impact.game.mode !== XType.MODE.GAME) return;
 

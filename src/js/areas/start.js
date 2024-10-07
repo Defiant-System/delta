@@ -45,6 +45,8 @@
 					let opt = {
 						volume: 1.5,
 						onend: e => {
+							// turn "off" button
+							Self.els.content.find(`.menu li[data-click="toggle-music"] b`).addClass("off").html("Off");
 							// reset reference
 							delete Self.song;
 						}
@@ -56,6 +58,8 @@
 				}
 				break;
 			case "new-game":
+				// play sound fx
+				window.audio.play("button");
 				// switch BG worker
 				Bg.dispatch({ type: "set-active-mode", mode: "grid" });
 

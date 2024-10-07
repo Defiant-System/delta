@@ -71,12 +71,18 @@
 				break;
 			case "toggle-sound-fx":
 			case "toggle-music":
+				// play sound fx
+				window.audio.play("button");
+				// proxy event
 				APP.start.dispatch(event);
 				break;
 			case "toggle-pause":
+				// proxy event
 				APP.start.dispatch(event);
 				break;
 			case "go-to-start":
+				// play sound fx
+				window.audio.play("button");
 				// smooth transition to start view
 				Self.els.content.cssSequence("pause-to-start-view", "transitionend", el => {
 					// resume background worker
@@ -92,6 +98,9 @@
 				});
 				break;
 			case "to-start-view":
+				// play sound fx
+				window.audio.play("button");
+				// update hiscore
 				APP.dispatch({ type: "start-view-hiscore" });
 				// smooth transition to start view
 				Self.els.content.cssSequence("to-start-view", "transitionend", el => {

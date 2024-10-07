@@ -205,7 +205,7 @@ let EntityEnemy = Impact.Entity.extend({
 		var py = this.pos.y + this.size.y / 2;
 		Impact.game.spawnEntity(EntityExplosionParticleLarge, px, py, { count: this.explodeParticles });
 		// grid explosion
-		let force = Math.clamp(this.explodeParticles / 10, .9, 2.65);
+		let force = Math.clamp(this.explodeParticles / 10, .9, 2.35);
 		Bg.dispatch({ type: "explode", x: px, y: py, force });
 	},
 	kill: function(killedByParent) {

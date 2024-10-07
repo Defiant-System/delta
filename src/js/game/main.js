@@ -27,10 +27,10 @@ let XType = Impact.Game.extend({
 		// this.backgroundMaps.push(bgmap);
 		if (!Impact.ua.mobile) {
 			Impact.input.bind(Impact.KEY.MOUSE1, 'shoot');
-			Impact.input.bind(Impact.KEY.UP_ARROW, 'up');
-			Impact.input.bind(Impact.KEY.DOWN_ARROW, 'down');
-			Impact.input.bind(Impact.KEY.LEFT_ARROW, 'left');
-			Impact.input.bind(Impact.KEY.RIGHT_ARROW, 'right');
+			// Impact.input.bind(Impact.KEY.UP_ARROW, 'up');
+			// Impact.input.bind(Impact.KEY.DOWN_ARROW, 'down');
+			// Impact.input.bind(Impact.KEY.LEFT_ARROW, 'left');
+			// Impact.input.bind(Impact.KEY.RIGHT_ARROW, 'right');
 			// Impact.input.bind(Impact.KEY.W, 'up');
 			// Impact.input.bind(Impact.KEY.S, 'down');
 			// Impact.input.bind(Impact.KEY.A, 'left');
@@ -178,9 +178,7 @@ let XType = Impact.Game.extend({
 		var l = src.children.length
 		for (var i = 0; i < l; i++) {
 			var srcEnt = src.children[i];
-			var settings = {
-				angle: -srcEnt.ownAngle
-			};
+			var settings = { angle: -srcEnt.ownAngle };
 			var destEnt = dest.addChild(srcEnt.entityType, -srcEnt.nodeOffset.x, srcEnt.nodeOffset.y, settings);
 			this.mirrorChildren(srcEnt, destEnt);
 		}
