@@ -105,8 +105,8 @@
 				value = Self.encourage[Math.random() * Self.encourage.length | 0];
 				Self.els.goodWork.find("h3").html(value);
 				// rank
-				value = Self.ranks[Impact.game.level.level-1];
-				Self.els.goodWork.find("h4").html(value);
+				value = Math.min(Impact.game.level.level-1, Self.ranks.length-1);
+				Self.els.goodWork.find("h4").html(Self.ranks[value]);
 				// animation
 				Self.els.goodWork.cssSequence("show", "animationend", el => el.removeClass("show"));
 				break;
