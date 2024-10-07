@@ -67,7 +67,7 @@
 				Self.els.content.cssSequence("to-game-view", "transitionend", el => {
 					// pause background worker
 					el.removeClass("to-game-view").data({ show: "game-view" });
-
+					
 					// start game
 					if (Impact.game) {
 						Impact.game.reset();

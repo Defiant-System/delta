@@ -51,7 +51,6 @@ let XType = Impact.Game.extend({
 
 		// offscreen canvas for later use
 		this.off1 = Utils.createCanvas(Impact.system.width, Impact.system.height);
-		// this.off2 = Utils.createCanvas(Impact.system.width, Impact.system.height);
 
 		this.reset();
 		// this.setTitle();
@@ -142,6 +141,7 @@ let XType = Impact.Game.extend({
 		if (!this.heart && !this.initTimer) {
 			if (!this.bossEndTimer) {
 				this.bossEndTimer = new Impact.Timer(2);
+				this.goodWork = null;
 			} else if (this.bossEndTimer && this.bossEndTimer.delta() > 0) {
 				this.bossEndTimer = null;
 				this.spawnBoss();
@@ -271,7 +271,7 @@ let XType = Impact.Game.extend({
 
 		// this.font.draw(this.score.zeroFill(6), Impact.system.width - 32, 32, Impact.Font.ALIGN.RIGHT);
 		// this.font.draw(this.score.toString().padStart(6, "0"), Impact.system.width - 32, 32, Impact.Font.ALIGN.RIGHT);
-		if (this.bossEndTimer) {
+		if (this.bossEndTimer && !this.goodWork) {
 			var d = -this.bossEndTimer.delta();
 			var a = d > 1.7 ? d.map(2, 1.7, 0, 1) : d < 1 ? d.map(1, 0, 1, 0) : 1;
 			var xs = Impact.system.width / 2;
@@ -280,6 +280,11 @@ let XType = Impact.Game.extend({
 			// this.font.alpha = a;
 			// this.font.draw('Stage ' + b + ' Clear', xs, ys, Impact.Font.ALIGN.CENTER);
 			// this.font.alpha = 1;
+
+			// show "good work" & rank
+			xwing.game.dispatch({ type: "show-good-work" });
+			// 
+			this.goodWork = true;
 		}
 
 		if (this.livesRemainingTimer) {

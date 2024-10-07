@@ -3,15 +3,20 @@ let Test = {
 	init(APP) {
 		// return;
 		
-		
 		// return APP.content.addClass("show-fireworks");
 
 		// APP.start.dispatch({ type: "new-game" });
 		// APP.dispatch({ type: "show-view-game" });
 
 		// setTimeout(() => Bg.dispatch({ type: "set-active-mode", mode: "grid" }), 1000);
-		setTimeout(() => APP.start.dispatch({ type: "new-game" }), 1000);
-		setTimeout(() => APP.dispatch({ type: "toggle-pause" }), 6000);
+		setTimeout(() => APP.start.dispatch({ type: "new-game" }), 700);
+		// setTimeout(() => {
+		// 	APP.content.find(".good-work")
+		// 		.cssSequence("show", "animationend", el => {
+		// 			console.log(el);
+		// 		});
+		// }, 1500);
+		// setTimeout(() => APP.dispatch({ type: "toggle-pause" }), 6000);
 
 		// setTimeout(() => Impact.game.setGameOver(), 1000);
 		// setTimeout(() => APP.game.dispatch({ type: "to-start-view" }), 2000);

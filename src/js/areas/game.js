@@ -7,11 +7,42 @@
 		this.els = {
 			el: window.find(".game-view"),
 			content: window.find("content"),
+			canvas: window.find(".game-view canvas.game"),
+			goodWork: window.find(".game-view .good-work"),
 			gameover: window.find(".view-game-over"),
 			lives: window.find(".hud .lives"),
 			score: window.find(".hud .score"),
 		};
-
+		// good work ranks
+		this.encourage = [
+				"Good Work",
+				"Fantastic",
+				"Imaginative",
+				"Incredible",
+				"Unreal",
+				"Extravagant",
+				"Tremendous",
+				"Sensational",
+				"Well Done",
+				"Best Ever",
+				"You Rock",
+			];
+		this.ranks = [
+				"Private",
+				"Gunner",
+				"Trooper",
+				"Specialist",
+				"Corporal",
+				"Sergeant",
+				"Cadet",
+				"Lieutenant",
+				"Captain",
+				"Major",
+				"Colonel",
+				"General",
+				"Marshal",
+			];
+		// start game engine
 		XType.startGame();
 	},
 	dispatch(event) {
@@ -68,6 +99,16 @@
 						}
 					}, 5e3);
 				}
+				break;
+			case "show-good-work":
+				// encourage
+				value = Self.encourage[Math.random() * Self.encourage.length | 0];
+				Self.els.goodWork.find("h3").html(value);
+				// rank
+				value = Self.ranks[Impact.game.level.level-1];
+				Self.els.goodWork.find("h4").html(value);
+				// animation
+				Self.els.goodWork.cssSequence("show", "animationend", el => el.removeClass("show"));
 				break;
 			case "toggle-sound-fx":
 			case "toggle-music":
