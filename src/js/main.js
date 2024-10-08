@@ -74,7 +74,10 @@ const xwing = {
 				break;
 			case "window.close":
 				// save settings
-				// window.settings.setItem("settings", Self.settings);
+				window.settings.setItem("settings", Self.settings);
+				// stop impact game loop
+				Impact.system.stopRunLoop();
+				XType.paused = true;
 				// kill bg canvas worker
 				Bg.dispatch({ type: "dispose" });
 				break;
