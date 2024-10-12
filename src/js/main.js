@@ -116,6 +116,28 @@ const xwing = {
 					case "right": Impact.input.released("right"); break;
 				}
 				break;
+			case "gamepad.stick":
+				// ship control
+				if (event.stick === "left") {
+					// reset input
+					Impact.input.released("up");
+					Impact.input.released("down");
+					Impact.input.released("left");
+					Impact.input.released("right");
+
+					if (event.value[0] !== 0) {
+						if (event.value[0] > 0) Impact.input.pressed("right");
+						else Impact.input.pressed("left");
+					}
+					if (event.value[1] !== 0) {
+						if (event.value[1] > 0) Impact.input.pressed("down");
+						else Impact.input.pressed("up");
+					}
+				} else if (event.stick === "left") {
+					// hair cross controll
+					
+				}
+				break;
 			// custom events
 			case "open-help":
 				karaqu.shell("fs -u '~/help/index.md'");

@@ -1,7 +1,7 @@
 
 let Test = {
 	init(APP) {
-		// return;
+		return;
 		
 		// return APP.content.addClass("show-fireworks");
 
@@ -9,7 +9,7 @@ let Test = {
 		// APP.dispatch({ type: "show-view-game" });
 
 		// setTimeout(() => Bg.dispatch({ type: "set-active-mode", mode: "grid" }), 1000);
-		setTimeout(() => APP.start.dispatch({ type: "new-game" }), 700);
+		setTimeout(() => APP.start.dispatch({ type: "new-game" }), 300);
 		// setTimeout(() => {
 		// 	APP.content.find(".good-work")
 		// 		.cssSequence("show", "animationend", el => {
@@ -29,7 +29,7 @@ let Test = {
 		// APP.content.attr({ class: `show-game-over` });
 		// APP.content.data({ show: "game-view" });
 
-		// setTimeout(() => APP.dispatch({ type: "toggle-pause" }), 1000);
+		// setTimeout(() => APP.dispatch({ type: "toggle-pause" }), 2000);
 
 	}
 };

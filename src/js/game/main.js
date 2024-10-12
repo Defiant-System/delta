@@ -19,13 +19,14 @@ let XType = Impact.Game.extend({
 		plasma: 0,
 		missile: 0
 	},
-	stickLeft: null,
-	stickRight: null,
+	// stickLeft: null,
+	// stickRight: null,
 	init: function() {
 		// var bgmap = new Impact.BackgroundMap(620,[[1]],this.grid);
 		// bgmap.repeat = true;
 		// this.backgroundMaps.push(bgmap);
-		if (!Impact.ua.mobile) {
+		// if (!Impact.ua.mobile) {
+		if (!$.isHHD) {
 			Impact.input.bind(Impact.KEY.MOUSE1, 'shoot');
 			// Impact.input.bind(Impact.KEY.UP_ARROW, 'up');
 			// Impact.input.bind(Impact.KEY.DOWN_ARROW, 'down');
@@ -40,13 +41,16 @@ let XType = Impact.Game.extend({
 			// Impact.music.volume = 0.6;
 			// Impact.music.add(this.music);
 		} else {
-			var radius = 60;
-			var margin = 20;
-			var y = Impact.system.height - radius - margin;
-			var x1 = radius + margin;
-			var x2 = Impact.system.width - radius - margin;
-			this.stickLeft = new Impact.AnalogStick(x1,y,radius,30);
-			this.stickRight = new Impact.AnalogStick(x2,y,radius,30);
+			// var radius = 60;
+			// var margin = 20;
+			// var y = Impact.system.height - radius - margin;
+			// var x1 = radius + margin;
+			// var x2 = Impact.system.width - radius - margin;
+			// this.stickLeft = new Impact.AnalogStick(x1,y,radius,30);
+			// this.stickRight = new Impact.AnalogStick(x2,y,radius,30);
+
+			// show karaqu gamepad/joystick (at center bottom)
+			karaqu.joystick({ theme: "dark", left: "stick", right: "stick" });
 		}
 
 		// offscreen canvas for later use
