@@ -5,6 +5,7 @@
 	init() {
 		// fast references
 		this.els = {
+			doc: $(document),
 			el: window.find(".game-view"),
 			content: window.find("content"),
 			canvas: window.find(".game-view canvas.game"),
@@ -44,6 +45,12 @@
 			];
 		// start game engine
 		XType.startGame();
+
+		// bind event handlers for desktop version (non mobile)
+		if (!$.isHHD) {
+			this.els.el.on("mousedown", this.doShoot);
+			this.els.doc.on("mousemove mouseup", this.doShoot);
+		}
 	},
 	dispatch(event) {
 		let APP = xwing,
@@ -151,6 +158,27 @@
 					// reset content element
 					el.removeClass("show-game-over to-start-view").data({ show: "start-view" });
 				});
+				break;
+		}
+	},
+	doShoot(event) {
+		let Self = xwing.game,
+			Drag = Self.drag;
+		switch (event.type) {
+			// native events
+			case "mousedown":
+				// prevent default behaviour
+				event.preventDefault();
+				// start shooting
+				Impact.input.pressed("shoot");
+				break;
+			case "mousemove":
+				Impact.input.mouse.x = event.clientX - window.left;
+				Impact.input.mouse.y = event.clientY - window.top - 23;
+				break;
+			case "mouseup":
+				// stop shooting
+				Impact.input.released("shoot");
 				break;
 		}
 	}

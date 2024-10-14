@@ -1,7 +1,7 @@
 
 let Test = {
 	init(APP) {
-		return;
+		// return;
 		
 		// return APP.content.addClass("show-fireworks");
 
@@ -16,7 +16,7 @@ let Test = {
 		// 			console.log(el);
 		// 		});
 		// }, 1500);
-		// setTimeout(() => APP.dispatch({ type: "toggle-pause" }), 6000);
+		setTimeout(() => APP.dispatch({ type: "toggle-pause" }), 6000);
 
 		// setTimeout(() => Impact.game.setGameOver(), 1000);
 		// setTimeout(() => APP.game.dispatch({ type: "to-start-view" }), 2000);

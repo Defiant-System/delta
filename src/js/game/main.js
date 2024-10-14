@@ -26,8 +26,8 @@ let XType = Impact.Game.extend({
 		// bgmap.repeat = true;
 		// this.backgroundMaps.push(bgmap);
 		// if (!Impact.ua.mobile) {
-		if (!$.isHHD) {
-			Impact.input.bind(Impact.KEY.MOUSE1, 'shoot');
+		// if (!$.isHHD) {
+			// Impact.input.bind(Impact.KEY.MOUSE1, 'shoot');
 			// Impact.input.bind(Impact.KEY.UP_ARROW, 'up');
 			// Impact.input.bind(Impact.KEY.DOWN_ARROW, 'down');
 			// Impact.input.bind(Impact.KEY.LEFT_ARROW, 'left');
@@ -40,7 +40,7 @@ let XType = Impact.Game.extend({
 			// Impact.input.bind(Impact.KEY.ESC, 'menu');
 			// Impact.music.volume = 0.6;
 			// Impact.music.add(this.music);
-		} else {
+		// } else {
 			// var radius = 60;
 			// var margin = 20;
 			// var y = Impact.system.height - radius - margin;
@@ -48,7 +48,7 @@ let XType = Impact.Game.extend({
 			// var x2 = Impact.system.width - radius - margin;
 			// this.stickLeft = new Impact.AnalogStick(x1,y,radius,30);
 			// this.stickRight = new Impact.AnalogStick(x2,y,radius,30);
-		}
+		// }
 
 		// offscreen canvas for later use
 		this.off1 = Utils.createCanvas(Impact.system.width, Impact.system.height);

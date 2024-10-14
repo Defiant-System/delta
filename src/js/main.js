@@ -133,10 +133,19 @@ const xwing = {
 						if (event.value[1] > 0) Impact.input.pressed("down");
 						else Impact.input.pressed("up");
 					}
-				} else if (event.stick === "left") {
-					// hair cross controll
-
+				} else if (event.stick === "right") {
+					// hair cross controll using joystick
+					Impact.input.mouse.x = Impact.game.crosshair.pos.x + (3 * event.value[0]);
+					Impact.input.mouse.y = Impact.game.crosshair.pos.y + (3 * event.value[1]);
 				}
+				break;
+			case "gamepad.down":
+				// start shooting
+				Impact.input.pressed("shoot");
+				break;
+			case "gamepad.up":
+				// stop shooting
+				Impact.input.released("shoot");
 				break;
 			// custom events
 			case "open-help":
