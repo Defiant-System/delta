@@ -58,6 +58,9 @@
 				}
 				break;
 			case "new-game":
+				// show karaqu gamepad/joystick (at center bottom)
+				karaqu.joystick({ theme: "dark", left: "stick", right: "stick" });
+				
 				// play sound fx
 				window.audio.play("button");
 				// switch BG worker

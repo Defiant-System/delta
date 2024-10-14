@@ -1,10 +1,10 @@
 <Application>
 	<Build>
-		<task action1="skip" source="src/js/modules/bg-worker.js" destination="public/js/bg-worker.js"/>
+		<task action="skip" source="src/js/modules/bg-worker.js" destination="public/js/bg-worker.js"/>
 	</Build>
 	<Head>
 		<meta name="id" value="xwing"/>
-		<meta name="title" value="X-wing" version="1.1"/>
+		<meta name="title" value="X-wing" version="1.11"/>
 		<meta name="author" value="Dominic Szablewski" namespace="ant" ported="Hakan Bilgin"/>
 		<meta name="license" value="AGPL-3.0"/>
 		<meta name="repository" value="https://github.com/Defiant-System/xwing"/>

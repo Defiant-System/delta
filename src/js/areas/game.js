@@ -79,6 +79,9 @@
 					});
 				break;
 			case "show-game-over":
+				// hide karaqu gamepad/joystick
+				karaqu.joystick();
+
 				// stop potential shooting
 				window.audio.stop("plasma");
 				// update UI
@@ -114,10 +117,6 @@
 			case "toggle-music":
 				// play sound fx
 				window.audio.play("button");
-				// proxy event
-				APP.start.dispatch(event);
-				break;
-			case "toggle-pause":
 				// proxy event
 				APP.start.dispatch(event);
 				break;

@@ -48,9 +48,6 @@ let XType = Impact.Game.extend({
 			// var x2 = Impact.system.width - radius - margin;
 			// this.stickLeft = new Impact.AnalogStick(x1,y,radius,30);
 			// this.stickRight = new Impact.AnalogStick(x2,y,radius,30);
-
-			// show karaqu gamepad/joystick (at center bottom)
-			karaqu.joystick({ theme: "dark", left: "stick", right: "stick" });
 		}
 
 		// offscreen canvas for later use

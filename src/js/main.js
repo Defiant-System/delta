@@ -135,7 +135,7 @@ const xwing = {
 					}
 				} else if (event.stick === "left") {
 					// hair cross controll
-					
+
 				}
 				break;
 			// custom events
@@ -163,6 +163,9 @@ const xwing = {
 				if (Self.content.data("show") !== "game-view" || Impact.game.mode !== XType.MODE.GAME) return;
 
 				if (XType.paused) {
+					// show karaqu gamepad/joystick
+					karaqu.joystick({ theme: "dark", left: "stick", right: "stick" });
+
 					Impact.system.startRunLoop();
 					XType.paused = false;
 					// hide pause view
@@ -170,6 +173,9 @@ const xwing = {
 					// resume background worker
 					Bg.dispatch({ type: "resume" });
 				} else {
+					// hide karaqu gamepad/joystick
+					karaqu.joystick();
+
 					Impact.system.stopRunLoop();
 					XType.paused = true;
 					// show pause view
