@@ -135,8 +135,8 @@ const xwing = {
 					}
 				} else if (event.stick === "right") {
 					// hair cross controll using joystick
-					Impact.input.mouse.x = Impact.game.crosshair.pos.x + (3 * event.value[0]);
-					Impact.input.mouse.y = Impact.game.crosshair.pos.y + (3 * event.value[1]);
+					Impact.input.mouse.x = Math.clamp(0, Impact.game.crosshair.pos.x + (3 * event.value[0]), window.innerWidth);
+					Impact.input.mouse.y = Math.clamp(0, Impact.game.crosshair.pos.y + (3 * event.value[1]), window.innerHeight);
 				}
 				break;
 			case "gamepad.down":
