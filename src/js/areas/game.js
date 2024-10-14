@@ -157,6 +157,10 @@
 					Bg.dispatch({ type: "set-active-mode", mode: "lines" });
 					// reset content element
 					el.removeClass("show-game-over to-start-view").data({ show: "start-view" });
+					// impact specific calls
+					Impact.system.startRunLoop();
+					XType.paused = false;
+					Impact.game.setGame(XType.MODE.GAME_OVER);
 				});
 				break;
 		}
