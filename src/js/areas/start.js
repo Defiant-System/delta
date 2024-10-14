@@ -71,6 +71,7 @@
 					// pause background worker
 					el.removeClass("to-game-view").data({ show: "game-view" });
 					
+						Impact.system.startRunLoop();
 					// start game
 					if (Impact.game) {
 						Impact.game.reset();

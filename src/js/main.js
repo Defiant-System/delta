@@ -3,17 +3,17 @@
 
 @import "./impact/impact.js"
 @import "./impact/image.js"
-@import "./impact/font.js" // to be removed
-@import "./impact/sound.js" // to be removed
+//@*import "./impact/font.js" // to be removed
+//@*import "./impact/sound.js" // to be removed
 @import "./impact/loader.js"
 @import "./impact/timer.js"
 @import "./impact/system.js"
-@import "./impact/input.js" // to be removed
+@import "./impact/input.js"
 @import "./impact/animation.js"
 @import "./impact/entity.js"
 @import "./impact/map.js"
 @import "./impact/collision-map.js"
-@import "./impact/background-map.js" // to be removed
+//@*import "./impact/background-map.js" // to be removed
 @import "./impact/game.js"
 
 @import "./game/entities/particle.js"
@@ -27,9 +27,9 @@
 @import "./game/entities/enemy-arm.js"
 
 @import "./plugins/impact-splash-loader.js"
-@import "./plugins/analog-stick.js" // to be removed
+//@*import "./plugins/analog-stick.js" // to be removed
 
-@import "./game/menus.js" // to be removed
+//@*import "./game/menus.js" // to be removed
 @import "./game/main.js"
 
 @import "./modules/bg.js"

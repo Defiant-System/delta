@@ -9,6 +9,7 @@ Impact.ImpactSplashLoader = Impact.Loader.extend({
 	},
 	run: function() {
 		Impact.system.setDelegate(Impact.game);
+		Impact.system.stopRunLoop();
 	},
 	draw: function() {}
 });

@@ -334,8 +334,8 @@ Impact.Class.extend = function(prop) {
 Impact.main = function( canvas, gameClass, fps, width, height, scale, loaderClass ) {
 	Impact.system = new Impact.System( canvas, fps, width, height, scale || 1 );
 	Impact.input = new Impact.Input();
-	Impact.soundManager = new Impact.SoundManager();
-	Impact.music = new Impact.Music();
+	// Impact.soundManager = new Impact.SoundManager();
+	// Impact.music = new Impact.Music();
 	Impact.ready = true;
 	
 	var loader = new (loaderClass || Impact.Loader)( gameClass, Impact.resources );

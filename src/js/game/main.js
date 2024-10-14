@@ -477,7 +477,7 @@ XType.MODE = {
 XType.paused = false;
 
 XType.startGame = function() {
-	Impact.Sound.channels = 2;
+	// Impact.Sound.channels = 2;
 	Impact.System.drawMode = Impact.System.DRAW.SUBPIXEL;
 
 	let width = window.innerWidth;
