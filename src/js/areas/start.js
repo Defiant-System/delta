@@ -58,9 +58,6 @@
 				}
 				break;
 			case "new-game":
-				// show karaqu gamepad/joystick (at center bottom)
-				karaqu.joystick({ theme: "dark", left: "stick", right: "stick" });
-				
 				// play sound fx
 				window.audio.play("button");
 				// switch BG worker
@@ -70,6 +67,8 @@
 				Self.els.content.cssSequence("to-game-view", "transitionend", el => {
 					// pause background worker
 					el.removeClass("to-game-view").data({ show: "game-view" });
+					// show karaqu gamepad/joystick (at center bottom)
+					karaqu.joystick({ theme: "dark", left: "stick", right: "stick" });
 					
 					// start game
 					if (Impact.game) {

@@ -79,7 +79,8 @@ let XType = Impact.Game.extend({
 		// this.menu = null;
 		this.initTimer = new Impact.Timer(0);  // hbi: 3
 		this.lastKillTimer.reset();
-		if (!Impact.ua.mobile) {
+		if (!$.isHHD) {
+		// if (!Impact.ua.mobile) {
 			this.crosshair = this.spawnEntity(EntityCrosshair, 0, 0);
 		}
 		this.bossEndTimer = null;
@@ -311,13 +312,13 @@ let XType = Impact.Game.extend({
 				this.initTimer = null;
 				this.spawnBoss();
 			}
-			Impact.system.context.globalAlpha = initTime.map(-0.5, 0, 1, 0).limit(0, 1);
-			if (Impact.ua.mobile) {
-				// this.instructions.draw(100, Impact.system.height - 210);
-			} else {
-				// this.instructions.draw(25, 260);
-			}
-			Impact.system.context.globalAlpha = 1;
+			// Impact.system.context.globalAlpha = initTime.map(-0.5, 0, 1, 0).limit(0, 1);
+			// if (Impact.ua.mobile) {
+			// 	// this.instructions.draw(100, Impact.system.height - 210);
+			// } else {
+			// 	// this.instructions.draw(25, 260);
+			// }
+			// Impact.system.context.globalAlpha = 1;
 		}
 	},
 	drawTitle: function() {

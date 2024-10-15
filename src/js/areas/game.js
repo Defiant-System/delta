@@ -177,8 +177,8 @@
 				Impact.input.pressed("shoot");
 				break;
 			case "mousemove":
-				Impact.input.mouse.x = event.clientX - window.left;
-				Impact.input.mouse.y = event.clientY - window.top - 23;
+				Impact.input.mouse.x = event.clientX - window.left - 11;
+				Impact.input.mouse.y = event.clientY - window.top - 31;
 				break;
 			case "mouseup":
 				// stop shooting

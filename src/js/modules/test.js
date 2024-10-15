@@ -2,6 +2,11 @@
 let Test = {
 	init(APP) {
 		return;
+
+		// pause background worker
+		// setTimeout(() => Bg.dispatch({ type: "pause" }), 300);
+		// karaqu.joystick({ theme: "dark", right: "stick" });
+		
 		
 		// return APP.content.addClass("show-fireworks");
 
@@ -16,7 +21,7 @@ let Test = {
 		// 			console.log(el);
 		// 		});
 		// }, 1500);
-		setTimeout(() => APP.dispatch({ type: "toggle-pause" }), 6000);
+		setTimeout(() => APP.dispatch({ type: "toggle-pause" }), 5000);
 
 		// setTimeout(() => Impact.game.setGameOver(), 1000);
 		// setTimeout(() => APP.game.dispatch({ type: "to-start-view" }), 2000);

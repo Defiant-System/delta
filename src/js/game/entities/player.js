@@ -108,18 +108,26 @@ let EntityPlayer = Impact.Entity.extend({
 		}
 	},
 	handleTouchInput: function() {
-		var lstick = Impact.game.stickLeft;
-		this.vel.x = lstick.input.x * this.speed;
-		this.vel.y = lstick.input.y * this.speed;
-		var rstick = Impact.game.stickRight;
-		if (rstick.amount) {
-			this.angle = rstick.angle - Math.PI / 2;
+		if (Impact.input.state("shoot")) {
 			if (this.lastShootTimer.delta() > 0) {
 				this.shoot();
-				this.lastShootTimer.set(0.05);
+				this.lastShootTimer.set(0.075);
 			}
 		}
 	},
+	// handleTouchInput_: function() {
+	// 	var lstick = Impact.game.stickLeft;
+	// 	this.vel.x = lstick.input.x * this.speed;
+	// 	this.vel.y = lstick.input.y * this.speed;
+	// 	var rstick = Impact.game.stickRight;
+	// 	if (rstick.amount) {
+	// 		this.angle = rstick.angle - Math.PI / 2;
+	// 		if (this.lastShootTimer.delta() > 0) {
+	// 			this.shoot();
+	// 			this.lastShootTimer.set(0.05);
+	// 		}
+	// 	}
+	// },
 	kill: function() {
 		// stop sound fx
 		window.audio.stop("plasma");
