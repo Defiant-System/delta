@@ -3,11 +3,11 @@
 		<task action="skip" source="src/js/modules/bg-worker.js" destination="public/js/bg-worker.js"/>
 	</Build>
 	<Head>
-		<meta name="id" value="xwing"/>
+		<meta name="id" value="delta"/>
 		<meta name="title" value="X-wing" version="1.13"/>
 		<meta name="author" value="Dominic Szablewski" namespace="ant" ported="Hakan Bilgin"/>
 		<meta name="license" value="AGPL-3.0"/>
-		<meta name="repository" value="https://github.com/Defiant-System/xwing"/>
+		<meta name="repository" value="https://github.com/Defiant-System/delta"/>
 		<meta name="width" value="480"/>
 		<meta name="height" value="720"/>
 		<meta name="top" value="175"/>

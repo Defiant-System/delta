@@ -1,6 +1,9 @@
 
 let Test = {
 	init(APP) {
+		// test / debug flag
+		Test.debug = true;
+
 		return;
 
 		// pause background worker

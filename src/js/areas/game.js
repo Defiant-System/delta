@@ -1,5 +1,5 @@
 
-// xwing.game
+// delta.game
 
 {
 	init() {
@@ -53,7 +53,7 @@
 		}
 	},
 	dispatch(event) {
-		let APP = xwing,
+		let APP = delta,
 			Self = APP.game,
 			value,
 			total,
@@ -166,7 +166,7 @@
 		}
 	},
 	doShoot(event) {
-		let Self = xwing.game,
+		let Self = delta.game,
 			Drag = Self.drag;
 		switch (event.type) {
 			// native events

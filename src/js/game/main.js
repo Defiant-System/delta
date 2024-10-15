@@ -70,14 +70,15 @@ let XType = Impact.Game.extend({
 		// this.level = { level: 2, support: 3, plasma: 1, missile: 1 };
 
 		// UI update lives
-		xwing.game.dispatch({ type: "set-lives", value: this.lives });
+		delta.game.dispatch({ type: "set-lives", value: this.lives });
 	},
 	setGame: function(mode) {
 		// window.scrollTo(0, 0);
 		// Impact.music.play();
 		// Impact.system.canvas.style.cursor = "";
 		// this.menu = null;
-		this.initTimer = new Impact.Timer(0);  // hbi: 3
+		let timer = Test.debug ? 0 : 3;
+		this.initTimer = new Impact.Timer(timer);
 		this.lastKillTimer.reset();
 		if (!$.isHHD) {
 		// if (!Impact.ua.mobile) {
@@ -118,7 +119,7 @@ let XType = Impact.Game.extend({
 		// Impact.system.canvas.width = Impact.system.width;
 		// this.off1.cvs.attr({ width: Impact.system.width });
 		
-		xwing.game.dispatch({ type: "show-game-over" });
+		delta.game.dispatch({ type: "show-game-over" });
 
 		// XType.paused = true;
 		// Impact.system.stopRunLoop();
@@ -172,7 +173,7 @@ let XType = Impact.Game.extend({
 		for (i = 0; i < ents.length; i++) {
 			maxY = Math.max(ents[i].pos.y, maxY);
 		}
-		this.heart.pos.y = -maxY + 120; // hbi "minus"
+		this.heart.pos.y = -maxY + Test.debug ? 120 : -120;
 		this.heart.vel.y = 70;
 		this.heart.update();
 	},
@@ -229,7 +230,7 @@ let XType = Impact.Game.extend({
 			this.setGameOver();
 		}
 		// UI update lives
-		xwing.game.dispatch({ type: "set-lives", value: this.lives });
+		delta.game.dispatch({ type: "set-lives", value: this.lives });
 	},
 	draw: function() {
 		// Impact.system.context.clearRect(0, 0, Impact.system.width, Impact.system.height);
@@ -284,7 +285,7 @@ let XType = Impact.Game.extend({
 			// this.font.alpha = 1;
 
 			// show "good work" & rank
-			xwing.game.dispatch({ type: "show-good-work" });
+			delta.game.dispatch({ type: "show-good-work" });
 			// 
 			this.goodWork = true;
 		}

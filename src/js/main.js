@@ -43,7 +43,7 @@ const defaultSettings = {
 };
 
 
-const xwing = {
+const delta = {
 	init() {
 		// fast references
 		this.content = window.find("content");
@@ -64,7 +64,7 @@ const xwing = {
 		// DEV-ONLY-END
 	},
 	dispatch(event) {
-		let Self = xwing,
+		let Self = delta,
 			value,
 			el;
 		// console.log(event.type);
@@ -137,10 +137,10 @@ const xwing = {
 					let x = event.value[0],
 						y = event.value[1],
 						angle = Math.atan2(x, -y),
-						amount = Math.sqrt(x * x + y * y),
+						// amount = Math.sqrt(x * x + y * y),
 						halfPI = Math.PI / 2;
 					// set player angle
-					Impact.game.player.angle = amount ? angle - halfPI : -halfPI;
+					Impact.game.player.angle = (x === 0 && y === 0) ? -halfPI : angle - halfPI;
 				}
 				break;
 			case "gamepad.down":
@@ -223,4 +223,4 @@ const xwing = {
 	game: @import "./areas/game.js",
 };
 
-window.exports = xwing;
+window.exports = delta;

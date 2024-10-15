@@ -1,5 +1,5 @@
 
-// xwing.start
+// delta.start
 
 {
 	init() {
@@ -12,7 +12,7 @@
 		XType.startGame();
 	},
 	dispatch(event) {
-		let APP = xwing,
+		let APP = delta,
 			Self = APP.start,
 			value,
 			el;
