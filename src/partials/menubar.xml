@@ -1,8 +1,8 @@
 <MenuBar>
-	<Menu name="X-wing">
-		<Menu name="About X-wing" shell="win -a"/>
+	<Menu name="Delta">
+		<Menu name="About Delta" shell="win -a"/>
 		<Menu type="divider"/>
-		<Menu name="Quit X-wing" shell="win -c"/>
+		<Menu name="Quit Delta" shell="win -c"/>
 	</Menu>
 	<Menu name="Game" for="game-content">
 		<Menu name="Show View&#8230;">

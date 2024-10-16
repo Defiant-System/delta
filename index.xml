@@ -4,8 +4,8 @@
 	</Build>
 	<Head>
 		<meta name="id" value="delta"/>
-		<meta name="title" value="X-wing" version="1.13"/>
-		<meta name="author" value="Dominic Szablewski" namespace="ant" ported="Hakan Bilgin"/>
+		<meta name="title" value="Delta" version="1.13"/>
+		<meta name="author" value="Hakan Bilgin" namespace="ant"/>
 		<meta name="license" value="AGPL-3.0"/>
 		<meta name="repository" value="https://github.com/Defiant-System/delta"/>
 		<meta name="width" value="480"/>
