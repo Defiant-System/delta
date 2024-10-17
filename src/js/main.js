@@ -124,13 +124,15 @@ const delta = {
 					Impact.input.released("down");
 					Impact.input.released("left");
 					Impact.input.released("right");
-
-					if (event.value[0] !== 0) {
-						if (event.value[0] > 0) Impact.input.pressed("right");
+					
+					let x = event.value[0],
+						y = event.value[1];
+					if (x !== 0) {
+						if (x > 0) Impact.input.pressed("right");
 						else Impact.input.pressed("left");
 					}
-					if (event.value[1] !== 0) {
-						if (event.value[1] > 0) Impact.input.pressed("down");
+					if (y !== 0) {
+						if (y > 0) Impact.input.pressed("down");
 						else Impact.input.pressed("up");
 					}
 				} else if (event.stick === "right") {
@@ -144,12 +146,16 @@ const delta = {
 				}
 				break;
 			case "gamepad.down":
-				// start shooting
-				Impact.input.pressed("shoot");
+				if (event.button === "b11") {
+					// start shooting
+					Impact.input.pressed("shoot");
+				}
 				break;
 			case "gamepad.up":
-				// stop shooting
-				Impact.input.released("shoot");
+				if (event.button === "b11") {
+					// stop shooting
+					Impact.input.released("shoot");
+				}
 				break;
 			// custom events
 			case "open-help":
