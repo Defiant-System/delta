@@ -113,7 +113,9 @@ let XType = Impact.Game.extend({
 		// this.menu = new GameOverMenu();
 
 		this.mode = XType.MODE.GAME_OVER;
-		this.crosshair.dispose();
+		if (this.crosshair) {
+			this.crosshair.dispose();
+		}
 
 		// reset canvases
 		// Impact.system.canvas.width = Impact.system.width;

@@ -117,32 +117,19 @@ const delta = {
 				}
 				break;
 			case "gamepad.stick":
+				let player = Impact.game.player,
+					x = event.value[0],
+					y = event.value[1];
 				// ship control
 				if (event.stick === "left") {
-					// reset input
-					Impact.input.released("up");
-					Impact.input.released("down");
-					Impact.input.released("left");
-					Impact.input.released("right");
-					
-					let x = event.value[0],
-						y = event.value[1];
-					if (x !== 0) {
-						if (x > 0) Impact.input.pressed("right");
-						else Impact.input.pressed("left");
-					}
-					if (y !== 0) {
-						if (y > 0) Impact.input.pressed("down");
-						else Impact.input.pressed("up");
-					}
+					// set ship position
+					player.vel.x = x * player.speed;
+					player.vel.y = y * player.speed;
 				} else if (event.stick === "right") {
-					let x = event.value[0],
-						y = event.value[1],
-						angle = Math.atan2(x, -y),
-						// amount = Math.sqrt(x * x + y * y),
+					// set ship angle
+					let angle = Math.atan2(x, -y),
 						halfPI = Math.PI / 2;
-					// set player angle
-					Impact.game.player.angle = (x === 0 && y === 0) ? -halfPI : angle - halfPI;
+					player.angle = (x === 0 && y === 0) ? -halfPI : angle - halfPI;
 				}
 				break;
 			case "gamepad.down":

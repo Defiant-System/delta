@@ -4,7 +4,7 @@ let Test = {
 		// test / debug flag
 		Test.debug = true;
 
-		return;
+		// return;
 
 		// pause background worker
 		// setTimeout(() => Bg.dispatch({ type: "pause" }), 300);

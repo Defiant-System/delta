@@ -98,9 +98,9 @@ let EntityPlayer = Impact.Entity.extend({
 			this.lastShootTimer.set(0.05);
 		}
 		if (isShooting && !this.wasShooting) {
-			this.wasShooting = true;
 			// play sound fx
 			window.audio.play("plasma");
+			this.wasShooting = true;
 		} else if (this.wasShooting && !isShooting) {
 			// stop sound fx
 			window.audio.stop("plasma");
@@ -108,11 +108,25 @@ let EntityPlayer = Impact.Entity.extend({
 		}
 	},
 	handleTouchInput: function() {
-		if (Impact.input.state("shoot")) {
+		// var lstick = Impact.game.stickLeft;
+		// this.vel.x = lstick.input.x * this.speed;
+		// this.vel.y = lstick.input.y * this.speed;
+		
+		var isShooting = Impact.input.state("shoot");
+		if (isShooting) {
 			if (this.lastShootTimer.delta() > 0) {
 				this.shoot();
 				this.lastShootTimer.set(0.075);
 			}
+			if (!this.wasShooting) {
+				// play sound fx
+				window.audio.play("plasma");
+				this.wasShooting = true;
+			}
+		} else if (this.wasShooting && !isShooting) {
+			// stop sound fx
+			window.audio.stop("plasma");
+			this.wasShooting = false;
 		}
 	},
 	// handleTouchInput_: function() {
