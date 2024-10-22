@@ -24,7 +24,7 @@ let Test = {
 		// 			console.log(el);
 		// 		});
 		// }, 1500);
-		setTimeout(() => APP.dispatch({ type: "toggle-pause" }), 5000);
+		setTimeout(() => APP.dispatch({ type: "toggle-pause" }), 3000);
 
 		// setTimeout(() => Impact.game.setGameOver(), 1000);
 		// setTimeout(() => APP.game.dispatch({ type: "to-start-view" }), 2000);

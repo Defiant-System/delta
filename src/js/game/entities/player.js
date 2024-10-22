@@ -1,7 +1,7 @@
 
 let EntityPlayer = Impact.Entity.extend({
-	animSheet: new Impact.AnimationSheet("~/icons/sprite-ship.png", 48, 48),
-	shieldAnimSheet: new Impact.AnimationSheet("~/icons/sprite-shield.png", 76, 76),
+	animSheet: new Impact.AnimationSheet("~/icons/sprite-ship.png", 48, 48 ),
+	shieldAnimSheet: new Impact.AnimationSheet("~/icons/sprite-shield.png", 76, 76 ),
 	size: {
 		x: 24,
 		y: 24
@@ -25,6 +25,12 @@ let EntityPlayer = Impact.Entity.extend({
 	// soundExplode: new Impact.Sound("media/sounds/explosion.ogg"),
 	type: Impact.Entity.TYPE.A,
 	init: function(x, y, settings) {
+		// scale entity
+		this.size.x *= Impact.System.scale;
+		this.size.y *= Impact.System.scale;
+		this.offset.x *= Impact.System.scale;
+		this.offset.y *= Impact.System.scale;
+
 		this.parent(x, y, settings);
 		this.addAnim("idle", 60, [0]);
 		this.addAnim("shoot", 0.05, [3, 2, 1, 0], true);
@@ -34,12 +40,23 @@ let EntityPlayer = Impact.Entity.extend({
 		this.crosshair = Impact.game.crosshair;
 		// this.soundShoot.volume = 0.7;
 		Impact.game.player = this;
+
+		this.shield.pivot.x *= Impact.System.scale;
+		this.shield.pivot.y *= Impact.System.scale;
+		this.animSheet.width *= Impact.System.scale;
+		this.animSheet.height *= Impact.System.scale;
+		this.shieldAnimSheet.width *= Impact.System.scale;
+		this.shieldAnimSheet.height *= Impact.System.scale;
 	},
 	draw: function() {
+		// Impact.system.context.fillStyle = "#f00";
+		// Impact.system.context.fillRect(this.pos.x, this.pos.y, this.size.x, this.size.y);
+
 		this.parent();
 		if (this.shieldTimer) {
+			let o = this.shield.sheet.width >> 1; // 38
 			this.shield.alpha = this.shieldTimer.delta().map(-0.5, 0, 0.5, 0).limit(0, 0.5);
-			this.shield.draw(this.pos.x - 38 - Impact.game._rscreen.x, this.pos.y - 38 - Impact.game._rscreen.y);
+			this.shield.draw(this.pos.x - o - Impact.game._rscreen.x, this.pos.y - o - Impact.game._rscreen.y);
 		}
 	},
 	update: function() {

@@ -34,8 +34,7 @@ Impact.Image = Impact.Class.extend({
 			this.data.onload = this.onload.bind(this);
 			this.data.onerror = this.onerror.bind(this);
 			this.data.src = Impact.prefix + this.path + Impact.nocache;
-		}
-		else {
+		} else {
 			Impact.addResource( this );
 		}
 		
@@ -56,8 +55,10 @@ Impact.Image = Impact.Class.extend({
 		this.height = this.data.height;
 		this.loaded = true;
 		
-		if (Impact.system.scale != 1 ) {
+		if ( Impact.system.scale > 1 ) {
 			this.resize( Impact.system.scale );
+		} else if ( Impact.system.scale < 1 ) {
+			this.smaller( Impact.system.scale );
 		}
 		
 		if (this.loadCallback ) {
@@ -75,15 +76,29 @@ Impact.Image = Impact.Class.extend({
 	},
 	
 	
+	smaller: function( scale ) {
+		var widthScaled = this.width * scale;
+		var heightScaled = this.height * scale;
+
+		var scaled = Impact.$new('canvas');
+		scaled.width = widthScaled;
+		scaled.height = heightScaled;
+
+		var scaledCtx = scaled.getContext('2d');
+		scaledCtx.drawImage(this.data, 0, 0, this.width, this.height, 0, 0, widthScaled, heightScaled);
+		
+		this.data = scaled;
+	},
+	
+	
 	resize: function( scale ) {
 		// Nearest-Neighbor scaling
 		
 		// The original image is drawn into an offscreen canvas of the same size
 		// and copied into another offscreen canvas with the new size. 
 		// The scaled offscreen canvas becomes the image (data) of this object.
-		
+
 		var origPixels = Impact.getImagePixels( this.data, 0, 0, this.width, this.height );
-		
 		var widthScaled = this.width * scale;
 		var heightScaled = this.height * scale;
 

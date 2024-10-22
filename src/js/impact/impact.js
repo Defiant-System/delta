@@ -156,7 +156,7 @@ let Impact = {
 	},
 
 	normalizeVendorAttribute: function( el, attr ) {
-		var prefixedVal = ig.getVendorAttribute( el, attr );
+		var prefixedVal = Impact.getVendorAttribute( el, attr );
 		if (!el[attr] && prefixedVal ) {
 			el[attr] = prefixedVal;
 		}

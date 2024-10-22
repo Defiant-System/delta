@@ -264,7 +264,7 @@ let XType = Impact.Game.extend({
 			// this.drawTitle();
 		}
 		if (this.menu) {
-			this.menu.draw();
+			// this.menu.draw();
 		}
 	},
 	drawUI: function() {
@@ -324,20 +324,20 @@ let XType = Impact.Game.extend({
 			// Impact.system.context.globalAlpha = 1;
 		}
 	},
-	drawTitle: function() {
-		var xs = Impact.system.width / 2;
-		var ys = Impact.system.height / 4;
-		this.title.draw(96, 96);
-		var xc = 8;
-		var yc = Impact.system.height - 40;
-		Impact.system.context.globalAlpha = 0.6;
-		this.fontSmall.draw('Dominic Szablewski: Graphics & Programming', xc, yc);
-		if (Impact.Sound.enabled) {
-			this.fontSmall.draw('Andreas Loesch: Music', xc, yc + 20);
-		}
-		Impact.system.context.globalAlpha = 1;
-		this.madeWithImpact.draw(Impact.system.width - 154, Impact.system.height - 56);
-	},
+	// drawTitle: function() {
+	// 	var xs = Impact.system.width / 2;
+	// 	var ys = Impact.system.height / 4;
+	// 	this.title.draw(96, 96);
+	// 	var xc = 8;
+	// 	var yc = Impact.system.height - 40;
+	// 	Impact.system.context.globalAlpha = 0.6;
+	// 	this.fontSmall.draw('Dominic Szablewski: Graphics & Programming', xc, yc);
+	// 	if (Impact.Sound.enabled) {
+	// 		this.fontSmall.draw('Andreas Loesch: Music', xc, yc + 20);
+	// 	}
+	// 	Impact.system.context.globalAlpha = 1;
+	// 	this.madeWithImpact.draw(Impact.system.width - 154, Impact.system.height - 56);
+	// },
 	entitiesSortedByPosTypeA: [],
 	entitiesSortedByPosTypeB: [],
 	sortByYPos: function(a, b) {
@@ -480,6 +480,9 @@ XType.MODE = {
 
 XType.paused = false;
 
+Impact.System.scale = 1;
+//Impact.System.scale = .9;
+
 XType.startGame = function() {
 	// Impact.Sound.channels = 2;
 	Impact.System.drawMode = Impact.System.DRAW.SUBPIXEL;
@@ -488,6 +491,7 @@ XType.startGame = function() {
 	let height = window.innerHeight;
 	let cvs = window.find(".game-view canvas.game");
 	let fps = 60;
+	let scale = Impact.System.scale;
 
 	// set canvas dim
 	cvs.attr({ width, height });
@@ -520,7 +524,7 @@ XType.startGame = function() {
 	// 	return false;
 	// }
 
-	Impact.main(cvs, XType, fps, width, height, 1, Impact.ImpactSplashLoader);
+	Impact.main(cvs, XType, fps, width, height, scale, Impact.ImpactSplashLoader);
 };
 
 XType.checkOrientation = function() {

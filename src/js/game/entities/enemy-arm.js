@@ -19,6 +19,16 @@ let EntityEnemyArm = EntityEnemy.extend({
 		{ x: -38, y: 12, angle: 70 }
 	],
 	init: function(x, y, settings) {
+		// scale entity
+		this.size.x *= Impact.system.scale;
+		this.size.y *= Impact.system.scale;
+		this.offset.x *= Impact.system.scale;
+		this.offset.y *= Impact.system.scale;
+		this.attachmentPoints.map(p => {
+			p.x *= Impact.system.scale;
+			p.y *= Impact.system.scale;
+		});
+
 		this.parent(x, y - 18, settings);
 		this.moveTimer = new Impact.Timer();
 		this.angle = Math.PI / 2;

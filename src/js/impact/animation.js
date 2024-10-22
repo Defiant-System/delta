@@ -7,7 +7,6 @@ Impact.AnimationSheet = Impact.Class.extend({
 	init: function( path, width, height ) {
 		this.width = width;
 		this.height = height;
-		
 		this.image = new Impact.Image( path );
 	}
 });
@@ -32,6 +31,10 @@ Impact.Animation = Impact.Class.extend({
 	
 	
 	init: function( sheet, frameTime, sequence, stop ) {
+
+		sheet.width *= Impact.System.scale;
+		sheet.height *= Impact.System.scale;
+		
 		this.sheet = sheet;
 		this.pivot = { x: sheet.width/2, y: sheet.height/2 };
 		this.timer = new Impact.Timer();
