@@ -480,8 +480,6 @@ XType.MODE = {
 
 XType.paused = false;
 
-//Impact.System.scale = 1;
-Impact.System.scale = .9;
 
 XType.startGame = function() {
 	// Impact.Sound.channels = 2;
@@ -491,7 +489,6 @@ XType.startGame = function() {
 	let height = window.innerHeight;
 	let cvs = window.find(".game-view canvas.game");
 	let fps = 60;
-	let scale = Impact.System.scale;
 
 	// set canvas dim
 	cvs.attr({ width, height });
@@ -524,7 +521,7 @@ XType.startGame = function() {
 	// 	return false;
 	// }
 
-	Impact.main(cvs, XType, fps, width, height, scale /*, Impact.ImpactSplashLoader*/);
+	Impact.main(cvs, XType, fps, width, height, 1 /*, Impact.ImpactSplashLoader*/);
 };
 
 XType.checkOrientation = function() {

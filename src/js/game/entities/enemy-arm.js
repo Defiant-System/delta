@@ -20,13 +20,13 @@ let EntityEnemyArm = EntityEnemy.extend({
 	],
 	init: function(x, y, settings) {
 		// scale entity
-		this.size.x *= Impact.system.scale;
-		this.size.y *= Impact.system.scale;
-		this.offset.x *= Impact.system.scale;
-		this.offset.y *= Impact.system.scale;
+		this.size.x *= Game.scale;
+		this.size.y *= Game.scale;
+		this.offset.x *= Game.scale;
+		this.offset.y *= Game.scale;
 		this.attachmentPoints.map(p => {
-			p.x *= Impact.system.scale;
-			p.y *= Impact.system.scale;
+			p.x *= Game.scale;
+			p.y *= Game.scale;
 		});
 
 		this.parent(x, y - 18, settings);

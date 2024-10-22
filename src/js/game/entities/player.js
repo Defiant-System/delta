@@ -26,10 +26,10 @@ let EntityPlayer = Impact.Entity.extend({
 	type: Impact.Entity.TYPE.A,
 	init: function(x, y, settings) {
 		// scale entity
-		this.size.x *= Impact.System.scale;
-		this.size.y *= Impact.System.scale;
-		this.offset.x *= Impact.System.scale;
-		this.offset.y *= Impact.System.scale;
+		this.size.x = Math.round(this.animSheet.width * .5);
+		this.size.y = Math.round(this.animSheet.height * .5);
+		this.offset.x = Math.round(this.animSheet.width * .5);
+		this.offset.y = Math.round(this.animSheet.height * .5);
 
 		this.parent(x, y, settings);
 		this.addAnim("idle", 60, [0]);
@@ -41,13 +41,13 @@ let EntityPlayer = Impact.Entity.extend({
 		// this.soundShoot.volume = 0.7;
 		Impact.game.player = this;
 
-		// this.pos.x *= Impact.System.scale;
-		// this.pos.y *= Impact.System.scale;
+		// this.pos.x *= Game.scale;
+		// this.pos.y *= Game.scale;
 
-		// this.animSheet.width *= Impact.System.scale;
-		// this.animSheet.height *= Impact.System.scale;
-		// this.shieldAnimSheet.width *= Impact.System.scale;
-		// this.shieldAnimSheet.height *= Impact.System.scale;
+		// this.animSheet.width *= Game.scale;
+		// this.animSheet.height *= Game.scale;
+		// this.shieldAnimSheet.width *= Game.scale;
+		// this.shieldAnimSheet.height *= Game.scale;
 	},
 	draw: function() {
 		// Impact.system.context.fillStyle = "#f00";
@@ -166,14 +166,14 @@ let EntityPlayer = Impact.Entity.extend({
 
 		Impact.game.lastKillTimer.set(0.5);
 		Impact.game.spawnEntity(EntityExplosionParticleBlue, this.pos.x, this.pos.y, { count: 40 });
-		this.pos.y = Impact.system.height + (300 * Impact.System.scale);
+		this.pos.y = Impact.system.height + (300 * Game.scale);
 		this.parent();
 		Impact.game.loseLive();
 	},
 	shoot: function() {
 		// this.currentAnim = this.anims.shoot.rewind();
 		var angle = this.angle + Math.random() * 0.1 - 0.05;
-		Impact.game.spawnEntity(EntityPlasma, this.pos.x - 1, this.pos.y - 1, { angle });
+		Impact.game.spawnEntity(EntityPlasma, this.pos.x, this.pos.y, { angle });
 	}
 });
 
@@ -183,17 +183,23 @@ let EntityPlasma = Impact.Entity.extend({
 		x: 1000,
 		y: 1000
 	},
-	image: new Impact.Image("~/icons/sprite-plasma.png"),
+	image: new Impact.Image("~/icons/sprite-plasma.png", 96, 96),
 	size: {
 		x: 4,
 		y: 4
 	},
 	offset: {
-		x: 47,
-		y: 47
+		x: 48,
+		y: 48
 	},
 	checkAgainst: Impact.Entity.TYPE.B,
 	init: function(x, y, settings) {
+		// scale entity
+		// this.size.x = Math.round(this.image.width / 2);
+		// this.size.y = Math.round(this.image.height / 2);
+		this.offset.x = Math.round(this.image.width / 2);
+		this.offset.y = Math.round(this.image.height / 2);
+
 		this.parent(x, y, settings);
 		this.vel.x = Math.cos(this.angle) * this.speed;
 		this.vel.y = Math.sin(this.angle) * this.speed;

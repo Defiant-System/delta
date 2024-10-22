@@ -17,10 +17,10 @@ let EntityEnemyPlasmabox = EntityEnemy.extend({
 	killScore: 400,
 	init: function(x, y, settings) {
 		// scale entity
-		this.size.x *= Impact.system.scale;
-		this.size.y *= Impact.system.scale;
-		this.offset.x *= Impact.system.scale;
-		this.offset.y *= Impact.system.scale;
+		this.size.x *= Game.scale;
+		this.size.y *= Game.scale;
+		this.offset.x *= Game.scale;
+		this.offset.y *= Game.scale;
 
 		this.parent(x, y - 18, settings);
 		this.moveTimer = new Impact.Timer();

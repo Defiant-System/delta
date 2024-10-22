@@ -26,8 +26,7 @@ Impact.Image = Impact.Class.extend({
 				loadCallback( this.path, true );
 			}
 			return;
-		}
-		else if (!this.loaded && Impact.ready ) {
+		} else if (!this.loaded && Impact.ready ) {
 			this.loadCallback = loadCallback || null;
 			
 			this.data = new Image();
@@ -55,10 +54,10 @@ Impact.Image = Impact.Class.extend({
 		this.height = this.data.height;
 		this.loaded = true;
 		
-		if ( Impact.system.scale > 1 ) {
-			this.resize( Impact.system.scale );
-		} else if ( Impact.system.scale < 1 ) {
-			this.smaller( Impact.system.scale );
+		if ( Game.scale > 1 ) {
+			this.resize( Game.scale );
+		} else if ( Game.scale < 1 ) {
+			this.smaller( Game.scale );
 		}
 		
 		if (this.loadCallback ) {

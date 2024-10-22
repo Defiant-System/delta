@@ -5,8 +5,8 @@ Impact.AnimationSheet = Impact.Class.extend({
 	image: null,
 	
 	init: function( path, width, height ) {
-		this.width = width;
-		this.height = height;
+		this.width = Math.round(width * Game.scale);
+		this.height = Math.round(height * Game.scale);
 		this.image = new Impact.Image( path );
 	}
 });
@@ -18,8 +18,8 @@ Impact.Animation = Impact.Class.extend({
 	timer: null,
 	
 	sequence: [],	
-	flip: {x: false, y: false},
-	pivot: {x: 0, y: 0},
+	flip: { x: false, y: false },
+	pivot: { x: 0, y: 0 },
 	
 	frameTime: 0,
 	frame: 0,
@@ -31,9 +31,6 @@ Impact.Animation = Impact.Class.extend({
 	
 	
 	init: function( sheet, frameTime, sequence, stop ) {
-
-		sheet.width *= Impact.System.scale;
-		sheet.height *= Impact.System.scale;
 		
 		this.sheet = sheet;
 		this.pivot = { x: sheet.width/2, y: sheet.height/2 };

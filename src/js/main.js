@@ -1,6 +1,11 @@
 
 @import "./modules/utils.js"
 
+let Game = {
+	// scale: 1,
+	scale: .9,
+};
+
 @import "./impact/impact.js"
 @import "./impact/image.js"
 //@*import "./impact/font.js" // to be removed
@@ -34,7 +39,6 @@
 
 @import "./modules/bg.js"
 @import "./modules/test.js"
-
 
 
 // default settings

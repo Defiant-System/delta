@@ -37,8 +37,8 @@ Impact.BackgroundMap = Impact.Map.extend({
 	
 	
 	preRenderMapToChunks: function() {
-		var totalWidth = this.width * this.tilesize * Impact.system.scale,
-			totalHeight = this.height * this.tilesize * Impact.system.scale;
+		var totalWidth = this.width * this.tilesize * Game.scale,
+			totalHeight = this.height * this.tilesize * Game.scale;
 		
 		// If this layer is smaller than the chunkSize, adjust the chunkSize
 		// accordingly, so we don't have as much overdraw
@@ -69,14 +69,14 @@ Impact.BackgroundMap = Impact.Map.extend({
 	
 	
 	preRenderChunk: function( cx, cy, w, h ) {
-		var tw = w / this.tilesize / Impact.system.scale + 1,
-			th = h / this.tilesize / Impact.system.scale + 1;
+		var tw = w / this.tilesize / Game.scale + 1,
+			th = h / this.tilesize / Game.scale + 1;
 		
-		var nx = (cx * this.chunkSize / Impact.system.scale) % this.tilesize,
-			ny = (cy * this.chunkSize / Impact.system.scale) % this.tilesize;
+		var nx = (cx * this.chunkSize / Game.scale) % this.tilesize,
+			ny = (cy * this.chunkSize / Game.scale) % this.tilesize;
 		
-		var tx = Math.floor(cx * this.chunkSize / this.tilesize / Impact.system.scale),
-			ty = Math.floor(cy * this.chunkSize / this.tilesize / Impact.system.scale);
+		var tx = Math.floor(cx * this.chunkSize / this.tilesize / Game.scale),
+			ty = Math.floor(cy * this.chunkSize / this.tilesize / Game.scale);
 		
 		
 		var chunk = Impact.$new('canvas');
@@ -85,7 +85,7 @@ Impact.BackgroundMap = Impact.Map.extend({
 		chunk.retinaResolutionEnabled = false; // Opt out for Ejecta
 		
 		var chunkContext = chunk.getContext('2d');
-		Impact.System.scaleMode(chunk, chunkContext);
+		Game.scaleMode(chunk, chunkContext);
 		
 		var screenContext = Impact.system.context;
 		Impact.system.context = chunkContext;
@@ -141,10 +141,10 @@ Impact.BackgroundMap = Impact.Map.extend({
 			
 			
 		if (this.repeat ) {
-			var w = this.width * this.tilesize * Impact.system.scale;
+			var w = this.width * this.tilesize * Game.scale;
 			dx = (dx%w + w) % w;
 
-			var h = this.height * this.tilesize * Impact.system.scale;
+			var h = this.height * this.tilesize * Game.scale;
 			dy = (dy%h + h) % h;
 		}
 		

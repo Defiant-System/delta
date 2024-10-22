@@ -89,8 +89,6 @@ Impact.Font = Impact.Image.extend({
 		if (!this.loaded || c < 0 || c >= this.indices.length ) { return 0; }
 		
 		var scale = Impact.system.scale;
-		
-		
 		var charX = this.indices[c] * scale;
 		var charY = 0;
 		var charWidth = this.widthMap[c] * scale;
