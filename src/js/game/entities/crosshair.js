@@ -21,6 +21,11 @@ let EntityCrosshair = Impact.Entity.extend({
 		this.size.y *= Impact.system.scale;
 		this.offset.x *= Impact.system.scale;
 		this.offset.y *= Impact.system.scale;
+		
+		// this.bgSheet.width *= Impact.System.scale;
+		// this.bgSheet.height *= Impact.System.scale;
+		// this.animSheet.width *= Impact.System.scale;
+		// this.animSheet.height *= Impact.System.scale;
 
 		this.def = {
 			x: (window.innerWidth - 24) >> 1,
@@ -29,11 +34,6 @@ let EntityCrosshair = Impact.Entity.extend({
 		this.parent(x, y, settings);
 		this.addAnim("idle", 60, [0]);
 		this.bg = new Impact.Animation(this.bgSheet, 1, [0]);
-		
-		// this.bgSheet.width *= Impact.System.scale;
-		// this.bgSheet.height *= Impact.System.scale;
-		// this.animSheet.width *= Impact.System.scale;
-		// this.animSheet.height *= Impact.System.scale;
 	},
 	dispose: function() {
 		this.fade.out = true;

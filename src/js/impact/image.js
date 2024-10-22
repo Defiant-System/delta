@@ -126,7 +126,7 @@ Impact.Image = Impact.Class.extend({
 	draw: function( targetX, targetY, sourceX, sourceY, width, height ) {
 		if (!this.loaded ) { return; }
 		
-		var scale = Impact.system.scale;
+		var scale = 1;
 		sourceX = sourceX ? sourceX * scale : 0;
 		sourceY = sourceY ? sourceY * scale : 0;
 		width = (width ? width : this.width) * scale;
@@ -148,7 +148,7 @@ Impact.Image = Impact.Class.extend({
 		
 		if (!this.loaded || tileWidth > this.width || tileHeight > this.height ) { return; }
 		
-		var scale = Impact.system.scale;
+		var scale = 1;
 		var tileWidthScaled = Math.floor(tileWidth * scale);
 		var tileHeightScaled = Math.floor(tileHeight * scale);
 		

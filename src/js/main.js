@@ -26,7 +26,7 @@
 @import "./game/entities/enemy-plasmabox.js"
 @import "./game/entities/enemy-arm.js"
 
-@import "./plugins/impact-splash-loader.js"
+//@*import "./plugins/impact-splash-loader.js"
 //@*import "./plugins/analog-stick.js" // to be removed
 
 //@*import "./game/menus.js" // to be removed

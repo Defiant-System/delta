@@ -41,20 +41,21 @@ let EntityPlayer = Impact.Entity.extend({
 		// this.soundShoot.volume = 0.7;
 		Impact.game.player = this;
 
-		this.shield.pivot.x *= Impact.System.scale;
-		this.shield.pivot.y *= Impact.System.scale;
-		this.animSheet.width *= Impact.System.scale;
-		this.animSheet.height *= Impact.System.scale;
-		this.shieldAnimSheet.width *= Impact.System.scale;
-		this.shieldAnimSheet.height *= Impact.System.scale;
+		// this.pos.x *= Impact.System.scale;
+		// this.pos.y *= Impact.System.scale;
+
+		// this.animSheet.width *= Impact.System.scale;
+		// this.animSheet.height *= Impact.System.scale;
+		// this.shieldAnimSheet.width *= Impact.System.scale;
+		// this.shieldAnimSheet.height *= Impact.System.scale;
 	},
 	draw: function() {
 		// Impact.system.context.fillStyle = "#f00";
-		// Impact.system.context.fillRect(this.pos.x, this.pos.y, this.size.x, this.size.y);
+		// Impact.system.context.fillRect(this.pos.x - this.offset.w, this.pos.y - this.offset.h, this.size.x * 2, this.size.y * 2);
 
 		this.parent();
 		if (this.shieldTimer) {
-			let o = this.shield.sheet.width >> 1; // 38
+			let o = this.shield.sheet.width >> 1;
 			this.shield.alpha = this.shieldTimer.delta().map(-0.5, 0, 0.5, 0).limit(0, 0.5);
 			this.shield.draw(this.pos.x - o - Impact.game._rscreen.x, this.pos.y - o - Impact.game._rscreen.y);
 		}
@@ -125,10 +126,6 @@ let EntityPlayer = Impact.Entity.extend({
 		}
 	},
 	handleTouchInput: function() {
-		// var lstick = Impact.game.stickLeft;
-		// this.vel.x = lstick.input.x * this.speed;
-		// this.vel.y = lstick.input.y * this.speed;
-		
 		var isShooting = Impact.input.state("shoot");
 		if (isShooting) {
 			if (this.lastShootTimer.delta() > 0) {
@@ -169,7 +166,7 @@ let EntityPlayer = Impact.Entity.extend({
 
 		Impact.game.lastKillTimer.set(0.5);
 		Impact.game.spawnEntity(EntityExplosionParticleBlue, this.pos.x, this.pos.y, { count: 40 });
-		this.pos.y = Impact.system.height + 300;
+		this.pos.y = Impact.system.height + (300 * Impact.System.scale);
 		this.parent();
 		Impact.game.loseLive();
 	},

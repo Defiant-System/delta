@@ -480,8 +480,8 @@ XType.MODE = {
 
 XType.paused = false;
 
-Impact.System.scale = 1;
-//Impact.System.scale = .9;
+//Impact.System.scale = 1;
+Impact.System.scale = .9;
 
 XType.startGame = function() {
 	// Impact.Sound.channels = 2;
@@ -524,7 +524,7 @@ XType.startGame = function() {
 	// 	return false;
 	// }
 
-	Impact.main(cvs, XType, fps, width, height, scale, Impact.ImpactSplashLoader);
+	Impact.main(cvs, XType, fps, width, height, scale /*, Impact.ImpactSplashLoader*/);
 };
 
 XType.checkOrientation = function() {

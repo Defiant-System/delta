@@ -34,7 +34,7 @@ Impact.Loader = Impact.Class.extend({
 		for( var i = 0; i < this.resources.length; i++ ) {
 			this.loadResource( this.resources[i] );
 		}
-		this._intervalId = setInterval( this.draw.bind(this), 16 );
+		// this._intervalId = setInterval( this.draw.bind(this), 16 );
 	},
 	
 	
@@ -52,26 +52,26 @@ Impact.Loader = Impact.Class.extend({
 	},
 	
 	
-	draw: function() {
-		this._drawStatus += (this.status - this._drawStatus)/5;
-		var s = Impact.system.scale;
-		var w = (Impact.system.width * 0.6).floor();
-		var h = (Impact.system.height * 0.1).floor();
-		var x = (Impact.system.width * 0.5-w/2).floor();
-		var y = (Impact.system.height * 0.5-h/2).floor();
+	// draw: function() {
+	// 	this._drawStatus += (this.status - this._drawStatus)/5;
+	// 	var s = Impact.system.scale;
+	// 	var w = (Impact.system.width * 0.6).floor();
+	// 	var h = (Impact.system.height * 0.1).floor();
+	// 	var x = (Impact.system.width * 0.5-w/2).floor();
+	// 	var y = (Impact.system.height * 0.5-h/2).floor();
 		
-		Impact.system.context.fillStyle = '#000';
-		Impact.system.context.fillRect( 0, 0, Impact.system.width, Impact.system.height );
+	// 	Impact.system.context.fillStyle = '#000';
+	// 	Impact.system.context.fillRect( 0, 0, Impact.system.width, Impact.system.height );
 		
-		Impact.system.context.fillStyle = '#fff';
-		Impact.system.context.fillRect( x*s, y*s, w*s, h*s );
+	// 	Impact.system.context.fillStyle = '#fff';
+	// 	Impact.system.context.fillRect( x*s, y*s, w*s, h*s );
 		
-		Impact.system.context.fillStyle = '#000';
-		Impact.system.context.fillRect( x*s+s, y*s+s, w*s-s-s, h*s-s-s );
+	// 	Impact.system.context.fillStyle = '#000';
+	// 	Impact.system.context.fillRect( x*s+s, y*s+s, w*s-s-s, h*s-s-s );
 		
-		Impact.system.context.fillStyle = '#fff';
-		Impact.system.context.fillRect( x*s, y*s, w*s*this._drawStatus, h*s );
-	},
+	// 	Impact.system.context.fillStyle = '#fff';
+	// 	Impact.system.context.fillRect( x*s, y*s, w*s*this._drawStatus, h*s );
+	// },
 	
 	
 	_loadCallback: function( path, status ) {
