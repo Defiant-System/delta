@@ -2,8 +2,7 @@
 @import "./modules/utils.js"
 
 let Game = {
-	// scale: 1,
-	scale: .9,
+	scale: $.isHHD ? .9 : 1,
 };
 
 @import "./impact/impact.js"
@@ -124,6 +123,7 @@ const delta = {
 				let player = Impact.game.player,
 					x = event.value[0],
 					y = event.value[1];
+				if (!player) return;
 				// ship control
 				if (event.stick === "left") {
 					// set ship position
@@ -137,13 +137,13 @@ const delta = {
 				}
 				break;
 			case "gamepad.down":
-				if (event.button === "b11") {
+				if (["b7", "b11"].includes(event.button)) {
 					// start shooting
 					Impact.input.pressed("shoot");
 				}
 				break;
 			case "gamepad.up":
-				if (event.button === "b11") {
+				if (["b7", "b11"].includes(event.button)) {
 					// stop shooting
 					Impact.input.released("shoot");
 				}

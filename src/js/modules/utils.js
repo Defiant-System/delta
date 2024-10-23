@@ -1,13 +1,13 @@
 
 let Utils = {
-	toRad() {
-		return (this / 180) * Math.PI;
+	toRad(v) {
+		return (v / 180) * Math.PI;
 	},
-	toDeg() {
-		return (this * 180) / Math.PI;
+	toDeg(v) {
+		return (v * 180) / Math.PI;
 	},
-	toInt() {
-		return (this | 0);
+	toInt(v) {
+		return (v | 0);
 	},
 	// get a random number within a range
 	random(min, max) {

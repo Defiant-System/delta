@@ -1,10 +1,10 @@
 
 let Test = {
 	init(APP) {
+		return;
+
 		// test / debug flag
 		Test.debug = true;
-
-		// return;
 
 		// pause background worker
 		// setTimeout(() => Bg.dispatch({ type: "pause" }), 300);

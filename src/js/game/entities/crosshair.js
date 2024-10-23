@@ -17,26 +17,21 @@ let EntityCrosshair = Impact.Entity.extend({
 	type: Impact.Entity.TYPE.NONE,
 	init: function(x, y, settings) {
 		// scale entity
-		// this.size.x = Math.round(this.bgSheet.width / 2);
-		// this.size.y = Math.round(this.bgSheet.height / 2);
-		// this.offset.x = Math.round(this.bgSheet.width / 2);
-		// this.offset.y = Math.round(this.bgSheet.height / 2);
+		this.offset.x = Math.round(this.bgSheet.width / 2);
+		this.offset.y = Math.round(this.bgSheet.height / 2);
 		
-		// this.bgSheet.width *= Game.scale;
-		// this.bgSheet.height *= Game.scale;
-		// this.animSheet.width *= Game.scale;
-		// this.animSheet.height *= Game.scale;
-
 		this.def = {
 			x: (window.innerWidth - 24) >> 1,
 			y: (window.innerHeight - 103) >> 1,
 		};
 		this.parent(x, y, settings);
-		this.addAnim("idle", 60, [0]);
+		this.addAnim("idle", 1, [0]);
 		this.bg = new Impact.Animation(this.bgSheet, 1, [0]);
 
-		// console.log( this.bg.pivot );
-		// console.log( this.offset );
+		if (Game.scale === .9) {
+			this.currentAnim.pivot.x = 19.5;
+			this.currentAnim.pivot.y = 19.5;
+		}
 	},
 	dispose: function() {
 		this.fade.out = true;
