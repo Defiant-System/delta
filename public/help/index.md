@@ -9,3 +9,5 @@ Delta is an uncompromising, crazy, fast paced bullet hell, endless boss battle s
 
 ---
 *This game is based on the excellent game X-Type, originally written by Dominic Szablewski. Play the [original game here](https://phoboslab.org/xtype/).*
+
+*Some of the graphical assets for this game was obtained from the excellent [www.kenney.nl](https://www.kenney.nl/)*
